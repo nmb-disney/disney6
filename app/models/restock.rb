@@ -1,0 +1,2 @@
+class Restock < ApplicationRecord
+end
