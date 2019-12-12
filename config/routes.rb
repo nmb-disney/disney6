@@ -5,7 +5,6 @@ root "cds#index"
   devise_for :admins
 
 namespace :public do
-  devise_for :users
   resources :users, :only => [:edit, :show, :update, :destroy]
   get 'users/out' => 'users#out'
   resources :carts, :only => [:edit, :update, :destroy]
