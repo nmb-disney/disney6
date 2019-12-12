@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 root "cds#index"
 
-
   devise_for :users
   devise_for :admins
-  namespace :public do
 
+namespace :public do
   devise_for :users
   resources :users, :only => [:edit, :show, :update, :destroy]
   get 'users/out' => 'users#out'
@@ -18,8 +17,8 @@ root "cds#index"
   get 'cds/search' => 'cds#search'
   resources :reviews, :only => [:create, :show,]
 end
-namespace :admin do
 
+namespace :admin do
   resources :orders, :only => [:index, :show,]
   resources :cds, :only => [:index, :new, :create, :edit, :update]
   resources :restocks, :only => [:index, :new, :create, :update]
