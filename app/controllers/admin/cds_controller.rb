@@ -1,4 +1,4 @@
-class RestocksController < ApplicationController
+class Admin::CdsController < Admin::ApplicationController
   def index
   end
 
@@ -6,6 +6,9 @@ class RestocksController < ApplicationController
   end
 
   def create
+  end
+
+  def edit
   end
 
   def update
