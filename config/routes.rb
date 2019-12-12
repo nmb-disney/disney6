@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
 root "cds#index"
 
+
   devise_for :users
   devise_for :admins
-namespace :public do
+  namespace :public do
 
+  devise_for :users
   resources :users, :only => [:edit, :show, :update, :destroy]
+  get 'users/out' => 'users#out'
   resources :carts, :only => [:edit, :update, :destroy]
   resources :interests, :only => [:create, :index, :destroy]
   resources :orders, :only => [:new, :create, :show, :index]
-  resources :cds, :only => [:index, :show, :index]
+  get 'orders/finish' => 'orders#finish'
+  get 'orders/confirm' => 'orders#confirm'
+  resources :cds, :only => [:index, :show]
+  get 'cds/search' => 'cds#search'
   resources :reviews, :only => [:create, :show,]
 end
 namespace :admin do
