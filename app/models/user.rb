@@ -10,14 +10,14 @@ class User < ApplicationRecord
   has_many :addresss, dependent: :destroy
   has_many :orders, dependent: :destroy
 
-  validates :lastname, presence: true
-  validates :firstname, presence: true
-  validates :lastname_kana, presence: true
-  validates :firstname_kana, presence: true
-  validates :phone, presence: true
+  validates :lastname, presence: true, length: {in: 2..20}
+  validates :firstname, presence: true, length: {in: 2..20}
+  validates :lastname_kana, presence: true, length: {in: 2..20}
+  validates :firstname_kana, presence: true, length: {in: 2..20}
+  validates :phone, presence: true, length: {in: 2..20}
   validates :email, presence: true
-  validates :password, presence: true
-  validates :profile_image_id, presence: true
+  validates :password, length: {in: 2..20}
   validates :postalcode, presence: true
-  validates :address, presence: true
+  validates :address, length: { maximum: 50 }
+  attachment :profile_image
 end

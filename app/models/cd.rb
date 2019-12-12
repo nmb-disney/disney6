@@ -9,4 +9,5 @@ class Cd < ApplicationRecord
 	has_many :cart_cds, dependent: :destroy
 	has_many :discs, dependent: :destroy
 	has_many :restocks, dependent: :destroy
+	attachment :jacket_image
 end
