@@ -1,2 +1,2 @@
-class Public::ApplicationController < ActionController::Base
+class Public::ApplicationController < ApplicationController
 end
