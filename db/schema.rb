@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_054723) do
+ActiveRecord::Schema.define(version: 2019_12_14_053239) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 2019_12_12_054723) do
 
   create_table "artists", force: :cascade do |t|
     t.string "artist_name", null: false
-    t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["artist_name"], name: "index_artists_on_artist_name"
   end
 
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 2019_12_12_054723) do
     t.datetime "release_date", null: false
     t.integer "price", null: false
     t.integer "status", null: false
-    t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["cd_title"], name: "index_cds_on_cd_title"
   end
 
@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(version: 2019_12_12_054723) do
 
   create_table "genres", force: :cascade do |t|
     t.string "genre_name", null: false
-    t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["genre_name"], name: "index_genres_on_genre_name"
   end
 
@@ -88,15 +88,14 @@ ActiveRecord::Schema.define(version: 2019_12_12_054723) do
     t.integer "user_id"
     t.integer "cd_id"
     t.datetime "created_at", null: false
-    t.datetime "update_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "labels", force: :cascade do |t|
     t.string "label_name", null: false
-    t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["label_name"], name: "index_labels_on_label_name"
   end
 
@@ -133,9 +132,9 @@ ActiveRecord::Schema.define(version: 2019_12_12_054723) do
     t.integer "cd_id", null: false
     t.datetime "restock_date", null: false
     t.integer "restock_count", null: false
-    t.datetime "deleted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -143,7 +142,6 @@ ActiveRecord::Schema.define(version: 2019_12_12_054723) do
     t.integer "cd_id"
     t.string "comment", null: false
     t.datetime "created_at", null: false
-    t.datetime "update_at", null: false
     t.datetime "updated_at", null: false
   end
 
@@ -158,13 +156,10 @@ ActiveRecord::Schema.define(version: 2019_12_12_054723) do
     t.string "lastname_kana", null: false
     t.string "firstname_kana", null: false
     t.string "phone", null: false
-    t.string "password", null: false
     t.string "profile_image_id"
     t.string "postalcode", null: false
     t.string "address", null: false
     t.datetime "created_at", null: false
-    t.datetime "update_at", null: false
-    t.datetime "deleted_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["firstname"], name: "index_users_on_firstname"

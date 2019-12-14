@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Disney6</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compact Discers</title>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
   </head>
 
-<header>
-  <h1>こんにちは！</h1>
- </header>
 
-  <body>
-    <%= yield %>
+<body>
+        <nav class="navbar navbar-static-top navbar-inverse">
+         <div class="container">
+          <div class="row">
+            <div class="navbar-header">compact descers</div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <% if user_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to"マイページ", public_user_path %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to destroy_user_session_path, method: :delete  do %>
+                  <span class="glyphicon glyphicon-log-out" aria-hidden="true">ログアウト</span>
+                  <% end %>
+                </li>
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to"会員登録", new_user_registration_path %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to"ログイン", new_user_session_path %>
+                  </li>
+                 <% end %>
+              </ul>
+          </div>
+         </div>
+        </nav>
+
+<%= yield %>
+
+        <footer class="footer style-2">
+          <div class="container">
+            <div class="row">
+              <div class="top-message col-xs-3 col-xs-offset-9">CopyRight Infratop.Inc
+              </div>
+            </div>
+          </div>
+        </footer>
+
   </body>
 </html>
+
+
