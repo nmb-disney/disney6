@@ -1,6 +1,6 @@
 class Admin::LabelsController < Admin::ApplicationController
   def create
-  	@label = Label.new(cd_params)
+  	@label = Label.new(label_params)
     @label.save
     redirect_to ' new_admin_cd_path'
   end

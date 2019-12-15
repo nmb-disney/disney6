@@ -1,9 +1,13 @@
 class Admin::ListsController < Admin::ApplicationController
   def new
-   @list = List.new
-   @rebel = Label.new
+
+   @label = Label.new
    @artist = Artist.new
-   @genres = Genre.new
+   @genre = Genre.new
+
+   @labels = Label.all
+   @artists = Artist.all
+   @genres = Genre.all
   end
 
 private

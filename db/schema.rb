@@ -103,9 +103,6 @@ ActiveRecord::Schema.define(version: 2019_12_15_035339) do
   create_table "lists", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "label_id"
-    t.integer "artist_id"
-    t.integer "genre_id"
   end
 
   create_table "musics", force: :cascade do |t|
