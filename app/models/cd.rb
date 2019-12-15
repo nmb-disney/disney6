@@ -10,7 +10,7 @@ has_many :interests, dependent: :destroy
 has_many :cart_cds, dependent: :destroy
 has_many :discs, dependent: :destroy
 has_many :restocks, dependent: :destroy
-# Benchmark.bmbm do |results|
+
  accepts_nested_attributes_for :discs, allow_destroy: true
 
 def Cd.search(search, search_option)

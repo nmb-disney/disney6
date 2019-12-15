@@ -10,10 +10,4 @@ class Admin::ListsController < Admin::ApplicationController
    @genres = Genre.all
   end
 
-private
-
-  def list_params
-    params.require(:list).permit(:artist_name, :genre_name, :label_name)
-  end
-
 end
