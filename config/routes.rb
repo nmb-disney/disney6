@@ -12,8 +12,8 @@ namespace :public do
   resources :orders, :only => [:new, :create, :show, :index]
   get 'orders/finish' => 'orders#finish'
   get 'orders/confirm' => 'orders#confirm'
+  get 'search' => 'cds#search'
   resources :cds, :only => [:index, :show]
-  get 'cds/search' => 'cds#search'
   resources :reviews, :only => [:create, :show,]
 end
 
