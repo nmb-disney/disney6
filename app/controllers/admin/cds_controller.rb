@@ -12,7 +12,7 @@ class Admin::CdsController < Admin::ApplicationController
   def create
    @cd = Cd.new(cd_params)
    @cd.save
-   redirect_to 'admin_cds_path'
+    redirect_to admin_cds_path(@cd.id)
   end
 
   def edit

@@ -1,5 +1,6 @@
 class Admin::ArtistsController < Admin::ApplicationController
   def create
+   @artists = Artist.all
    @artist = Artist.new(cd_params)
    @artist.save
    redirect_to ' new_admin_cd_path'

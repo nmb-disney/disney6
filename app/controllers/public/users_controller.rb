@@ -34,5 +34,5 @@ class Public::UsersController < Public::ApplicationController
   def user_find
     @user = User.find(params[:id])
   end
->>>>>>> abadc1f7aacd66f839c444e70ca7a01df038ca38
+
 end
