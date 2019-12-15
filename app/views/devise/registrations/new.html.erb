@@ -4,8 +4,43 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :lastname %><br />
+    <%= f.text_field :lastname, autofocus: true, autocomplete: "姓" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :firstname %><br />
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "名" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lastname_kana %><br />
+    <%= f.text_field :lastname_kana, autofocus: true, autocomplete: "セイ" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :firstname_kana %><br />
+    <%= f.text_field :firstname_kana, autofocus: true, autocomplete: "メイ" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postalcode %><br />
+    <%= f.text_field :postalcode, autofocus: true, autocomplete: "郵便番号" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone, autofocus: true, autocomplete: "電話番号" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
   </div>
 
   <div class="field">
@@ -13,16 +48,15 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", id:"inputConfirmPassword", placeholder:"パスワード確認" %>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "会員登録をする" %>
   </div>
 <% end %>
 

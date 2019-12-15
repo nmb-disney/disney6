@@ -10,4 +10,13 @@ class Cd < ApplicationRecord
 	has_many :discs, dependent: :destroy
 	has_many :restocks, dependent: :destroy
 	attachment :jacket_image
+
+	def Cd.search(search, search_option)
+  	if search_option == "3"
+     	Cd.where(['cd_title LIKE ?', "%#{search}%"])
+  	else
+     	Cd.all
+  	end
+	end
+
 end
