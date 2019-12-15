@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-root "cds#index"
+  root 'public/cds#index'
 
   devise_for :users
   devise_for :admins
