@@ -1,2 +1,26 @@
-<h1>Publicマイページ</h1>
+<div class="container">
+   <div class="row">
+        <div class="col-xs-3">
+		  <% if flash[:notice] %>
+		    <div class="flash">
+			  <%= flash[:notice] %>
+		    </div>
+		  <% end %>
 
+	      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+	      <br>
+		   <%= @user.lastname%><%= @user.firstname%>
+			<%= link_to edit_public_user_path(@user.id), class: 'btn btn-default btn-md btn-block' do %>
+			 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			  <%= link_to"気になるリスト", public_interests_path %>
+			  <br>
+			  <%= link_to"購入履歴", public_orders_path %>
+			<% end %>
+        </div>
+
+
+    <div class="col-xs-9">
+      <h1>カートの中</h1>
+     </div>
+    </div>
+   </div>

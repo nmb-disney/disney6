@@ -13,7 +13,7 @@
   </head>
 
 
-<body>
+      <header>
         <nav class="navbar navbar-static-top navbar-inverse">
          <div class="container">
           <div class="row">
@@ -22,13 +22,13 @@
               <ul class="nav navbar-nav navbar-right">
                 <% if user_signed_in? %>
                   <li class="nav-item">
-                    <%= link_to"マイページ", public_user_path %>
+                    <%= link_to"マイページ", public_user_path(current_user.id) %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to destroy_user_session_path, method: :delete  do %>
-                  <span class="glyphicon glyphicon-log-out" aria-hidden="true">ログアウト</span>
-                  <% end %>
-                </li>
+                    <%= link_to destroy_user_session_path, method: :delete do %>
+                    <span>ログアウト</span>
+                    <% end %>
+                  </li>
                 <% else %>
                   <li class="nav-item">
                     <%= link_to"会員登録", new_user_registration_path %>
@@ -41,8 +41,11 @@
           </div>
          </div>
         </nav>
+      </header>
 
-<%= yield %>
+      <body>
+        <%= yield %>
+      </body>
 
         <footer class="footer style-2">
           <div class="container">
