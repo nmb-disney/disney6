@@ -24,6 +24,7 @@ class Public::UsersController < Public::ApplicationController
   def out
   end
 
+
   private
 
   def user_params
@@ -33,4 +34,5 @@ class Public::UsersController < Public::ApplicationController
   def user_find
     @user = User.find(params[:id])
   end
+
 end
