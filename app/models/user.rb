@@ -16,7 +16,6 @@ class User < ApplicationRecord
   validates :firstname_kana, presence: true, length: {in: 2..20}
   validates :phone, presence: true, length: {in: 2..20}
   validates :email, presence: true
-  validates :password, length: {in: 2..20}
   validates :postalcode, presence: true
   validates :address, length: { maximum: 50 }
   attachment :profile_image
