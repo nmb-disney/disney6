@@ -14,4 +14,7 @@ class Public::UsersController < Public::ApplicationController
 
   def out
   end
+
+
+
 end

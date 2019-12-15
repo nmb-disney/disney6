@@ -1,0 +1,17 @@
+<div class="nested-fields">
+<h4>disc 1 Title</h4>
+<%= f.text_field :disc_title %>
+
+<%= f.fields_for :musics do |form| %>
+	<%= link_to_remove_association "ディスクを削除", f %>
+	<%= render "music_fields", f: form %>
+<% end %>
+
+<h4>disc 2 Title</h4>
+<%= f.text_field :disc_title %>
+
+<%= f.fields_for :musics do |form| %>
+	<%= link_to_remove_association "ディスクを削除", f %>
+	<%= render "music_fields", f: form %>
+<% end %>
+</div>
