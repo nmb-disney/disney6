@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 namespace :public do
   resources :users, :only => [:edit, :show, :update, :destroy]
   get 'users/:id/out' => 'users#out'
+  resources :addresses, :only => [:create]
   resources :carts, :only => [:edit, :update, :destroy]
   resources :interests, :only => [:create, :index, :destroy]
   resources :orders, :only => [:new, :create, :show, :index]
