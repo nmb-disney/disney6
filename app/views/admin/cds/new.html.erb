@@ -6,14 +6,12 @@
     <li>ジャケット選択：<%= file_field_tag "images[]", type: :file, multiple: true %></li>
 </ul>
 
-<%= f.text_field :jacket_image_id %>
-
-
-
-<h4>アーティスト</h4>
-<%= f.text_field :artist_id %>
-
-
+<h3>アーティスト</h3>
+<select name="" multiple>
+	<% @artists.each do |artist|%>
+	<option value=""><%= artist.artist_name %></option>
+	<% end %>
+</select>
 <h4>タイトル</h4>
 <%= f.text_field :cd_title %>
 
@@ -22,13 +20,20 @@
 
 <h4>発売日</h4>
 <%= f.date_field :release_date%>
+<h4>レーベル</h4>
+<select name="" multiple>
+	<% @labels.each do |label|%>
+	<option value=""><%= label.label_name %></option>
+	<% end %>
+</select>
 
+<h3>ジャンル</h3>
+<select name="" multiple>
+	<% @genres.each do |genre|%>
+	<option value=""><%= genre.genre_name %></option>
+	<% end %>
+</select>
 
-<h4>レーベル名</h4>
-<%= f.text_field :label_id %>
-
-<h4>ジャンル</h4>
-<%= f.text_field :genre_id %>
 
 <%= f.fields_for :discs do |disc| %>
 　　<%= render "disc_fields", f: disc %>
@@ -39,7 +44,6 @@
 </div>
 
 <h4>ステータス</h4>
-
 
 
 <h4>入荷数</h4>

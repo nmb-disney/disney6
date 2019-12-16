@@ -1,2 +1,12 @@
 <h1>admin商品編集ページ</h1>
+<h3>アーティスト</h3>
+<select name="" multiple>
+	<% @artists.each do |artist|%>
+	   <option value=""><%= artist.artist_name %></option>
+	<% end %>
+</select>
 
+<%= form_for @cd, url:public_user_path, method: :patch do |f| %>
+  <h3>CDタイトル</h3>
+     <%= f.text_field :cd_title %>
+<% end %>
