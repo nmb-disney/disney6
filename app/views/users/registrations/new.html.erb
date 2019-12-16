@@ -4,56 +4,57 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :lastname %><br />
+    <%= f.label :lastname %>
     <%= f.text_field :lastname, autofocus: true, autocomplete: "姓" %>
   </div>
 
   <div class="field">
-    <%= f.label :firstname %><br />
+    <%= f.label :firstname %>
     <%= f.text_field :firstname, autofocus: true, autocomplete: "名" %>
   </div>
 
   <div class="field">
-    <%= f.label :lastname_kana %><br />
+    <%= f.label :lastname_kana %>
     <%= f.text_field :lastname_kana, autofocus: true, autocomplete: "セイ" %>
   </div>
 
   <div class="field">
-    <%= f.label :firstname_kana %><br />
+    <%= f.label :firstname_kana %>
     <%= f.text_field :firstname_kana, autofocus: true, autocomplete: "メイ" %>
   </div>
 
   <div class="field">
-    <%= f.label :postalcode %><br />
+    <%= f.label :postalcode %>
     <%= f.text_field :postalcode, autofocus: true, autocomplete: "郵便番号" %>
   </div>
 
   <div class="field">
-    <%= f.label :address %><br />
+    <%= f.label :address %>
     <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
   </div>
 
   <div class="field">
-    <%= f.label :phone %><br />
+    <%= f.label :phone %>
     <%= f.text_field :phone, autofocus: true, autocomplete: "電話番号" %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
   </div>
 
-  <div class="field">
+ <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputPassword", placeholder:"パスワード" %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", id:"inputConfirmPassword", placeholder:"パスワード確認" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
 
   <div class="actions">
     <%= f.submit "会員登録をする" %>
