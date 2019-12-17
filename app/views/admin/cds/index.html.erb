@@ -7,6 +7,7 @@
 
       <div class="col-xs-9">
         <h1>admin商品管理一覧</h1>
+
           <%= form_tag(admin_cds_path, :method => 'get') do %>
            <%= select_tag(:option, options_for_select([["アーティスト名", "1"],["曲名","2"],["ステータス","3"]]))%>
              <%= text_field_tag :search %>
@@ -21,12 +22,17 @@
                     <th>値段</th>
                     <th>ステータス</th>
                   </tr>
-                <% @cds.each do |f| %>
+                <% @cds.each do |cd| %>
                     <tr>
-                      <tb><%= f.artist_id %></tb>
-                      <tb><%= f.cd_title %></tb>
-                    </tr>
-                <% end %>
+
+                      <td><%= cd.artist.artist_name %></td>
+                      <td><%= cd.cd_title %></td>
+                      <td><%= cd.price %></td>
+
+                      <td><%= cd.status %></td>
+                      <td><%= link_to "削除", new_admin_restock_path(@cd), method: :delete %></td>
+               <% end %>
+
               </table>
        </div>
    </div>

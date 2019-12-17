@@ -1,6 +1,10 @@
 <h1>admin入荷追加作成</h1>
 <%= form_for [:admin, @artist] do |artist| %>
 
+<%= collection_select :software, :keyword_id,
+                      Restock.find_all,
+                      :id, :name,
+                      :include_blank => true %>
 <h3>アーティスト<%= artist.collection_select :artist_name, Artist.all, :id ,:artist_name %></h3>
 <% end %>
 
@@ -8,8 +12,9 @@
 <h3>CDタイトル<%= cd.collection_select :cd_title, Cd.all, :id ,:cd_title %></h3>
 <% end %>
 
-<%= form_for(@restock, url: admin_cds_path) do |f| %>
+<%= form_for [:admin, @restock], url: admin_restocks_path, method: :post do |f| %>
 <h3>入荷追加枚数 <%= f.number_field :restock_count %></h3>
+<h3>入荷日<%= f.date_field :restock_date %></h3>
 <%= f.submit '入荷追加作成' %>
 <% end %>
 

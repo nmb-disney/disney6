@@ -7,6 +7,9 @@ class Admin::RestocksController < Admin::ApplicationController
   	@restock = Restock.new
     @artist = Artist.new
     @cd = Cd.new
+    @artists = Artist.all
+    @cds = Cd.all
+    @keyword_id = 1
   end
 
   def create
