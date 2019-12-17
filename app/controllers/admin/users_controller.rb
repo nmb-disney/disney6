@@ -1,5 +1,8 @@
 class Admin::UsersController < Admin::ApplicationController
+  before_action :user_find, only: [:show, :edit, :update]
+
   def index
+    @users = User.all
   end
 
   def show
@@ -16,4 +19,9 @@ class Admin::UsersController < Admin::ApplicationController
 
   def out
   end
+
+  def user_find
+    @user = User.find(params[:id])
+  end
+
 end

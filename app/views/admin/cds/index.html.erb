@@ -1,30 +1,33 @@
-<h1>admin商品管理一覧</h1>
-<%= form_tag(admin_cds_path, :method => 'get') do %>
-   <%= select_tag(:option, options_for_select([["アーティスト名", "1"],["曲名","2"],["ステータス","3"]]))%>
-     <%= text_field_tag :search %>
-      <%= submit_tag '検索' %>
-<h1>商品一覧</h1>
+<div class="container">
+   <div class="row">
+        <div class="col-xs-3">
+		  <%= render 'admin/users/sidebar' %>
+        </div>
 
- <% end %>
-<table>
-		<tr>
-			<th>入荷日時</th>
-			　<th></th>
-			 　<th>アーティスト名</th>
-			   <th></th>
-			　　<th>タイトル</th>
-			    <th></th>
-			     <th>値段</th>
-			     <th></th>
-			      <th>ステータス</th>
-			       <th></th>
-		</tr>
 
-		    <% @cds.each do |f| %>
-		<tr>
-			<tb><%= f.artist_id %></tb>
-            <tb><%= f.cd_title %></tb>
-
-	    </tr>
-        <% end %>
-</table>
+      <div class="col-xs-9">
+        <h1>admin商品管理一覧</h1>
+          <%= form_tag(admin_cds_path, :method => 'get') do %>
+           <%= select_tag(:option, options_for_select([["アーティスト名", "1"],["曲名","2"],["ステータス","3"]]))%>
+             <%= text_field_tag :search %>
+              <%= submit_tag '検索' %>
+             <h1>商品一覧</h1>
+           <% end %>
+              <table>
+                  <tr>
+                    <th>入荷日時</th>
+                    <th>アーティスト名</th>
+                    <th>タイトル</th>
+                    <th>値段</th>
+                    <th>ステータス</th>
+                  </tr>
+                <% @cds.each do |f| %>
+                    <tr>
+                      <tb><%= f.artist_id %></tb>
+                      <tb><%= f.cd_title %></tb>
+                    </tr>
+                <% end %>
+              </table>
+       </div>
+   </div>
+</div>
