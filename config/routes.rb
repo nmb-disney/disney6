@@ -21,6 +21,7 @@ end
 namespace :admin do
   resources :orders, :only => [:index, :show,]
   resources :cds, :only => [:index, :new, :create, :edit, :update]
+  get 'searchs' => 'cds#searchs'
   resources :restocks, :only => [:index, :new, :create, :update]
   resources :users, :only => [:index, :show, :destroy, :update, :edit]
   resources :reviews, :only => [:index, :destroy,]
