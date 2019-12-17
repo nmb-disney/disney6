@@ -9,16 +9,21 @@ class Admin::CdsController < Admin::ApplicationController
     @song = @disc.musics.build
 
 
-    @labels = Label.all
-    @artists = Artist.all
-    @genres = Genre.all
+    @label = Label.new
+    @artist = Artist.new
+    @genre = Genre.new
 
   end
 
   def create
+    puts "====="
+
     @cd = Cd.new(cd_params)
-    @cd.save
-    redirect_to admin_cds_path(@cd.id)
+    @cd.save!
+    puts "====="
+
+    redirect_to admin_cds_path
+    logger.debug @cd.errors.inspect
   end
 
   def edit
@@ -28,7 +33,7 @@ class Admin::CdsController < Admin::ApplicationController
 
   def update
      @cd.update(cd_params)
-     redirect_to public_user_path(@cd.id)
+     redirect_to admin_cds_path(@cd)
   end
 
   def searchs
@@ -47,7 +52,8 @@ end
 private
 
     def cd_params
-     params.require(:cd).permit(:cd_title, :jacket_image_id, :disk_attributes => [:id, :_destroy, :music_attributes => [:id, :destroy]])
+     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status,
+      :genre_id, discs_attributes: [:id, :disc_title, :disc_rank, :_destroy,musics_attributes: [:id, :music_title, :music_rank, :_destroy,]], restock_attributes: [:id, :restock_date , :destroy])
     end
 
 end

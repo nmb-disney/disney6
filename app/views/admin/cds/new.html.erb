@@ -1,54 +1,53 @@
 <!--<h1>admin新規入荷作成</h1>-->
 <h1>新規入荷作成</h1>
 
-<%= form_for(@cd, url: admin_cds_path) do |f| %>
+<%= form_for(@cd, url:admin_cds_path) do |f| %>
+
 <ul>
-    <li>ジャケット選択：<%= file_field_tag "images[]", type: :file, multiple: true %></li>
+    <li>ファイル複数選択
+    	<%= f.attachment_field :jacket_image %></li>
 </ul>
 
-<h3>アーティスト</h3>
-<select name="" multiple>
-	<% @artists.each do |artist|%>
-	<option value=""><%= artist.artist_name %></option>
+	<h3>アーティスト</h3>
+	<%= f.collection_select :artist_id, Artist.all, :id ,:artist_name %>
+
+
+	<h4>タイトル</h4>
+	<%= f.text_field :cd_title %>
+
+	<h4>価格（税別）</h4>
+	<%= f.text_field :price %>
+
+	<h4>発売日</h4>
+	<%= f.date_field :release_date%>
+
+	<h4>レーベル</h4>
+	<%= f.collection_select :label_id, Label.all, :id ,:label_name %>
+
+	<h3>ジャンル</h3>
+	<%= f.collection_select :genre_id, Genre.all, :id ,:genre_name %>
+
+
+	<%= f.fields_for :discs do |disc| %>
+	　　<%= render "disc_fields", f: disc %>
 	<% end %>
-</select>
-<h4>タイトル</h4>
-<%= f.text_field :cd_title %>
 
-<h4>価格（税別）</h4>
-<%= f.text_field :price %>
+	<div class="links">
+		<%= link_to_add_association "discを追加", f, :discs %>
+	</div>
 
-<h4>発売日</h4>
-<%= f.date_field :release_date%>
-<h4>レーベル</h4>
-<select name="" multiple>
-	<% @labels.each do |label|%>
-	<option value=""><%= label.label_name %></option>
+	<h4>ステータス</h4>
+	<%= f.select :status, ['販売中', '販売停止中',], {include_blank: '選択ボックス'},
+    class: 'sample' %>
+
+
+
+　　　<%= f.fields_for :restocks do |restock| %>
+	　　<%= render "restock_fields", f: restock %>
 	<% end %>
-</select>
-
-<h3>ジャンル</h3>
-<select name="" multiple>
-	<% @genres.each do |genre|%>
-	<option value=""><%= genre.genre_name %></option>
-	<% end %>
-</select>
 
 
-<%= f.fields_for :discs do |disc| %>
-　　<%= render "disc_fields", f: disc %>
-<% end %>
-<div class="links">
- <%= link_to_add_association "discを追加", f, :discs %>
-
-</div>
-
-<h4>ステータス</h4>
-
-
-<h4>入荷数</h4>
-<%= f.number_field :restock_id %>
-  <%= f.submit '新規入荷作成' %>
+	<%= f.submit '新規入荷作成' %>
 
 <% end %>
 

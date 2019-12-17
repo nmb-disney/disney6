@@ -9,17 +9,21 @@
 <table>
 		<tr>
 			<th>入荷日時</th>
-			　<th>アーティスト名</th>
+			　<th></th>
+			 　<th>アーティスト名</th>
+			   <th></th>
 			　　<th>タイトル</th>
-			    <th>値段</th>
-			     <th>ステータス</th>
+			    <th></th>
+			     <th>値段</th>
+			     <th></th>
+			      <th>ステータス</th>
+			       <th></th>
 		</tr>
 
-		<% @cds.each do |f| %>
+		    <% @cds.each do |f| %>
 		<tr>
-			<tb><%= f.artist_id %>
-
-
+			<tb><%= f.artist_id %></tb>
+            <tb><%= f.cd_title %></tb>
 
 	    </tr>
         <% end %>

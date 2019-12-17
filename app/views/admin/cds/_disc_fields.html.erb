@@ -1,5 +1,6 @@
 <div class="nested-fields">
-  <h4>disc 1 Title</h4>
+  <h4>disc</h4><%= f.number_field :disc_rank %>
+<h4>Title</h4>
   <%= f.text_field :disc_title %>
 
        <%= f.fields_for :musics do |form| %>
@@ -7,7 +8,7 @@
        <%= render "music_fields", f: form %>
   <% end %>
 
- <h4>disc 2 Title</h4>
+ <h4>disc</h4><%= f.number_field :disc_rank %><h4>Title</h4
   <%= f.text_field :disc_title %>
 
    <%= f.fields_for :musics do |form| %>
