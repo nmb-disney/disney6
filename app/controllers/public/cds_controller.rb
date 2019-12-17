@@ -1,6 +1,6 @@
 class Public::CdsController < Public::ApplicationController
   def index
-
+    @cds = Cd.all
   end
 
   def show
