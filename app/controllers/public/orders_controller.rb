@@ -2,16 +2,17 @@ class Public::OrdersController < Public::ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
-  end
-
-  def confirm
+    @user = User.find(current_user.id)
   end
 
   def create
+  end
+
+  def show
+  end
+
+  def detail
   end
 
   def finish

@@ -1,2 +1,9 @@
 <h1>Public気になるリスト！</h1>
 
+<div class="container">
+   <div class="row">
+   	<% @user.interests.each do |interest| %>
+   	  <%= interest.cd_title %>
+    <% end %>
+   </div>
+</div>
