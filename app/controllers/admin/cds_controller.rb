@@ -7,6 +7,7 @@ class Admin::CdsController < Admin::ApplicationController
     @cd = Cd.new
     @disc = @cd.discs.build
     @song = @disc.musics.build
+    @restock = @cd.restocks.build
 
 
     @label = Label.new
@@ -53,7 +54,7 @@ private
 
     def cd_params
      params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status,
-      :genre_id, discs_attributes: [:id, :disc_title, :disc_rank, :_destroy,musics_attributes: [:id, :music_title, :music_rank, :_destroy,]], restock_attributes: [:id, :restock_date , :destroy])
+      :genre_id, discs_attributes: [:id, :disc_title, :disc_rank, :_destroy, musics_attributes: [:id, :music_title, :music_rank, :_destroy]], restocks_attributes: [:id, :restock_date ,:restock_count , :destroy])
     end
 
 end
