@@ -17,14 +17,11 @@ class Admin::CdsController < Admin::ApplicationController
   end
 
   def create
-    puts "====="
-
     @cd = Cd.new(cd_params)
     @cd.save!
-    puts "====="
 
     redirect_to admin_cds_path
-    logger.debug @cd.errors.inspect
+
   end
 
   def edit
