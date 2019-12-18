@@ -7,6 +7,22 @@
 
 		<div class="col-xs-9">
 		  <h1>admin入荷履歴</h1>
+
+	　　　　<table>
+		    <tr>
+		        <th>アーティスト</th>
+                <th>アルバム名</th>
+                <th>入荷日</th>
+                <th>数量</th>
+            </tr>
+
+            <% @restocks.each do |restock| %>
+                    <tr>
+                      <td><%= restock.restock_date %></td>
+                      <td><%= restock.restock_count %></td>
+                    </tr>
+            <% end %>
+         </table>
 		</div>
     </div>
 </div>
