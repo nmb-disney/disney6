@@ -1,9 +1,14 @@
 class Public::CdsController < Public::ApplicationController
   def index
-
+    @cds = Cd.all
+    @interest_new = Interest.new
+    @cart_cd_new = CartCd.new
   end
 
   def show
+    @cd = Cd.find(params[:id])
+    @interest_new = Interest.new
+    @cart_cd_new = CartCd.new
   end
 
   def search
