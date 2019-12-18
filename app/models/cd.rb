@@ -24,7 +24,11 @@ accepts_nested_attributes_for :restocks, allow_destroy: true
 def Cd.search(search, search_option)
   	if search_option == "3"
      	Cd.where(['cd_title LIKE ?', "%#{search}%"])
-  	else
+     elsif search_option == "t"
+     	Cd.where(['cd_title LIKE ?', "%#{search}%"])
+     elsif search_option == "s"
+     	Cd.where(['status LIKE ?', "%#{search}%"])
+     else
      	Cd.all
   	end
 end
