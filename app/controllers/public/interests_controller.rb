@@ -15,10 +15,4 @@ class Public::InterestsController < Public::ApplicationController
   def destroy
   end
 
-  # private
-
-  # def interest_params
-  #   params.require(:interest).permit(:cd_id, :user_id)
-  # end
-
 end
