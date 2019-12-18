@@ -1,4 +1,24 @@
-<h1>購入詳細画面</h1>
+<%= form_for [:public, @order], url: public_orders_path, method: :post do |f| %>
 
-<% @user.cart_cds.each do |cartcd| %>
-<% end %>
+	<h4>郵便番号</h4>
+	<%= f.hidden_field :postalcode, value: @add1 %>
+	<%= @add1 %>
+
+	<h4>配送先住所</h4>
+	<%= f.hidden_field :address, value: @add2 %>
+	<%= @add2 %>
+
+	<h4>宛名</h4>
+	<%= f.hidden_field :firstname, value: @add3 %>
+	<%= @add3 %>
+	<%= f.hidden_field :lastname, value: @add4 %>
+	<%= @add4 %>
+
+		<h4>支払い方法</h4>
+	<%= f.hidden_field :payment, value: @payment %>
+	<%= @payment %>
+
+
+
+<% f.submit "注文確定" %>
+  <% end %>

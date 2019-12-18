@@ -37,8 +37,8 @@
 	</div>
 
 	<h4>ステータス</h4>
-	<%= f.select :status, ['販売中', '販売停止中',], {include_blank: '選択ボックス'},
-    class: 'sample' %>
+
+	<%= f.select :status, {販売中: 1, 販売停止中: 2,} %>
 
 
 

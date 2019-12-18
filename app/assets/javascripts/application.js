@@ -9,10 +9,21 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
+
+
+
+//= require_directory .
+//= require jquery
 //= require rails-ujs
 //= require turbolinks
-//= require jquery
+
 //= require cocoon
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function () {
+	$('.jquery').on('click', function(){
+		$(this).css('color','red');
+	});
+});
