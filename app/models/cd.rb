@@ -2,6 +2,7 @@ class Cd < ApplicationRecord
 	TESTS = belongs_to :artist
 belongs_to :genre
 belongs_to :label
+attachment :jacket_image
 
 
 has_many :reviews, dependent: :destroy
@@ -11,7 +12,14 @@ has_many :cart_cds, dependent: :destroy
 has_many :discs, dependent: :destroy
 has_many :restocks, dependent: :destroy
 
- accepts_nested_attributes_for :discs, allow_destroy: true
+
+accepts_nested_attributes_for :discs, allow_destroy: true
+accepts_nested_attributes_for :restocks, allow_destroy: true
+
+
+
+
+
 
 def Cd.search(search, search_option)
   	if search_option == "3"

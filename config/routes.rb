@@ -8,7 +8,7 @@ namespace :public do
   resources :users, :only => [:edit, :show, :update, :destroy]
   get 'users/:id/out' => 'users#out'
   resources :addresses, :only => [:create]
-  resources :carts, :only => [:edit, :update, :destroy]
+  resources :carts, :only => [:create, :edit, :update, :destroy]
   resources :interests, :only => [:create, :index, :destroy]
   resources :orders, :only => [:new, :create, :show, :index]
   get 'orders/finish' => 'orders#finish'
@@ -21,6 +21,7 @@ end
 namespace :admin do
   resources :orders, :only => [:index, :show,]
   resources :cds, :only => [:index, :new, :create, :edit, :update]
+  get 'searchs' => 'cds#searchs'
   resources :restocks, :only => [:index, :new, :create, :update]
   resources :users, :only => [:index, :show, :destroy, :update, :edit]
   resources :reviews, :only => [:index, :destroy,]

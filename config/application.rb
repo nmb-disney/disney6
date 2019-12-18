@@ -10,6 +10,7 @@ module Disney6
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+     config.logger = Logger.new(STDOUT)
     config.i18n.default_locale = :ja
 
     # Settings in config/environments/* take precedence over those specified here.

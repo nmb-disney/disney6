@@ -1,2 +1,14 @@
 <h1>Public商品詳細</h1>
 
+	  <%= attachment_image_tag @cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '100x100' %>
+   	  <%= @cd.artist.artist_name %>
+   	  <%= @cd.label.label_name %>
+   	  <%= @cd.genre.genre_name %>
+   	  <%= @cd.cd_title %>
+   	  <%= @cd.release_date %>
+   	  <%= @cd.price %>
+   	  <%= @cd.status %>
+
+      <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: @cd.id), method: :post do |f| %>
+      <%= f.submit "気になる" %>
+<% end %>

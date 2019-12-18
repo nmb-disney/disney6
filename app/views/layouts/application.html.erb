@@ -17,7 +17,9 @@
         <nav class="navbar navbar-static-top navbar-inverse">
          <div class="container">
           <div class="row">
-            <div class="navbar-header">compact descers</div>
+            <div class="navbar-header">
+              <%= link_to image_tag("logo.png", class: "image", height: "80", ), root_path %>
+            </div>
 
               <ul class="nav navbar-nav navbar-right">
                 <% if user_signed_in? %>

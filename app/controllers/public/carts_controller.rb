@@ -1,4 +1,8 @@
 class Public::CartsController < Public::ApplicationController
+
+  def create
+  end
+
   def edit
   end
 
