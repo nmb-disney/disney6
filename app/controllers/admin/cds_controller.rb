@@ -1,6 +1,7 @@
 class Admin::CdsController < Admin::ApplicationController
   def index
     @cds = Cd.all
+
   end
 
   def new
@@ -8,8 +9,6 @@ class Admin::CdsController < Admin::ApplicationController
     @disc = @cd.discs.build
     @song = @disc.musics.build
     @restock = @cd.restocks.build
-
-
     @label = Label.new
     @artist = Artist.new
     @genre = Genre.new
@@ -18,9 +17,11 @@ class Admin::CdsController < Admin::ApplicationController
 
   def create
     @cd = Cd.new(cd_params)
+
     @cd.save!
 
     redirect_to admin_cds_path
+
 
   end
 
@@ -30,6 +31,7 @@ class Admin::CdsController < Admin::ApplicationController
   end
 
   def update
+     @cd = Cd.find(params[:id])
      @cd.update(cd_params)
      redirect_to admin_cds_path(@cd)
   end
@@ -47,11 +49,21 @@ class Admin::CdsController < Admin::ApplicationController
   end
 end
 
+  def destroy
+      @cd = Cd.find(params[:id])
+      @cd.destroy
+      redirect_to admin_cds_path
+  end
+
 private
 
     def cd_params
-     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status,
+     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status, :cd_id,
       :genre_id, discs_attributes: [:id, :disc_title, :disc_rank, :_destroy, musics_attributes: [:id, :music_title, :music_rank, :_destroy]], restocks_attributes: [:id, :restock_date ,:restock_count , :destroy])
+    end
+
+    def cd_find
+      @user = User.find(params[:id])
     end
 
 end
