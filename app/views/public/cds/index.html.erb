@@ -8,4 +8,8 @@
    	  <%= cd.release_date %>
    	  <%= cd.price %>
    	  <%= cd.status %>
-    <% end %>
+
+      <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: cd.id), method: :post do |f| %>
+      <%= f.submit "気になる" %>
+  <% end %>
+  <% end %>
