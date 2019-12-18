@@ -9,7 +9,6 @@ class Admin::RestocksController < Admin::ApplicationController
     @cd = Cd.new
     @artists = Artist.all
     @cds = Cd.all
-    @keyword_id = 1
   end
 
   def create

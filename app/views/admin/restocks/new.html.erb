@@ -1,10 +1,12 @@
+
+
+
+
+
 <h1>admin入荷追加作成</h1>
 <%= form_for [:admin, @artist] do |artist| %>
 
-<%= collection_select :software, :keyword_id,
-                      Restock.find_all,
-                      :id, :name,
-                      :include_blank => true %>
+
 <h3>アーティスト<%= artist.collection_select :artist_name, Artist.all, :id ,:artist_name %></h3>
 <% end %>
 

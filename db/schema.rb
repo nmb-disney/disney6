@@ -96,6 +96,11 @@ ActiveRecord::Schema.define(version: 2019_12_16_124432) do
     t.index ["label_name"], name: "index_labels_on_label_name"
   end
 
+  create_table "lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "musics", force: :cascade do |t|
     t.integer "disc_id", null: false
     t.integer "music_rank", null: false
