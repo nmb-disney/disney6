@@ -1,2 +1,17 @@
 <h1>Public気になるリスト！</h1>
 
+
+<div class="container">
+   <% @interest.each do |interest| %>
+      <div class="col-md-12 margin-top bg-white">
+           <%= attachment_image_tag interest.cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '100x100' %>
+      	  <%= interest.cd.artist.artist_name %>
+      	  <%= interest.cd.label.label_name %>
+      	  <%= interest.cd.genre.genre_name %>
+      	  <%= interest.cd.cd_title %>
+      	  <%= interest.cd.release_date %>
+      	  <%= interest.cd.price %>
+      	  <%= interest.cd.status %>
+      </div>
+   <% end %>
+</div>

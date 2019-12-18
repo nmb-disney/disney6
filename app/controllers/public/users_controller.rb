@@ -2,6 +2,7 @@ class Public::UsersController < Public::ApplicationController
   before_action :user_find, only: [:show, :edit, :update, :destroy, :out]
 
   def show
+    @cartcd = CartCd.all
   end
 
   def edit

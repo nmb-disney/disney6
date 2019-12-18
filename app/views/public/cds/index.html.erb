@@ -1,2 +1,24 @@
-<h1>Public商品一覧</h1>
+<h1>店長おすすめ！</h1>
+      <div class="container">
+         <% @cds.each do |cd| %>
+            <div class="col-md-2 margin-top bg-white">
+         	   <%= link_to attachment_image_tag cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '150x150' %>
+               <%= cd.status %>
+         	   <%= cd.artist.artist_name %>
+         	   <%= cd.label.label_name %>
+         	   <%= cd.genre.genre_name %>
+         	   <%= cd.cd_title %>
+         	   <%= cd.release_date.strftime("%m月%d日") %>
+         	   <%= cd.price %>
+         	   <%= cd.status %>
 
+               <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: cd.id) do |f| %>
+                 <%= f.submit "気になる",class: "btn btn-primary" %>
+               <% end %>
+               <%= form_for [:public, @cart_cd_new], url: public_cart_cds_path(cd_id: cd.id) do |f| %>
+                 <%= f.number_field :cart_count, min:1, max:10, size:1 %>
+                 <%= f.submit "カートに入れる",class: "btn btn-danger" %>
+               <% end %>
+            </div>
+         <% end %>
+      </div>
