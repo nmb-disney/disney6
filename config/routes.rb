@@ -9,9 +9,9 @@ namespace :public do
   get 'users/:id/out' => 'users#out'
   resources :carts, :only => [:edit, :update, :destroy]
   resources :interests, :only => [:create, :index, :destroy]
-  resources :orders, :only => [:new, :create, :show, :index]
   get 'orders/finish' => 'orders#finish'
   get 'orders/confirm' => 'orders#confirm'
+  resources :orders, :only => [:new, :create, :show, :index]
   get 'search' => 'cds#search'
   resources :cds, :only => [:index, :show]
   resources :reviews, :only => [:create, :show,]
