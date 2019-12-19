@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :interests, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :cart_cds, dependent: :destroy
-  has_many :addresss, dependent: :destroy
+  has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
 
   validates :lastname, presence: true, length: {in: 1..20}
@@ -19,4 +19,6 @@ class User < ApplicationRecord
   validates :postalcode, presence: true
   validates :address, length: { maximum: 50 }
   attachment :profile_image
+
+  acts_as_paranoid
 end

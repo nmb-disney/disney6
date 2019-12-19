@@ -1,38 +1,43 @@
-<h1>admin商品編集ページ</h1>
+<div class="container">
+   <div class="row">
+        <div class="col-md-10">
+            <h1>admin商品編集ページ</h1>
 
-<%= form_for @cd, url:admin_cd_path, method: :patch do |f| %>
-  <h3>アーティスト</h3>
-	<%= f.collection_select :artist_id, Artist.all, :id ,:artist_name %>
+            <%= form_for @cd, url:admin_cd_path, method: :patch do |f| %>
+              <h3>アーティスト</h3>
+            	<%= f.collection_select :artist_id, Artist.all, :id ,:artist_name %>
 
-  <h3>CDタイトル</h3>
-     <%= f.text_field :cd_title %>
+              <h3>CDタイトル</h3>
+                 <%= f.text_field :cd_title %>
 
-  <h3>ジャッケット選択</h3>
-    <%= f.attachment_field :jacket_image %>
+              <h3>ジャッケット選択</h3>
+                <%= f.attachment_field :jacket_image %>
 
-  <h4>価格（税別）</h4>
-	<%= f.text_field :price %>
+              <h4>価格（税別）</h4>
+            	<%= f.text_field :price %>
 
-  <h4>発売日</h4>
-    <%= f.date_field :release_date%>
+              <h4>発売日</h4>
+                <%= f.date_field :release_date%>
 
-  <h4>レーベル</h4>
-	<%= f.collection_select :label_id, Label.all, :id ,:label_name %>
+              <h4>レーベル</h4>
+            	<%= f.collection_select :label_id, Label.all, :id ,:label_name %>
 
-  <h3>ジャンル</h3>
-	<%= f.collection_select :genre_id, Genre.all, :id ,:genre_name %>
+              <h3>ジャンル</h3>
+            	<%= f.collection_select :genre_id, Genre.all, :id ,:genre_name %>
 
-   <%= f.fields_for :discs do |disc| %>
-	　　<%= render "admin/cds/disc_fields", f: disc %>
-   <% end %>
+               <%= f.fields_for :discs do |disc| %>
+            	　　<%= render "admin/cds/disc_fields", f: disc %>
+               <% end %>
 
-   <%= f.fields_for :restocks do |restock| %>
-	　　<%= render "admin/cds/restock_fields", f: restock %>
-   <% end %>
+               <%= f.fields_for :restocks do |restock| %>
+            	　　<%= render "admin/cds/restock_fields", f: restock %>
+               <% end %>
 
 
-   <h5><%= f.submit "Update", class:"btn btn-warning" %></h5>
+               <h5><%= f.submit "Update", class:"btn btn-warning" %></h5>
 
-   <%= link_to "Destroy", admin_cd_path(@cd), method: :delete %>
-<% end %>
-
+               <%= link_to "Destroy", admin_cd_path(@cd), method: :delete %>
+            <% end %>
+        </div>
+    </div>
+</div>
