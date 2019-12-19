@@ -9,6 +9,9 @@ class Public::CdsController < Public::ApplicationController
     @cd = Cd.find(params[:id])
     @interest_new = Interest.new
     @cart_cd_new = CartCd.new
+    @cds = Cd.all
+    @review = Review.new
+
   end
 
   def search
@@ -24,4 +27,16 @@ class Public::CdsController < Public::ApplicationController
     end
   end
 
+  private
+
+    def cd_params
+     params.require(:cd).permit(:id, :cd_id, :profile_image)
+
+    end
+
+    def cd_find
+      @user = User.find(params[:id])
+    end
+
 end
+

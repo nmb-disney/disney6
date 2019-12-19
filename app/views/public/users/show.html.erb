@@ -1,39 +1,46 @@
 <div class="container">
    <div class="row">
-        <div class="col-xs-3">
+        <div class="col-md-3">
 		  <% if flash[:notice] %>
 		    <div class="flash">
 			  <%= flash[:notice] %>
 		    </div>
 		  <% end %>
 
-	      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-	      <br>
-		   <%= @user.lastname%><%= @user.firstname%>
-			<%= link_to edit_public_user_path(@user.id), class: 'btn btn-default btn-md btn-block' do %>
-			 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-			 <%= link_to"気になるリスト", public_interests_path %>
-			 <br>
-			 <%= link_to"購入履歴", public_orders_path %>
-			<% end %>
+	      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, size: '200x200', fallback: "no_image.jpg", class: "img-circle" %>
+		    <br>
+		    <div class="text-center">
+		    	<%= @user.lastname%><%= @user.firstname%>
+			 	<%= link_to"ユーザー詳細変更", edit_public_user_path(@user.id), class: 'btn-warning btn-md btn-block' %>
+			 	<%= link_to"気になるリスト", public_interests_path %>
+			 	<br>
+			 	<%= link_to"購入履歴", public_orders_path %>
+			</div>
         </div>
 
 
-	    <div class="col-xs-9">
+	    <div class="col-md-9">
 	      <h1>カートの中</h1>
-	        <% @cartcd.each do |cartcd| %>
-		        <table>
-		        	<tbody>
-		        		<tr>
-		        			<td><%= attachment_image_tag cartcd.cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '100x100' %></td>
-		        			<td><%= cartcd.cd.artist.artist_name %></td>
-		        			<td><%= cartcd.cd.cd_title %></td>
-		        			<td><%= cartcd.cd.release_date %></td>
-		        			<td><%= cartcd.cd.price %></td>
-		        			<td><%= cartcd.cd.status %></td>
-		        		</tr>
-		        	</tbody>
-		        </table>
+	        <% @carts.each do |cart| %>
+	          <div class="row">
+	        	<%= attachment_image_tag cart.cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '100x100' %>
+			        <table>
+			        	<tr>
+			        		<td>アーティスト</td>
+			        		<td>アルバム名</td>
+			        		<td>値段</td>
+			        	</tr>
+			        	<tbody>
+			        	<tr>
+			        		<td><%= cart.cd.artist.artist_name %></td>
+			        		<td><%= cart.cd.cd_title %></td>
+			        		<td><%= cart.cd.price %></td>
+			        		<td><%= cart.id %></td>
+			        		<%= link_to"削除", public_cart_cd_path(cart), method: :delete, data: {confirm: '本当に削除してもいいですか？'} %>
+			        	</tr>
+			        	</tbody>
+			        </table>
+		        </div>
 	     	<% end %>
 	    </div>
     </div>

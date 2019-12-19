@@ -9,11 +9,37 @@
         <h1>admin商品管理一覧</h1>
 
           <%= form_tag(admin_cds_path, :method => 'get') do %>
-           <%= select_tag(:option, options_for_select([["アーティスト名", "1"],["曲名","2"],["ステータス","3"]]))%>
+           <%= select_tag(:option, options_for_select([["アーティスト名", "a"],["曲名","t"],["ステータス","s"]]))%>
              <%= text_field_tag :search %>
               <%= submit_tag '検索' %>
-             <h1>商品一覧</h1>
+
            <% end %>
+
+          <% if @search_option == "a" %>
+            <table>
+              <% @search_a.each do |artist| %>
+                <tr>
+                  <th><%= artist.artist_name %>
+              <% end %>
+            </table>
+
+          <% elsif @search_option == "t" %>
+            <table>
+              <% @search_t.each do |cd| %>
+                <th><%= cd.cd_title %>
+              <% end %>
+            </table>
+
+          <% elsif @search_option == "s" %>
+            <table>
+              <% @search_s.each do |cd| %>
+                <th><%= cd.cd_title %>
+              <% end %>
+            </table>
+
+        <% end %>
+
+             <h1>商品一覧</h1>
               <table>
                   <tr>
                     <th>入荷日時</th>
@@ -32,10 +58,12 @@
 
                       <td><%= cd.status %></td>
                        <td><%= link_to "入荷を追加する", new_admin_restock_path(@cds), class:"btn btn-primary" %>
+
                            <td><%= link_to "編集", edit_admin_cd_path(cd.id),   class:"btn btn-success" %></td>
+                  　</tr>
                <% end %>
-　　　　　　　　　　　　</tr>
                <% end %>
+
               </table>
        </div>
    </div>

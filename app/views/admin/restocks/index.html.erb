@@ -18,6 +18,8 @@
 
             <% @restocks.each do |restock| %>
                     <tr>
+                      <td><%= restock.cd.artist.artist_name %></td>
+                      <td><%= restock.cd.cd_title %></td>
                       <td><%= restock.restock_date %></td>
                       <td><%= restock.restock_count %></td>
                     </tr>
