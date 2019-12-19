@@ -1,4 +1,6 @@
 class Public::CartCdsController < Public::ApplicationController
+  before_action :authenticate_user!
+
   def create
   	@cartcd = current_user.cart_cds.new(cart_cd_params)
     @cartcd.cd_id = params[:cd_id]
@@ -16,6 +18,11 @@ class Public::CartCdsController < Public::ApplicationController
   end
 
   def destroy
+    @carts = CartCd.find(params[:id])
+    if @carts.destroy
+      flash[:notice] = "Cart was successfully destroyed."
+      redirect_to public_user_path(current_user.id)
+    end
   end
 
   private
