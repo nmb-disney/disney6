@@ -1,6 +1,16 @@
 class Admin::CdsController < Admin::ApplicationController
   def index
     @cds = Cd.all
+    @search_option = params[:option]
+    @search_text = params[:search]
+    case @search_option
+    when "a"
+      @search_a = Artist.search(params[:search], @search_option)
+    when "t"
+      @search_t = Cd.search(params[:search], @search_option)
+    when "s"
+      @search_s = Cd.search(params[:search], @search_option)
+    end
 
   end
 
@@ -31,19 +41,6 @@ class Admin::CdsController < Admin::ApplicationController
      @cd.update(cd_params)
      redirect_to admin_cds_path(@cd)
   end
-
-  def searchs
-    @search_option = params[:option]
-    @search_text = params[:search]
-    if @search_option == "2"
-      @search_a = Artist.search(params[:search], @search_option)
-    elsif @sesarch_option == "3"
-      @search_t = Cd.search(params[:search], @search_option)
-    else
-      @search_a = Artist.search(params[:search], @search_option)
-      @search_t = Cd.search(params[:search], @search_option)
-  end
-end
 
   def destroy
       @cd = Cd.find(params[:id])

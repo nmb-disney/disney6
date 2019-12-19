@@ -1,6 +1,9 @@
 class Public::InterestsController < Public::ApplicationController
+  before_action :authenticate_user!
+
   def index
-  	@interest = Interest.all
+  	@interests = Interest.all
+    @cart_cd_new = CartCd.new
   end
 
   def create
@@ -13,6 +16,13 @@ class Public::InterestsController < Public::ApplicationController
    end
 
   def destroy
+    @interest = Interest.find(params[:id])
+    if @interest.destroy
+      flash[:notice] = "気になるCDを削除しました。"
+      redirect_to public_user_path
+    else
+      render :index
+    end
   end
 
 end
