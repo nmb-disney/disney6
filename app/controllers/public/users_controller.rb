@@ -3,7 +3,7 @@ class Public::UsersController < Public::ApplicationController
 
   def show
     @carts = CartCd.all
-    @cd = Cd.find(params[:id])
+
   end
 
   def edit

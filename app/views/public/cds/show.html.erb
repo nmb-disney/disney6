@@ -40,7 +40,13 @@
    <% end %>
 
 
-   <% @cd.reviews.each do |restock| %>
-     <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %></td>
-     <td><%= restock.comment %></td>
-   <% end %>
+   <% @cd.reviews.each do |cd| %>
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+    <%= cd.user.firstname_kana %>
+    <%= cd.comment %>
+  <% end %>
+
+
+
+
+
