@@ -11,7 +11,7 @@ class Public::CdsController < Public::ApplicationController
     @cart_cd_new = CartCd.new
     @cds = Cd.all
     @review = Review.new
-
+    @user = User.find(params[:id])
   end
 
   def search
@@ -34,7 +34,7 @@ class Public::CdsController < Public::ApplicationController
 
     end
 
-    def cd_find
+    def user
       @user = User.find(params[:id])
     end
 

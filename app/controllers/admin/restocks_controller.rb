@@ -3,6 +3,7 @@ class Admin::RestocksController < Admin::ApplicationController
   def index
     @restocks = Restock.all
     @artists = Artist.all
+
   end
 
   def new
