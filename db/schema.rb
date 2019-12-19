@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_095316) do
+ActiveRecord::Schema.define(version: 2019_12_19_095958) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(version: 2019_12_18_095316) do
     t.integer "label_id"
     t.integer "genre_id"
     t.string "cd_title", null: false
-    t.string "jacket_image_id", null: false
     t.datetime "release_date", null: false
     t.integer "price", null: false
     t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.string "jacket_image_id"
     t.index ["cd_title"], name: "index_cds_on_cd_title"
   end
 

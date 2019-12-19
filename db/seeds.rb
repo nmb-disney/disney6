@@ -90,7 +90,6 @@ Cd.create!(
 	genre_id: "1",
 	cd_title: 'A・RA・SHI  THE BEST',
 	release_date: '2019-12-18',
-	jacket_image_id: open("./app/assets/images/no_image.jpg"),
 	price: "2100",
 	status: "20"
 	)
