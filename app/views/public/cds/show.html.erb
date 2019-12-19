@@ -5,7 +5,7 @@
    	  <%= @cd.label.label_name %>
    	  <%= @cd.genre.genre_name %>
    	  <%= @cd.cd_title %>
-   	  <%= @cd.release_date %>
+       <%=@cd.release_date.strftime("%m月%d日") %>
    	  <%= @cd.price %>
    	  <%= @cd.status %>
 
@@ -17,3 +17,29 @@
         <%= f.number_field :cart_count, min:1, max:10, size:1 %>
         <%= f.submit "カートに入れる",class: "btn btn-danger" %>
       <% end %>
+
+      <% @cds.each do |cd| %>
+         <% cd.discs.each do |disc| %>
+           <tr>
+            <h3>Disc title</h3><td><%= disc.disc_title %></td>
+
+              <% disc.musics.each do |music| %>
+                <h3>Music</h3><td><%= music.music_title %></td>
+
+           </tr>
+
+            <% end %>
+         <% end %>
+      <% end %>
+
+   <h3>レビュー投稿</h3>
+   <%= form_for [:public,@review], url: public_reviews_path(cd_id: @cd.id) do |f| %>
+    <%= f.hidden_field :cd_id, value: @cd.id %>
+     <%= f.text_field :comment, class: "text-field" %>
+    <%= f.submit '投稿', class: "submit-btn" %>
+   <% end %>
+
+
+   <% @cd.reviews.each do |r| %>
+     <%= r.comment %>
+   <% end %>
