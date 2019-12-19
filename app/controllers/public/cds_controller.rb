@@ -30,7 +30,7 @@ class Public::CdsController < Public::ApplicationController
   private
 
     def cd_params
-     params.require(:cd).permit(:id, :cd_id)
+     params.require(:cd).permit(:id, :cd_id, :profile_image)
 
     end
 
