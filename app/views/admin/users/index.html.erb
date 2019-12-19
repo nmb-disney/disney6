@@ -15,13 +15,14 @@
 	              <th>フリガナ</th>
 	              <th>電話番号</th>
 	              <th> </th>
+	              <th> </th>
 	            </tr>
 	            <tr>
 	              <td><%= user.id %></td>
 	              <td><%= user.lastname %><%= user.firstname %></td>
 	              <td><%= user.lastname_kana %><%= user.firstname_kana %></td>
 	              <td><%= user.phone %></td>
-	              <td><%= link_to"ユーザー編集", edit_public_user_path(user.id) %></td>
+	              <td><%= link_to"ユーザー編集", edit_admin_user_path(user.id) %></td>
 	              <td><%= link_to"購入履歴", public_orders_path %></td>
 	            </tr>
                <% end %>

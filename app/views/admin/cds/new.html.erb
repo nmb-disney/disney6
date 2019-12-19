@@ -1,55 +1,59 @@
-<!--<h1>admin新規入荷作成</h1>-->
-<h1>新規入荷作成</h1>
+<div class="container">
+   <div class="row">
+        <div class="col-md-10">
+			<h1>新規入荷作成</h1>
 
-<%= form_for(@cd, url:admin_cds_path) do |f| %>
+			<%= form_for(@cd, url:admin_cds_path) do |f| %>
 
-<ul>
-    <li>ファイル複数選択
-    	<%= f.attachment_field :jacket_image %></li>
-</ul>
+			<ul>
+			    <li>ファイル複数選択
+			    	<%= f.attachment_field :jacket_image %></li>
+			</ul>
 
-	<h3>アーティスト</h3>
-	<%= f.collection_select :artist_id, Artist.all, :id ,:artist_name %>
-
-
-	<h4>タイトル</h4>
-	<%= f.text_field :cd_title %>
-
-	<h4>価格（税別）</h4>
-	<%= f.text_field :price %>
-
-	<h4>発売日</h4>
-	<%= f.date_field :release_date%>
-
-	<h4>レーベル</h4>
-	<%= f.collection_select :label_id, Label.all, :id ,:label_name %>
-
-	<h3>ジャンル</h3>
-	<%= f.collection_select :genre_id, Genre.all, :id ,:genre_name %>
+				<h3>アーティスト</h3>
+				<%= f.collection_select :artist_id, Artist.all, :id ,:artist_name %>
 
 
-	<%= f.fields_for :discs do |disc| %>
-	　　<%= render "disc_fields", f: disc %>
-	<% end %>
+				<h4>タイトル</h4>
+				<%= f.text_field :cd_title %>
 
-	<div class="links">
-		<%= link_to_add_association "discを追加", f, :discs %>
+				<h4>価格（税別）</h4>
+				<%= f.text_field :price %>
+
+				<h4>発売日</h4>
+				<%= f.date_field :release_date%>
+
+				<h4>レーベル</h4>
+				<%= f.collection_select :label_id, Label.all, :id ,:label_name %>
+
+				<h3>ジャンル</h3>
+				<%= f.collection_select :genre_id, Genre.all, :id ,:genre_name %>
+
+
+				<%= f.fields_for :discs do |disc| %>
+				　　<%= render "disc_fields", f: disc %>
+				<% end %>
+
+				<div class="links">
+					<%= link_to_add_association "discを追加", f, :discs %>
+				</div>
+
+
+				<h4>ステータス</h4>
+
+				<%= f.select :status, {販売中: 1, 販売停止中: 2,} %>
+
+
+
+			　　　<%= f.fields_for :restocks do |restock| %>
+				　　<%= render "restock_fields", f: restock %>
+				<% end %>
+
+
+				<%= f.submit '新規入荷作成' %>
+
+			<% end %>
+			<%= link_to"リスト追加ページへ", new_admin_list_path %>
+		</div>
 	</div>
-
-
-	<h4>ステータス</h4>
-
-	<%= f.select :status, {販売中: 1, 販売停止中: 2,} %>
-
-
-
-　　　<%= f.fields_for :restocks do |restock| %>
-	　　<%= render "restock_fields", f: restock %>
-	<% end %>
-
-
-	<%= f.submit '新規入荷作成' %>
-
-<% end %>
-<%= link_to"リスト追加ページへ", new_admin_list_path %>
-
+</div>
