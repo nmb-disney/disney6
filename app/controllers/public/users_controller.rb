@@ -3,6 +3,10 @@ class Public::UsersController < Public::ApplicationController
 
   def show
     @carts = CartCd.all
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6a46830e9e5d9602c5fef351d2655d3f76541d89
   end
 
   def edit

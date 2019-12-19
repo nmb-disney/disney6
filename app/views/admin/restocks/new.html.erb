@@ -3,8 +3,6 @@
         <div class="col-md-5">
 			<h1>admin入荷追加作成</h1>
 			<%= form_for [:admin, @artist] do |artist| %>
-
-
 			<h3>アーティスト<%= artist.collection_select :artist_name, Artist.all, :id ,:artist_name %></h3>
 			<% end %>
 
