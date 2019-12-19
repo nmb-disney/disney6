@@ -1,22 +1,21 @@
+<div class="container">
+   <div class="row">
+        <div class="col-md-5">
+			<h1>admin入荷追加作成</h1>
+			<%= form_for [:admin, @artist] do |artist| %>
+			<h3>アーティスト<%= artist.collection_select :artist_name, Artist.all, :id ,:artist_name %></h3>
+			<% end %>
 
+			<%= form_for [:admin, @cd] do |cd| %>
+			<h3>CDタイトル<%= cd.collection_select :cd_title, Cd.all, :id ,:cd_title %></h3>
+			<% end %>
 
-
-
-
-<h1>admin入荷追加作成</h1>
-<%= form_for [:admin, @artist] do |artist| %>
-
-
-<h3>アーティスト<%= artist.collection_select :artist_name, Artist.all, :id ,:artist_name %></h3>
-<% end %>
-
-<%= form_for [:admin, @cd] do |cd| %>
-<h3>CDタイトル<%= cd.collection_select :cd_title, Cd.all, :id ,:cd_title %></h3>
-<% end %>
-
-<%= form_for [:admin, @restock], url: admin_restocks_path, method: :post do |f| %>
-<h3>入荷追加枚数 <%= f.number_field :restock_count %></h3>
-<h3>入荷日<%= f.date_field :restock_date %></h3>
-<%= f.submit '入荷追加作成' %>
-<% end %>
+			<%= form_for [:admin, @restock], url: admin_restocks_path, method: :post do |f| %>
+			<h3>入荷追加枚数 <%= f.number_field :restock_count %></h3>
+			<h3>入荷日<%= f.date_field :restock_date %></h3>
+			<%= f.submit '入荷追加作成' %>
+			<% end %>
+		</div>
+	</div>
+</div>
 
