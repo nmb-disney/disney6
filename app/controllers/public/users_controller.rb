@@ -3,7 +3,10 @@ class Public::UsersController < Public::ApplicationController
 
   def show
     @carts = CartCd.all
-    @cd = Cd.find(params[:id])
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6a46830e9e5d9602c5fef351d2655d3f76541d89
   end
 
   def edit
@@ -19,6 +22,12 @@ class Public::UsersController < Public::ApplicationController
   end
 
   def destroy
+    if @user.destroy
+      flash[:notice] = "退会しました。"
+      redirect_to root_path
+    else
+      render :out
+    end
   end
 
   def out

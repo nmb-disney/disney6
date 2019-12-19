@@ -1,7 +1,6 @@
-<h1>Public気になるリスト！</h1>
-
 
 <div class="container">
+  <h1>Public気になるリスト！</h1>
    <% @interests.each do |interest| %>
       <div class="col-md-12 margin-top bg-white">
          <%= attachment_image_tag interest.cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '100x100' %>

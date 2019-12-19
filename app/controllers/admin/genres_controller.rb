@@ -2,7 +2,7 @@ class Admin::GenresController < Admin::ApplicationController
   def create
   	@genre = Genre.new(genre_params)
     @genre.save
-    redirect_to ' new_admin_cd_path'
+    redirect_to new_admin_list_path
   end
 
   private
