@@ -14,7 +14,7 @@
          <%= interest.cd.status %>
          <%= link_to "削除", public_interest_path(interest), method: :delete, data: {confirm: '本当に削除してもいいですか？'} %>
          <%= form_for [:public, @cart_cd_new], url: public_cart_cds_path(cd_id: interest.cd.id) do |f| %>
-            <%= f.number_field :cart_count, min:1, max:10, size:1 %>
+            <%= f.number_field :cart_count, value:1, min:1, max:10, size:1 %>
             <%= f.submit "カートに入れる",class: "btn btn-danger" %>
          <% end %>
       </div>
