@@ -1,6 +1,7 @@
 class Public::OrdersController < Public::ApplicationController
 
   def index
+    @orders = Order.page(params[:page]).per(10)
   end
 
   def confirm

@@ -13,6 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+container > img {
+    width: 100%;
+    max-width: 100%;
+}
+
+.admin-sidebar{
+	margin-top: 50px;
+}
+
+.pagiWrapper{
+   text-align:center;
+}

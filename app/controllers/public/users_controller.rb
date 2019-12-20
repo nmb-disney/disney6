@@ -2,7 +2,8 @@ class Public::UsersController < Public::ApplicationController
   before_action :user_find, only: [:show, :edit, :update, :destroy, :out]
 
   def show
-    @cartcd = CartCd.all
+    @carts = CartCd.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def edit
@@ -18,8 +19,12 @@ class Public::UsersController < Public::ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to root_path
+    if @user.destroy
+      flash[:notice] = "退会しました。"
+      redirect_to root_path
+    else
+      render :out
+    end
   end
 
   def out
