@@ -11,17 +11,3 @@
 # 	password: '000000',
 # 	password_confirmation: '000000',
 # 	)
-
-User.create!(
-	lastname: '川本',
-	firstname: '梨紗',
-	lastname_kana: 'カワモト',
-	firstname_kana: 'リサ',
-	postalcode: '111-1111',
-	address: '大阪府大阪市大阪町1-1-1',
-	phone: '111-1111-1111',
-	email: 'kawamotorisa@gmail.com',
-	password: '111111',
-	password_confirmation: '111111',
-	)
-
