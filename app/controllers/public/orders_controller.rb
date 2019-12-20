@@ -102,7 +102,7 @@ class Public::OrdersController < Public::ApplicationController
       @cd_ids.each do |stock|
         cd_id = Cd.find(stock)
         @stock = cd_id.stock
-                binding.pry
+
         @stock - @cd_counts[@count]
 
         cd_id.update
