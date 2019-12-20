@@ -5,7 +5,7 @@
           <% if @search_option == "1" %>
             <h2>あいまい検索</h2>
             <h5>検索内容　<%= @search_text %></h5>
-            <h4>検索結果　<%= @search_a.count + @search_t.count %>件</h4>
+            <h4>検索結果　<%= @search_a.count + @searchs.count %>件</h4>
               <table>
                 <% @search_a.each do |artist| %>
                   <thead>
