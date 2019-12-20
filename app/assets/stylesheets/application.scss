@@ -17,15 +17,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-container > img {
-    width: 100%;
-    max-width: 100%;
-}
-
 .admin-sidebar{
 	margin-top: 50px;
 }
 
 .pagiWrapper{
-   text-align:center;
+   text-align: center;
+}
+
+.serch_form{
+	text-align: center;
+}
+
+.nav-item{
+	padding-top: 15px;
+	margin-right: 80px;
 }
