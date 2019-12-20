@@ -18,7 +18,7 @@ accepts_nested_attributes_for :restocks, allow_destroy: true
 
 
 
-
+enum status:{ 在庫あり:1, 売り切れ:2 }
 
 
 
