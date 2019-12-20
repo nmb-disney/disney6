@@ -1,6 +1,6 @@
 class Admin::CdsController < Admin::ApplicationController
   def index
-    @cds = Cd.all
+    @cds = Cd.page(params[:page]).per(10)
     @search_option = params[:option]
     @search_text = params[:search]
     case @search_option

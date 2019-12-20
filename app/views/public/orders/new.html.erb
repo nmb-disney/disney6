@@ -1,24 +1,55 @@
-<%= form_for [:public, @order], url: public_orders_path, method: :post do |f| %>
+<%= form_tag(public_orders_path, method: :post) do %>
+<h2>購入詳細</h2>
+<table>
+	<tr>
+	<th>CDタイトル<th>アーティスト<th>購入枚数<th>価格(税込)
+		<% @cds.each do |cart| %>
+			<tr>
+			<td><%= cart.cd_title %>
+			<td><%= cart.artist.artist_name %>
+			<td><%= @cdcounts[@count] %>枚
+					<% @total = cart.price * @tax * @cdcounts[@count].to_i %>
+			<td><%= @total.floor %>円
+					<% @count += 1 %>
+					<% @totalprice += @total %>
+		<% end %>
 
-	<h4>郵便番号</h4>
-	<%= f.hidden_field :postalcode, value: @add1 %>
+			<%= hidden_field_tag :order_count, @cdcounts %>
+			<%= hidden_field_tag :cds, @cdids %>
+	<tr>
+		<td><td><td>送料<td><%= @deliver %>円
+	<tr>
+		<td><td><td>合計金額<td><%= @totalprice.floor + @deliver %>円
+</table>
+
+<h4>郵便番号</h4>
+	<%= hidden_field_tag :postalcode, @add1 %>
 	<%= @add1 %>
 
-	<h4>配送先住所</h4>
-	<%= f.hidden_field :address, value: @add2 %>
+<h4>配送先住所</h4>
+	<%= hidden_field_tag :address, @add2 %>
 	<%= @add2 %>
 
-	<h4>宛名</h4>
-	<%= f.hidden_field :firstname, value: @add3 %>
+<h4>宛名</h4>
+	<%= hidden_field_tag :firstname, @add3 %>
 	<%= @add3 %>
-	<%= f.hidden_field :lastname, value: @add4 %>
-	<%= @add4 %>
+	<%= hidden_field_tag :lastname, @add4 %>
+	<%= @add4 %> 様
 
-		<h4>支払い方法</h4>
-	<%= f.hidden_field :payment, value: @payment %>
+<h4>支払い方法</h4>
+	<%= hidden_field_tag :payment, @payment %>
 	<%= @payment %>
 
+<!-- 配送料 -->
+	<%= hidden_field_tag :deliver_fee, @deliver %>
+
+<!-- 合計金額 -->
+	<%= hidden_field_tag :total, @totalprice %>
+
+<!-- 配送状況 -->
+	<%= hidden_field_tag :deliver_status, 1 %>
 
 
-<% f.submit "注文確定" %>
+
+<%= submit_tag '注文確定' %>
   <% end %>

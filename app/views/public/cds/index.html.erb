@@ -1,5 +1,7 @@
-<div class="container">
-    <div class="row">
+<h1>店長おすすめ！</h1>
+  <h3 class="pull-right">表示数1~10件</h3>
+    <div class="container">
+      <div class="row">
         <div class="col-md-9">
             <h1>店長おすすめ！</h1>
               <% @cds.each do |cd| %>
@@ -39,4 +41,6 @@
             </div>
         </div>
     </div>
+<div class="pagiWrapper">
+<%= paginate @cds %>
 </div>

@@ -2,6 +2,7 @@ class Admin::ReviewsController < Admin::ApplicationController
 
   def index
   	@reviews = Review.all
+    @reviews = Review.page(params[:page]).per(10)
   end
 
   def destroy
@@ -13,5 +14,11 @@ class Admin::ReviewsController < Admin::ApplicationController
       render :index
   	end
   end
+
+private
+
+    def review_params
+     params.require(:review).permit(:id)
+    end
 
 end
