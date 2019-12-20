@@ -22,6 +22,7 @@ enum status:{ 在庫あり:1, 売り切れ:2 }
 
 
 
+
 def Cd.search(search, search_option)
   	if search_option == "3"
      	Cd.where(['cd_title LIKE ?', "%#{search}%"])
