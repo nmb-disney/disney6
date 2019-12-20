@@ -49,6 +49,8 @@
 <!-- 配送状況 -->
 	<%= hidden_field_tag :deliver_status, 1 %>
 
+<!-- 税額 -->
+	<%= hidden_field_tag :cdstax, @totalprice * 0.1 %>
 
 
 <%= submit_tag '注文確定' %>
