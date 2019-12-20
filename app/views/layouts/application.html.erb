@@ -13,54 +13,54 @@
   </head>
 
 
+      <header>
+        <nav class="navbar navbar-light" style="background-color: #f2f2f2;">
+           <div class="container">
+            <div class="row">
+              <div class="navbar-header">
+                <%= link_to image_tag("logo.png", class: "image", height: "80", ), root_path %>
+              </div>
 
-        <nav class="navbar navbar-static-top navbar-inverse">
-         <div class="container">
-          <div class="row">
-            <div class="navbar-header">
-              <%= link_to image_tag("logo.png", class: "image", height: "80"), root_path %>
-            </div>
+                <ul class="nav navbar-nav navbar-right">
+                  <% if user_signed_in? %>
 
-              <ul class="nav navbar-nav navbar-right">
-                <% if user_signed_in? %>
+                    <li class="nav-item">
+                      <%= form_tag(public_search_path, :method => 'get') do %>
+                        <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
+                        <%= text_field_tag :search %>
+                        <%= submit_tag '検索' %>
+                      <% end %>
+                   </li>
+
+                    <li class="nav-item">
+                      <%= link_to"マイページ", public_user_path(current_user.id) %>
+                    </li>
+
+                    <li class="nav-item">
+                      <%= link_to destroy_user_session_path, method: :delete do %>
+                      <span>ログアウト</span>
+                      <% end %>
+                    </li>
+
+                  <% else %>
 
                   <li class="nav-item">
-                    <%= form_tag(public_search_path, :method => 'get') do %>
-                      <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
-                      <%= text_field_tag :search %>
-                      <%= submit_tag '検索' %>
-                    <% end %>
-                 </li>
-
-                  <li class="nav-item">
-                    <%= link_to"マイページ", public_user_path(current_user.id) %>
+                  <%= form_tag(public_search_path, :method => 'get') do %>
+                    <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
+                    <%= text_field_tag :search %>
+                    <%= submit_tag '検索' %>
+                  <% end %>
                   </li>
-
-                  <li class="nav-item">
-                    <%= link_to destroy_user_session_path, method: :delete do %>
-                    <span>ログアウト</span>
-                    <% end %>
-                  </li>
-
-                <% else %>
-
-                <li class="nav-item">
-                <%= form_tag(public_search_path, :method => 'get') do %>
-                  <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
-                  <%= text_field_tag :search %>
-                  <%= submit_tag '検索' %>
-                <% end %>
-                </li>
-                  <li class="nav-item">
-                    <%= link_to"会員登録", new_user_registration_path %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to"ログイン", new_user_session_path %>
-                  </li>
-                 <% end %>
-              </ul>
+                    <li class="nav-item">
+                      <%= link_to"会員登録", new_user_registration_path %>
+                    </li>
+                    <li class="nav-item">
+                      <%= link_to"ログイン", new_user_session_path %>
+                    </li>
+                   <% end %>
+                </ul>
+              </div>
           </div>
-         </div>
         </nav>
       </header>
 
@@ -68,7 +68,7 @@
         <%= yield %>
       </body>
 
-        <footer class="footer style-2">
+        <footer class="footer">
           <div class="container">
             <div class="row">
               <div class="top-message col-xs-3 col-xs-offset-9">CopyRight Infratop.Inc

@@ -1,9 +1,17 @@
 class Public::CdsController < Public::ApplicationController
   def index
-
+    @cds = Cd.page(params[:page]).per(10)
+    @interest_new = Interest.new
+    @cart_cd_new = CartCd.new
   end
 
   def show
+    @cd = Cd.find(params[:id])
+    @interest_new = Interest.new
+    @cart_cd_new = CartCd.new
+    @cds = Cd.all
+    @review = Review.new
+    @user = User.find(params[:id])
   end
 
   def search
@@ -17,6 +25,19 @@ class Public::CdsController < Public::ApplicationController
     	@search_a = Artist.search(params[:search], @search_option)
     	@search_t = Cd.search(params[:search], @search_option)
     end
+
   end
 
+  private
+
+    def cd_params
+     params.require(:cd).permit(:id, :cd_id, :profile_image)
+
+    end
+
+    def user
+      @user = User.find(params[:id])
+    end
+
 end
+

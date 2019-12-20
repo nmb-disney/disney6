@@ -1,12 +1,16 @@
 class Admin::RestocksController < Admin::ApplicationController
 
   def index
+    @artists = Artist.all
+    @restocks = Restock.page(params[:page]).per(10)
   end
 
   def new
   	@restock = Restock.new
     @artist = Artist.new
     @cd = Cd.new
+    @artists = Artist.all
+    @cds = Cd.all
   end
 
   def create
@@ -21,7 +25,7 @@ class Admin::RestocksController < Admin::ApplicationController
 private
 
     def restock_params
-     params.require(:restock).permit()
+     params.require(:restock).permit(:restock_date, :restock_count)
     end
 
 

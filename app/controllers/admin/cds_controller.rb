@@ -1,6 +1,17 @@
 class Admin::CdsController < Admin::ApplicationController
   def index
-    @cds = Cd.all
+    @cds = Cd.page(params[:page]).per(10)
+    @search_option = params[:option]
+    @search_text = params[:search]
+    case @search_option
+    when "a"
+      @search_a = Artist.search(params[:search], @search_option)
+    when "t"
+      @search_t = Cd.search(params[:search], @search_option)
+    when "s"
+      @search_s = Cd.search(params[:search], @search_option)
+    end
+
   end
 
   def new
@@ -8,8 +19,6 @@ class Admin::CdsController < Admin::ApplicationController
     @disc = @cd.discs.build
     @song = @disc.musics.build
     @restock = @cd.restocks.build
-
-
     @label = Label.new
     @artist = Artist.new
     @genre = Genre.new
@@ -17,14 +26,9 @@ class Admin::CdsController < Admin::ApplicationController
   end
 
   def create
-    puts "====="
-
     @cd = Cd.new(cd_params)
-    @cd.save!
-    puts "====="
-
+    @cd.save
     redirect_to admin_cds_path
-    logger.debug @cd.errors.inspect
   end
 
   def edit
@@ -33,28 +37,26 @@ class Admin::CdsController < Admin::ApplicationController
   end
 
   def update
+     @cd = Cd.find(params[:id])
      @cd.update(cd_params)
      redirect_to admin_cds_path(@cd)
   end
 
-  def searchs
-    @search_option = params[:option]
-    @search_text = params[:search]
-    if @search_option == "2"
-      @search_a = Artist.search(params[:search], @search_option)
-    elsif @sesarch_option == "3"
-      @search_t = Cd.search(params[:search], @search_option)
-    else
-      @search_a = Artist.search(params[:search], @search_option)
-      @search_t = Cd.search(params[:search], @search_option)
+  def destroy
+      @cd = Cd.find(params[:id])
+      @cd.destroy
+      redirect_to admin_cds_path
   end
-end
 
 private
 
     def cd_params
-     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status,
+     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status, :cd_id,
       :genre_id, discs_attributes: [:id, :disc_title, :disc_rank, :_destroy, musics_attributes: [:id, :music_title, :music_rank, :_destroy]], restocks_attributes: [:id, :restock_date ,:restock_count , :destroy])
+    end
+
+    def cd_find
+      @user = User.find(params[:id])
     end
 
 end

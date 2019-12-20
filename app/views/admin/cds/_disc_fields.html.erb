@@ -15,4 +15,7 @@
     <%= link_to_remove_association "ディスクを削除", f %>
     <%= render "music_fields", f: form %>
    <% end %>
+  <div class="links">
+    <%= link_to_add_association "曲を追加", f, :musics %>
+  </div>
 </div>
