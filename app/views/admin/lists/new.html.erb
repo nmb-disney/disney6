@@ -13,7 +13,7 @@
 
 			<h3>アーティスト</h3>
 			<select name="" multiple>
-				<% @artists.each do |artist|%>
+				<% @artists.each do |artist|%></a>
 				<option value=""><%= artist.artist_name %></option>
 				<% end %>
 			</select>
@@ -23,13 +23,6 @@
 			<%= form_for [:admin, @label] do |k| %>
 
 			　<h3>レーベル</h3> <%= k.text_field :label_name %><%= k.submit '新規追加' %>
-
-　<h3>レーベル</h3>
-	<select name="" multiple>
-		<% @labels.each do |label|%>
-		<option value=""><%= label.label_name %></option>
-		<% end %>
-	</select>
 
 			<% end %>
 
