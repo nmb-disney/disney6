@@ -8,55 +8,52 @@
 
           <div class="field">
             <%= f.label :lastname %>
-            <%= f.text_field :lastname, autofocus: true, autocomplete: "姓" %>
+            <%= f.text_field :lastname, autofocus: true, autocomplete: "姓", class: 'form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :firstname %>
-            <%= f.text_field :firstname, autofocus: true, autocomplete: "名" %>
+            <%= f.text_field :firstname, autofocus: true, autocomplete: "名", class: 'form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :lastname_kana %>
-            <%= f.text_field :lastname_kana, autofocus: true, autocomplete: "セイ" %>
+            <%= f.text_field :lastname_kana, autofocus: true, autocomplete: "セイ", class: 'form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :firstname_kana %>
-            <%= f.text_field :firstname_kana, autofocus: true, autocomplete: "メイ" %>
+            <%= f.text_field :firstname_kana, autofocus: true, autocomplete: "メイ", class: 'form-control' %>
           </div>
 
           <div class="field">
-            <%= f.label :postalcode %>
-            <%= f.text_field :postalcode, autofocus: true, autocomplete: "郵便番号" %>
+            <%= f.label :postalcode %>（ハイフンなし）
+            <%= f.text_field :postalcode, autofocus: true, autocomplete: "郵便番号", class: 'form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :address %>
-            <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
+            <%= f.text_field :address, autofocus: true, autocomplete: "住所", class: 'form-control' %>
           </div>
 
           <div class="field">
-            <%= f.label :phone %>
-            <%= f.text_field :phone, autofocus: true, autocomplete: "電話番号" %>
+            <%= f.label :phone %>（半角で入力）
+            <%= f.text_field :phone, autofocus: true, autocomplete: "電話番号", class: 'form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :email %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", class: 'form-control' %>
           </div>
 
          <div class="field">
-            <%= f.label :password %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.label :password %>（６文字以上）
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
           </div>
 
           <div class="field">
             <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
           </div>
 
           <div class="actions">
