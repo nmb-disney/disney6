@@ -3,6 +3,7 @@ class Public::CdsController < Public::ApplicationController
     @cds = Cd.page(params[:page]).per(10)
     @interest_new = Interest.new
     @cart_cd_new = CartCd.new
+    @reviews = Review.all
   end
 
   def show

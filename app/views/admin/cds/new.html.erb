@@ -41,7 +41,7 @@
 
 						<h4>ステータス</h4>
 
-
+						<%= f.select :status, { 在庫あり:1, 売り切れ:2} %>
 
 
 					　　　<%= f.fields_for :restocks do |restock| %>
