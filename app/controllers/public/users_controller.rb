@@ -3,6 +3,7 @@ class Public::UsersController < Public::ApplicationController
 
   def show
     @carts = CartCd.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def edit

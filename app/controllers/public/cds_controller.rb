@@ -1,6 +1,6 @@
 class Public::CdsController < Public::ApplicationController
   def index
-    @cds = Cd.all
+    @cds = Cd.page(params[:page]).per(10)
     @interest_new = Interest.new
     @cart_cd_new = CartCd.new
   end
@@ -25,6 +25,7 @@ class Public::CdsController < Public::ApplicationController
     	@search_a = Artist.search(params[:search], @search_option)
     	@search_t = Cd.search(params[:search], @search_option)
     end
+
   end
 
   private
