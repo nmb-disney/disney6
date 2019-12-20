@@ -9,8 +9,7 @@
 		  <h1>ユーザー管理一覧</h1>
 		   <h3 class="pull-right">表示数1~10件</h3>
 			<table class="table table-striped">
-			   <% @users.each do |user| %>
-			    <tr>
+				<tr>
 	              <th>ID</th>
 	              <th>名前</th>
 	              <th>フリガナ</th>
@@ -19,6 +18,7 @@
 	              <th> </th>
 	            </tr>
 	            <tr>
+			   <% @users.each do |user| %>
 	              <td><%= user.id %></td>
 	              <td><%= user.lastname %><%= user.firstname %></td>
 	              <td><%= user.lastname_kana %><%= user.firstname_kana %></td>

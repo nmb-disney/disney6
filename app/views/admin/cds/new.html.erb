@@ -42,6 +42,9 @@
 						<h4>ステータス</h4>
 
 
+                    <%= f.select :status, Cd.statuses.keys.to_a, {} %>
+
+
 
 
 					　　　<%= f.fields_for :restocks do |restock| %>

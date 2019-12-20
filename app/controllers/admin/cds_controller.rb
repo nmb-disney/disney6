@@ -22,12 +22,18 @@ class Admin::CdsController < Admin::ApplicationController
     @label = Label.new
     @artist = Artist.new
     @genre = Genre.new
-
   end
 
   def create
     @cd = Cd.new(cd_params)
     @cd.save
+
+    @cd_stock_sum = Cd.find(@cd.id)
+    @restock = Restock.where(cd_id: @cd.id).last
+
+    @cd_stock_sum.stock += @restock.restock_count
+    @cd_stock_sum.update(stock: @cd_stock_sum.stock)
+
     redirect_to admin_cds_path
   end
 
@@ -51,7 +57,7 @@ class Admin::CdsController < Admin::ApplicationController
 private
 
     def cd_params
-     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status, :cd_id,
+     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status, :cd_id, :stock,
       :genre_id, discs_attributes: [:id, :disc_title, :disc_rank, :_destroy, musics_attributes: [:id, :music_title, :music_rank, :_destroy]], restocks_attributes: [:id, :restock_date ,:restock_count , :destroy])
     end
 

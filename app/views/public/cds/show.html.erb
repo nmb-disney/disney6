@@ -1,45 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+          <h1>Public商品詳細</h1>
+        	    <%= attachment_image_tag @cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '100x100' %>
+           	  <%= @cd.artist.artist_name %>
+           	  <%= @cd.label.label_name %>
+           	  <%= @cd.genre.genre_name %>
+           	  <%= @cd.cd_title %>
+              <%=@cd.release_date.strftime("%m月%d日") %>
+           	  <%= @cd.price %>
+           	  <%= @cd.status %>
+              <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: @cd.id) do |f| %>
+                <%= f.submit "気になる",class: "btn btn-primary" %>
+              <% end %>
 
-  <h1>Public商品詳細</h1>
-	    <%= attachment_image_tag @cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '100x100' %>
+              <%= form_for [:public, @cart_cd_new], url: public_cart_cds_path(cd_id: @cd.id) do |f| %>
+                <%= f.number_field :cart_count, min:1, max:10, size:1 %>
+                <%= f.submit "カートに入れる",class: "btn btn-danger" %>
+              <% end %>
 
-   	  <%= @cd.artist.artist_name %>
-   	  <%= @cd.label.label_name %>
-   	  <%= @cd.genre.genre_name %>
-   	  <%= @cd.cd_title %>
-       <%=@cd.release_date.strftime("%m月%d日") %>
-   	  <%= @cd.price %>
-   	  <%= @cd.status %>
+              <% @cds.each do |cd| %>
+                <% cd.discs.each do |disc| %>
+                  <tr>
+                    <h3>Disc title</h3>
+                      <td><%= disc.disc_title %></td>
+                      <% disc.musics.each do |music| %>
+                        <h3>Music</h3>
+                        <td><%= music.music_title %></td>
+                      <% end %>
+                   </tr>
+                <% end %>
+              <% end %>
 
-      <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: @cd.id) do |f| %>
-        <%= f.submit "気になる",class: "btn btn-primary" %>
-      <% end %>
-
-      <%= form_for [:public, @cart_cd_new], url: public_cart_cds_path(cd_id: @cd.id) do |f| %>
-        <%= f.number_field :cart_count, min:1, max:10, size:1 %>
-        <%= f.submit "カートに入れる",class: "btn btn-danger" %>
-      <% end %>
-
-      <% @cds.each do |cd| %>
-         <% cd.discs.each do |disc| %>
-           <tr>
-              <h3>Disc title</h3>
-              <td><%= disc.disc_title %></td>
-            <% disc.musics.each do |music| %>
-              <h3>Music</h3>
-              <td><%= music.music_title %></td>
-           </tr>
-            <% end %>
-         <% end %>
-      <% end %>
-
-   <h3>レビュー投稿</h3>
-   <%= form_for [:public,@review], url: public_reviews_path(cd_id: @cd.id) do |f| %>
-    <%= f.hidden_field :cd_id, value: @cd.id %>
-     <%= f.text_field :comment, class: "text-field" %>
-    <%= f.submit '投稿', class: "submit-btn" %>
-   <% end %>
-   <% @cd.reviews.each do |cd| %>
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
-    <%= cd.user.firstname_kana %>
-    <%= cd.comment %>
-  <% end %>
+           <h3>レビュー投稿</h3>
+              <%= form_for [:public,@review], url: public_reviews_path do |f| %>
+                <%= f.hidden_field :cd_id, value: @cd.id %>
+                <%= f.text_field :comment, class: "text-field" %>
+                <%= f.submit '投稿', class: "submit-btn" %>
+              <% end %>
+              <% @cd.reviews.each do |cd| %>
+                <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+                <%= cd.user.firstname_kana %>
+                <%= cd.comment %>
+              <% end %>
+        </div>
+    </div>
+</div>
