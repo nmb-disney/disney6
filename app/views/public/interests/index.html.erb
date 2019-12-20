@@ -1,4 +1,4 @@
-
+  <h3 class="pull-right">表示数1~10件</h3>
 <div class="container">
   <h1>Public気になるリスト！</h1>
    <% @interests.each do |interest| %>
@@ -18,4 +18,8 @@
          <% end %>
       </div>
    <% end %>
+</div>
+
+<div class="pagiWrapper">
+ <%= paginate @interests %>
 </div>

@@ -1,8 +1,8 @@
 class Admin::RestocksController < Admin::ApplicationController
 
   def index
-    @restocks = Restock.all
     @artists = Artist.all
+    @restocks = Restock.page(params[:page]).per(10)
   end
 
   def new

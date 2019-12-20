@@ -1,3 +1,4 @@
+
 <div class="container">
    <div class="row">
         <div class="col-md-10">
@@ -9,6 +10,7 @@
 			 <%= artist.submit '新規追加' %>
 			<% end %>
 
+
 			<h3>アーティスト</h3>
 			<select name="" multiple>
 				<% @artists.each do |artist|%>
@@ -17,11 +19,20 @@
 			</select>
 
 
+
 			<%= form_for [:admin, @label] do |k| %>
 
 			　<h3>レーベル</h3> <%= k.text_field :label_name %><%= k.submit '新規追加' %>
 
+　<h3>レーベル</h3>
+	<select name="" multiple>
+		<% @labels.each do |label|%>
+		<option value=""><%= label.label_name %></option>
+		<% end %>
+	</select>
+
 			<% end %>
+
 
 			<h3>レーベル</h3>
 			<select name="" multiple>
@@ -31,9 +42,12 @@
 			</select>
 
 
+
 			<%= form_for [:admin, @genre] do |k| %>
 
+
 			　<h3>ジャンル</h3> <%= k.text_field :genre_name %><%= k.submit '新規追加' %>
+
 
 			<% end %>
 
@@ -47,3 +61,4 @@
 		</div>
 	</div>
 </div>
+
