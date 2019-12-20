@@ -1,28 +1,32 @@
-<h1>Public商品検索結果</h1>
-<% if @search_option == "1" %>
-  <h2>あいまい検索</h2>
-  <h5>検索内容　<%= @search_text %></h5>
-  <h4>検索結果　<%= @search_a.count + @search_t.count %>件</h4>
-    <table>
-      <% @search_a.each do |artist| %>
-        <thead>
-          <tr>
-            <th></th>
-              <th><%= artist.artist_name %> </th>
-            </tr>
-        </thead>
-      <% end %>
-    </table>
-    <table>
-    	<% @search_t.each do |cd| %>
-      	<thead>
-        	<tr>
-          	<th></th>
-          	<th><%= cd.cd_title %></th>
-        	</tr>
-      	</thead>
-    	<% end %>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+          <h1>Public商品検索結果</h1>
+          <% if @search_option == "1" %>
+            <h2>あいまい検索</h2>
+            <h5>検索内容　<%= @search_text %></h5>
+            <h4>検索結果　<%= @search_a.count + @search_t.count %>件</h4>
+              <table>
+                <% @search_a.each do |artist| %>
+                  <thead>
+                    <tr>
+                      <th></th>
+                        <th><%= artist.artist_name %> </th>
+                      </tr>
+                  </thead>
+                <% end %>
+              </table>
+              <table>
+              	<% @search_t.each do |cd| %>
+                	<thead>
+                  	<tr>
+                    	<th></th>
+                    	<th><%= cd.cd_title %></th>
+                  	</tr>
+                	</thead>
+              	<% end %>
+              </table>
+
 
 <% elsif @search_option == "2"%>
   <h2>アーティスト検索</h2>
@@ -54,3 +58,6 @@
     <% end %>
   </table>
 <% end %>
+<div class="pagiWrapper">
+<%= paginate @searchs %>
+</div>

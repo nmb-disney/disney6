@@ -1,3 +1,4 @@
+	<%= form_tag(new_public_order_path, method: :get) do %>
 <table>
 	<h3>カートの中身</h3>
 		<tr>
@@ -8,15 +9,17 @@
 
 		<% @user_cart.each do |cart| %>
 		<tr>
-			<td><%= cart.cd_id.artist_id.artist_name %>
-			<td><%= cart.cd_id.title %>
-			<td><%= number_field :buy_count, nil, min: 1, max: 9, size: 1, value: cart.cart_count %>枚
-			<td><%= cart.cd_id.price * @tax %>円(税込)
+			<td><%= cart.cd.artist.artist_name %>
+			<td><%= cart.cd.cd_title %>
+				<% @cdid = cart.cd_id %>
+				<%= hidden_field :count1, nil, value: @cdid %>
+			<td><%= number_field :count, nil, min: 1, max: 9, size: 1, value: cart.cart_count %>枚
+			<td><% @total = cart.cd.price * @tax %>
+				<%= @total.floor %>円(税込)
 		<% end %>
 </table>
 
-</div>
-	<%= form_tag(new_public_order_path, :method => 'get') do %>
+
 <div>
   <%= radio_button_tag :add, "1" %>
   <%= label :add, "登録住所に配送" %>
@@ -25,20 +28,26 @@
 	<h4>住所</h4>
 	<%= @user.address %>
 	<h4>宛名</h4>
-	<h5><%= @user.lastname %> 　 <%= @user.firstname %>  様</h5>
+	<h5><%= @user.lastname %>  <%= @user.firstname %>  様</h5>
 </div>
 
 <div>
   <%= radio_button_tag :add, "2" %>
   <%= label :add, "指定の住所に配送" %>
 	<h4>郵便番号</h4>
-	  <%= text_field_tag :add1 %>
+	  <%= text_field_tag :add1, nil, size:"9" %>
  	<h4>住所</h4>
   <%= text_field_tag :add2 %>
- 	<h4>宛名 姓</h4>
-  <%= text_field_tag :add3 %>
- 	<h4>宛名 名</h4>
-  <%= text_field_tag :add4 %>
+  <h4>宛名</h4>
+	<table>
+	<tr>
+		<th>　　姓<th>　　名
+	<tr>
+		<td><%= text_field_tag :add3, nil, size:"8" %>
+		<td><%= text_field_tag :add4, nil, size:"8" %>
+		</td>
+</table>
+
 </div>
 
 <div>
@@ -51,6 +60,7 @@
 	<%= radio_button_tag :pay, "c" %>
 	<%= label :pay, "銀行振り込み" %>
 </div>
+
 
   <%= submit_tag '注文確認ページへ' %>
 <% end %>
