@@ -2,8 +2,8 @@ class Public::UsersController < Public::ApplicationController
   before_action :user_find, only: [:show, :edit, :update, :destroy, :out]
 
   def show
-    @carts = CartCd.all
     @users = User.page(params[:page]).per(10)
+    @tax = 1.1
   end
 
   def edit

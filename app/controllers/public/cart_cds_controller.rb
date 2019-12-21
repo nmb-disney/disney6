@@ -28,6 +28,6 @@ class Public::CartCdsController < Public::ApplicationController
   private
 
   def cart_cd_params
-     params.require(:cart_cd).permit(:cart_count)
+     params.require(:cart_cd).permit(:user_id, :cd_id, :cart_count)
   end
 end
