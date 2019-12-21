@@ -22,15 +22,15 @@
             <div class="col-md-5">
               <div class="col-md-3">
                 <%= form_tag(public_search_path, :method => 'get') do %>
-                <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
+                  <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
               </div>
               <div class="col-md-8">
-                <%= text_field_tag :search, '', {class: 'form-control'} %>
+                  <%= text_field_tag :search, '', {class: 'form-control'} %>
               </div>
               <div class="col-md-1">
-                <%= submit_tag '検索' %>
-                <% end %>
+                  <%= submit_tag '検索' %>
               </div>
+                <% end %>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
 class Public::OrdersController < Public::ApplicationController
+before_action :authenticate_user!
 
   def index
     @orders = Order.page(params[:page]).per(10)

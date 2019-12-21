@@ -3,7 +3,7 @@
     <h1>Public気になるリスト！</h1>
       <div class="row">
         <div class="col-md-10">
-          <% @interests.each do |interest| %>
+          <% @user.interests.each do |interest| %>
             <div class="one-box">
               <div class="row">
                 <div class="col-md-4">
@@ -21,7 +21,8 @@
                       </tr>
                       <tr>
                         <td>価格</td>
-                        <td><%= interest.cd.price %></td>
+                        <% interest.cd.price * @tax %>
+                        <td><%= interest.cd.price.floor %></td>
                       </tr>
                       <tr>
                         <td>リリース日</td>
