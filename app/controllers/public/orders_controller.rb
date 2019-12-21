@@ -2,8 +2,9 @@ class Public::OrdersController < Public::ApplicationController
 
   def index
     @user = current_user
-    @user = @user.orders.order('id DESC')
-    @orders = Order.page(params[:page]).per(10)
+    @user = @user.orders
+    @orders = @user.page(params[:page]).per(10)
+
 
   end
 
