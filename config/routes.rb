@@ -9,7 +9,6 @@ namespace :public do
   get 'users/:id/out' => 'users#out'
   resources :cart_cds, :only => [:create, :edit, :update, :destroy]
   resources :interests, :only => [:create, :index, :destroy]
-  get 'orders/finish' => 'orders#finish'
   get 'orders/confirm' => 'orders#confirm'
   resources :orders, :only => [:new, :create, :show, :index]
   get 'search' => 'cds#search'

@@ -1,32 +1,32 @@
 <div class="container">
    <div class="row">
-        <div class="col-xs-3">
-		  <%= render 'admin/users/sidebar' %>
-        </div>
-
-
-		<div class="col-xs-9">
-		  <h1>admin入荷履歴</h1>
-
-	　　　　<table>
-		    <tr>
-		        <th>アーティスト</th>
+      <div class="col-xs-3">
+    		  <%= render 'admin/users/sidebar' %>
+      </div>
+      <div class="col-xs-9">
+  		  <h1>admin入荷履歴</h1>
+         <h3 class="pull-right">表示数1~10件</h3>
+  	　　　　<table>
+    		    <tr>
+    		      <th>アーティスト</th>
                 <th>アルバム名</th>
                 <th>入荷日</th>
                 <th>数量</th>
-            </tr>
+              </tr>
 
-            <% @restocks.each do |restock| %>
-                    <tr>
-                      <td><%= restock.cd.artist.artist_name %></td>
-                      <td><%= restock.cd.cd_title %></td>
-                      <td><%= restock.restock_date %></td>
-                      <td><%= restock.restock_count %></td>
-                    </tr>
-            <% end %>
-         </table>
-		</div>
+              <% @restocks.each do |restock| %>
+                <tr>
+                  <td><%= restock.cd.artist.artist_name %></td>
+                  <td><%= restock.cd.cd_title %></td>
+                  <td><%= restock.restock_date %></td>
+                  <td><%= restock.restock_count %></td>
+                </tr>
+              <% end %>
+           </table>
+		    </div>
     </div>
 </div>
 
-
+<div class="pagiWrapper">
+ <%= paginate @restocks %>
+</div>

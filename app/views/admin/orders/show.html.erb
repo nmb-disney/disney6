@@ -1,2 +1,41 @@
 <h1>admin受注詳細</h1>
-
+  <table>
+    <tbody>
+      <tr>
+        <td><%= @order_id %></td>
+        <td><%= @order_created_at %></td>
+        <td><%= @user_name_kana %></td>
+        <td><%= @user_name %></td>
+        <td><%= @user_phone %></td>
+        <td><%= @user_email %></td>
+        <td><%= @user_postalcode %></td>
+        <td><%= @user_address %></td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>商品ID</tr>
+      <tr>アーティスト</tr>
+      <tr>CDタイトル</tr>
+      <tr>単価（税込）</tr>
+      <tr>個数</tr>
+      <tr></tr>
+    </thead>
+    <tbody>
+      <td><%= @cd.cd_id %></td>
+      <td><%= @cd.artist.artist_name %></td>
+      <td><%= @cd.cd_title %></td>
+      <td><%= @cd.price %></td>
+      <td><%= @order.order_cd_count %></td>
+      <td><&= @order.order_total %></td>
+    </tbody>
+    <tbody>
+      <td><%= @order.order_deliver_fee %></td>
+      <td><%= @order.order_total %></td>
+    </tbody>
+    <tbody>
+      <td><%= submit_tag '配送完了' %></td>
+    </tbody>
+    <tbody>
+    <td><%= link_to "back", admin_orders_path %></td>
+    </tbody>
+  </table>

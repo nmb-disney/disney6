@@ -2,7 +2,7 @@ class Admin::ArtistsController < Admin::ApplicationController
   def create
    @artist = Artist.new(artist_params)
    @artist.save
-   redirect_to admin_cds_path(@artist.id)
+   redirect_to new_admin_list_path
   end
 
 private

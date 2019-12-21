@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_19_095958) do
+ActiveRecord::Schema.define(version: 2019_12_20_083844) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_095958) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.string "jacket_image_id"
+    t.integer "stock", default: 0
     t.index ["cd_title"], name: "index_cds_on_cd_title"
   end
 
@@ -162,6 +163,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_095958) do
     t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["firstname"], name: "index_users_on_firstname"
     t.index ["lastname"], name: "index_users_on_lastname"

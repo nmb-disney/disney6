@@ -7,16 +7,20 @@ class User < ApplicationRecord
   has_many :interests, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :cart_cds, dependent: :destroy
-  has_many :addresss, dependent: :destroy
+  has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
 
-  validates :lastname, presence: true, length: {in: 1..20}
-  validates :firstname, presence: true, length: {in: 1..20}
-  validates :lastname_kana, presence: true, length: {in: 1..20}
-  validates :firstname_kana, presence: true, length: {in: 1..20}
-  validates :phone, presence: true, length: {in: 1..20}
-  validates :email, presence: true
-  validates :postalcode, presence: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :lastname, presence: true, format: { with: /\A[一-龥]+\z/ }
+  validates :firstname, presence: true
+  validates :lastname_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :firstname_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :phone, presence: true, format: { with: /\A[0-9]+\z/ }
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates :postalcode, presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, length: { maximum: 50 }
   attachment :profile_image
+
+  acts_as_paranoid
 end

@@ -1,8 +1,9 @@
 class Public::CdsController < Public::ApplicationController
   def index
-    @cds = Cd.all
+    @cds = Cd.page(params[:page]).per(12)
     @interest_new = Interest.new
     @cart_cd_new = CartCd.new
+    @reviews = Review.all
   end
 
   def show
@@ -11,20 +12,21 @@ class Public::CdsController < Public::ApplicationController
     @cart_cd_new = CartCd.new
     @cds = Cd.all
     @review = Review.new
-
   end
 
   def search
+    @searchs = Cd.page(params[:page]).per(10)
     @search_option = params[:option]
     @search_text = params[:search]
     if @search_option == "2"
       @search_a = Artist.search(params[:search], @search_option)
-    elsif @sesarch_option == "3"
+    elsif @search_option == "3"
       @search_t = Cd.search(params[:search], @search_option)
     else
     	@search_a = Artist.search(params[:search], @search_option)
     	@search_t = Cd.search(params[:search], @search_option)
     end
+
   end
 
   private
@@ -34,7 +36,7 @@ class Public::CdsController < Public::ApplicationController
 
     end
 
-    def cd_find
+    def user
       @user = User.find(params[:id])
     end
 

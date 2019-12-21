@@ -1,8 +1,10 @@
 class Public::OrdersController < Public::ApplicationController
-  def index
-  end
 
-  def show
+  def index
+    @user = current_user
+    @user = @user.orders
+    @orders = Order.page(params[:page]).per(10)
+
   end
 
   def confirm
@@ -15,9 +17,19 @@ class Public::OrdersController < Public::ApplicationController
     # end
   end
 
+
   def new
-    @order = Order.new
+    @cds = Cd.find(params[:count1])
+    @cdcounts = params[:count]
+    @cdids = params[:count1]
+    @tax = 1.1
+    @deliver = 500
     @user = current_user
+    @user_cart = @user.cart_cds.all
+    @tax = 1.1
+    @order = Order.new
+    @totalprice = 0
+    @count = 0
     case params[:add]
     when "1"
       @add1 = @user.postalcode
@@ -39,37 +51,75 @@ class Public::OrdersController < Public::ApplicationController
     when "c"
       @payment = "銀行振り込み"
     end
-    @buy_count = params[:buy_count]
-    @buy_cd = params[:buy_cd]
-
-
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.user_id = current_user.id
-    @order.save
-    redirect_to public_orders_finish_path
+    @user = current_user
+    @cd_counts = params[:order_count].split
+    @cd_counts.map!(&:to_i)
+    @cd_ids = params[:cds].split
+    @cd_ids.map!(&:to_i)
+
+    order = Order.new
+    order.user_id = @user.id
+    order.postalcode = params[:postalcode]
+    order.address = params[:address]
+    order.firstname = params[:firstname]
+    order.lastname = params[:lastname]
+    order.payment = params[:payment]
+    @cdstax = params[:cdstax]
+    order.tax = @cdstax.to_i
+    @orderfee = params[:deliver_fee]
+    order.deliver_fee = @orderfee.to_i
+    @ordertotal = params[:total]
+    order.total =@ordertotal.to_i
+    @status = params[:deliver_status]
+    order.deliver_status = @status.to_i
+    order.order_count = @cd_counts.sum
+    unless order.save
+      redirect_to root_path
+    else
+    @count = 0
+      @cd_ids.each do |cdids|
+        order_cd = OrderCd.new
+        order_cd.order_id = order.id
+        order_cd.cd_id = cdids
+        order_cd.order_cd_count = @cd_counts[@count]
+        order_cd.save
+        @count += 1
+      end
+
+    address = Address.new
+    address.user_id = @user.id
+    address.add_postalcode = params[:postalcode]
+    address.add_address = params[:address]
+    address.add_lastname = params[:lastname]
+    address.add_firstname = params[:firstname]
+    address.save
+
+    cart = @user.cart_cds
+      cart.each do |cart_d|
+        cart_d.destroy
+      end
+
+
+    @count = 0
+      @cd_ids.each do |stock|
+        cd_id = Cd.find(stock)
+        @stock = cd_id.stock
+        @stock - @cd_counts[@count]
+
+        cd_id.update
+        @count += 1
+      end
+    redirect_to public_orders_path
+    end
   end
 
   def finish
   end
 
-private
-
-  def cart_params
-    params.require(:cart_cd).permit(:user_id, :cd_id, :cart_count)
+  def show
   end
 
-  def order_params
-    params.require(:order).permit(:payment, :order_count)
-  end
-
-  def address_params
-    params.require(:address).permit(:add_postalcode, :add_address, :add_lastname, :add_firstname)
-  end
-
-  def cart_params
-    params.require(:cart_cd).permit(:cart_count, :cd_id)
-  end
 end

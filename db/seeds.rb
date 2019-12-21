@@ -17,9 +17,9 @@ User.create!(
 	firstname: '梨紗',
 	lastname_kana: 'カワモト',
 	firstname_kana: 'リサ',
-	postalcode: '111-1111',
+	postalcode: '1111111',
 	address: '大阪府大阪市大阪町1-1-1',
-	phone: '111-1111-1111',
+	phone: '11111111111',
 	email: 'kawamotorisa@gmail.com',
 	password: '111111',
 	password_confirmation: '111111',
@@ -30,9 +30,9 @@ User.create!(
 	firstname: '幹雄',
 	lastname_kana: 'ヒラマツ',
 	firstname_kana: 'ミキオ',
-	postalcode: '222-2222',
+	postalcode: '2222222',
 	address: '大阪府大阪市大阪町2-2-2',
-	phone: '222-2222-2222',
+	phone: '22222222222',
 	email: 'hiramatumikio@gmail.com',
 	password: '222222',
 	password_confirmation: '222222',
@@ -43,9 +43,9 @@ User.create!(
 	firstname: '朱里',
 	lastname_kana: 'ミサカ',
 	firstname_kana: 'シュリ',
-	postalcode: '333-3333',
+	postalcode: '3333333',
 	address: '大阪府大阪市大阪町3-3-3',
-	phone: '333-3333-3333',
+	phone: '33333333333',
 	email: 'misakasyuri@gmail.com',
 	password: '333333',
 	password_confirmation: '333333',
@@ -56,9 +56,9 @@ User.create!(
 	firstname: '悠祐',
 	lastname_kana: 'ヨシダ',
 	firstname_kana: 'ユウスケ',
-	postalcode: '444-4444',
+	postalcode: '4444444',
 	address: '大阪府大阪市大阪町4-4-4',
-	phone: '444-4444-4444',
+	phone: '44444444444',
 	email: 'yosidayuusuke@gmail.com',
 	password: '444444',
 	password_confirmation: '444444',
@@ -66,7 +66,7 @@ User.create!(
 
 Address.create!(
 	user_id: "1",
-	add_postalcode: '555-5555',
+	add_postalcode: '5555555',
 	add_address: '大阪府大阪市大阪町5-5-5',
 	add_lastname: '大阪',
 	add_firstname: '太郎'
@@ -149,3 +149,4 @@ Admin.create!(
 	email: 'aaaaaa@gmail.com',
 	password: '666666'
 	)
+

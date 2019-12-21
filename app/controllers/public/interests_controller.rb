@@ -2,7 +2,7 @@ class Public::InterestsController < Public::ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@interests = Interest.all
+    @interests = Interest.page(params[:page]).per(10)
     @cart_cd_new = CartCd.new
   end
 
@@ -24,5 +24,13 @@ class Public::InterestsController < Public::ApplicationController
       render :index
     end
   end
+  private
+
+    def review_params
+     params.require(:review).permit(:id)
+    end
 
 end
+
+
+

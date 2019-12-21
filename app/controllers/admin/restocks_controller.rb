@@ -1,8 +1,8 @@
 class Admin::RestocksController < Admin::ApplicationController
 
   def index
-    @restocks = Restock.all
     @artists = Artist.all
+    @restocks = Restock.page(params[:page]).per(10)
   end
 
   def new
@@ -16,6 +16,13 @@ class Admin::RestocksController < Admin::ApplicationController
   def create
   	@restock = Restock.new(restock_params)
   	@restock.save!
+
+    @restock_restock_count_sum = Restock.find(@restock.id)#何を足したいのかを見つけてくる
+    @cd = Cd.where(stock: @restock.id)#Lastで最新のデータを指定する
+    @restock_restock_count_sum.restock_count += @cd.stock#実際の足し算
+    @restock_restock_count_sum.update(stock: @cd_stock_sum.stock)#updateで引数で何をたすかを見つけてくる指定
+
+
   	redirect_to admin_cds_path(@restock.id)
   end
 
@@ -25,7 +32,7 @@ class Admin::RestocksController < Admin::ApplicationController
 private
 
     def restock_params
-     params.require(:restock).permit(:restock_date, :restock_count)
+     params.require(:restock).permit(:restock_date, :restock_count, :cd_id)
     end
 
 
