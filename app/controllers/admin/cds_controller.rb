@@ -28,14 +28,14 @@ class Admin::CdsController < Admin::ApplicationController
     @cd = Cd.new(cd_params)
     @cd.save
 
-    @cd_stock_sum = Cd.find(@cd.id)
-    @restock = Restock.where(cd_id: @cd.id).last
-
-    @cd_stock_sum.stock += @restock.restock_count
-    @cd_stock_sum.update(stock: @cd_stock_sum.stock)
+    @cd_stock_sum = Cd.find(@cd.id)#何を足したいのかを見つけてくる
+    @restock = Restock.where(cd_id: @cd.id).last#Lastで最新のデータを指定する
+    @cd_stock_sum.stock += @restock.restock_count#実際の足し算
+    @cd_stock_sum.update(stock: @cd_stock_sum.stock)#updateで引数で何をたすかを見つけてくる指定
 
     redirect_to admin_cds_path
-  end
+   end
+
 
   def edit
      @artists =Artist.all
