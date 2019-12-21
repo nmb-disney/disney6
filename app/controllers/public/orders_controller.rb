@@ -98,15 +98,15 @@ class Public::OrdersController < Public::ApplicationController
         cart_d.destroy
       end
 
-    # @count = 0
-    #   @cd_ids.each do |stock|
-    #     cd_id = Cd.find(stock)
-    #     @stock = cd_id.stock
-    #     @stock - @cd_counts[@count]
+    @count = 0
+      @cd_ids.each do |stock|
+        cd_id = Cd.find(stock)
+        @stock = cd_id.stock
+        @stock - @cd_counts[@count]
 
-    #     cd_id.update
-    #     @count += 1
-    #   end
+        cd_id.update
+        @count += 1
+      end
     redirect_to public_orders_path
     end
   # else
