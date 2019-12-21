@@ -4,6 +4,8 @@ class Public::InterestsController < Public::ApplicationController
   def index
     @interests = Interest.page(params[:page]).per(10)
     @cart_cd_new = CartCd.new
+    @user = current_user
+    @tax = 1.1
   end
 
   def create

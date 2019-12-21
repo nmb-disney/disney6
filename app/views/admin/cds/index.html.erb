@@ -51,7 +51,6 @@
                 <% @cds.each do |cd| %>
                   <% cd.restocks.each do |restock| %>
                     <tr>
-                        <td><%= cd.stock %></td>
 　　　　　　　　　　　　　<td><%= restock.restock_date %></td>
                       <td><%= cd.artist.artist_name %></td>
                       <td><%= cd.cd_title %></td>
