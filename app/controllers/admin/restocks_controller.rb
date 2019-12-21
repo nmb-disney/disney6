@@ -14,14 +14,17 @@ class Admin::RestocksController < Admin::ApplicationController
   end
 
   def create
-
   	@restock = Restock.new(restock_params)
     @restock.save!
 
-    @cd = @restock.cd.stock
-    @restock_restock_count_sum = Restock.find(@restock.id)#何を足したいのかを見つけてくる
-    @restock_restock_count_sum.restock_count += @cd    #restock_restock_count_sumはリスト追加での所で持ってきたいのは持ってきたいのは商品一覧のrestock_count
-    @restock_restock_count_sum.update(stock: @restock_stock_sum.stock)#updateで引数で何をたすかを見つけてくる指定
+
+    @new = Cd.find(@restock.cd_id)
+
+    @restock2 = @restock.restock_count
+    @stock = @restock.cd.stock
+    @stock += @restock2
+    @new.stock = @stock
+    @new.save
 
   	redirect_to admin_cds_path(@restock.id)
   end
