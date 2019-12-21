@@ -2,7 +2,7 @@ class Public::OrdersController < Public::ApplicationController
 
   def index
     @user = current_user
-    @user = @user.orders
+    @user = @user.orders.order('id DESC')
     @orders = Order.page(params[:page]).per(10)
 
   end
@@ -26,7 +26,6 @@ class Public::OrdersController < Public::ApplicationController
     @deliver = 500
     @user = current_user
     @user_cart = @user.cart_cds.all
-    @tax = 1.1
     @order = Order.new
     @totalprice = 0
     @count = 0
@@ -106,10 +105,8 @@ class Public::OrdersController < Public::ApplicationController
     @count = 0
       @cd_ids.each do |stock|
         cd_id = Cd.find(stock)
-        @stock = cd_id.stock
-        @stock - @cd_counts[@count]
-
-        cd_id.update
+        cd_id.stock -= @cd_counts[@count]
+        cd_id.save
         @count += 1
       end
     redirect_to public_orders_path
