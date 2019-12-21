@@ -51,10 +51,12 @@
                 <% @cds.each do |cd| %>
                   <% cd.restocks.each do |restock| %>
                     <tr>
+                        <td><%= cd.stock %></td>
 　　　　　　　　　　　　　<td><%= restock.restock_date %></td>
                       <td><%= cd.artist.artist_name %></td>
                       <td><%= cd.cd_title %></td>
                       <td><%= cd.price %></td>
+
 
                       <td><%= cd.status %></td>
                        <td><%= link_to "入荷を追加する", new_admin_restock_path(@cds), class:"btn btn-primary" %>
