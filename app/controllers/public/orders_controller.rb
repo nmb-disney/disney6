@@ -1,12 +1,15 @@
 class Public::OrdersController < Public::ApplicationController
 
   def index
+    @user = current_user
+    @user = @user.orders
     @orders = Order.page(params[:page]).per(10)
+
   end
 
   def confirm
     @user = current_user
-    @user_cart = @user.cart_cds.all
+    @user_cart = @user.cart_cds
     @tax = 1.1
     # if @user_cart.update(cart_params)
     # else
@@ -73,8 +76,9 @@ class Public::OrdersController < Public::ApplicationController
     @status = params[:deliver_status]
     order.deliver_status = @status.to_i
     order.order_count = @cd_counts.sum
-    order.save
-
+    unless order.save
+      redirect_to root_path
+    else
     @count = 0
       @cd_ids.each do |cdids|
         order_cd = OrderCd.new
@@ -98,6 +102,7 @@ class Public::OrdersController < Public::ApplicationController
         cart_d.destroy
       end
 
+
     @count = 0
       @cd_ids.each do |stock|
         cd_id = Cd.find(stock)
@@ -109,9 +114,7 @@ class Public::OrdersController < Public::ApplicationController
       end
     redirect_to public_orders_path
     end
-  # else
-  #   redirect_to new_public_order_path
-  # end
+  end
 
   def finish
   end

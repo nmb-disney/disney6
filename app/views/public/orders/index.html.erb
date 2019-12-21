@@ -1,5 +1,42 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-11">
+			<h1 class="text-left">購入履歴ページ</h1>
+			<h3 class="text-right">表示数1~10件</h3>
 
-<h3 class="pull-right">表示数1~10件</h3>
+
+	<div class="row">
+	<div class="col-lg-10 col-sm-offset-1">
+<% @user.each do |i| %>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			購入日時 : <%= i.created_at.strftime("%Y-%m-%d %H:%M") %>
+		</div>
+	<table class="table">
+		<thead>
+				<tr>
+					<th>タイトル<th>アーティスト<th>枚数
+		</thead>
+
+		<tbody>
+			<% i.order_cds.each do |o| %>
+				<tr>
+					<td><%= o.cd.cd_title %>
+					<td><%= o.cd.artist.artist_name %>
+					<td><%= o.order_cd_count %>
+			<% end %>
+		</tbody>
+	</table>
+
+	</div>
+<% end %>
+
+
 	<div class="pagiWrapper">
 	   <%= paginate @orders %>
 	</div>
+
+</div>
+</div>
+</div>
+

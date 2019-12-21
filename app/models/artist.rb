@@ -4,8 +4,10 @@ class Artist < ApplicationRecord
 
 
 	def Artist.search(search, search_option)
-  	if search_option == "2"
+  	if search_option == "1"
      	Artist.where(['artist_name LIKE ?', "%#{search}%"])
+    elsif search_option == "2"
+      Artist.where(['artist_name LIKE ?', "%#{search}%"])
   	elsif search_option == "a"
   		Artist.where(['artist_name LIKE ?', "%#{search}%"])
   	else
