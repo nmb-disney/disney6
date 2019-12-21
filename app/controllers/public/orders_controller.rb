@@ -2,12 +2,16 @@ class Public::OrdersController < Public::ApplicationController
 before_action :authenticate_user!
 
   def index
-    @orders = Order.page(params[:page]).per(10)
+    @user = current_user
+    @user = @user.orders
+    @orders = @user.page(params[:page]).per(10)
+
+
   end
 
   def confirm
     @user = current_user
-    @user_cart = @user.cart_cds.all
+    @user_cart = @user.cart_cds
     @tax = 1.1
     # if @user_cart.update(cart_params)
     # else
@@ -24,7 +28,6 @@ before_action :authenticate_user!
     @deliver = 500
     @user = current_user
     @user_cart = @user.cart_cds.all
-    @tax = 1.1
     @order = Order.new
     @totalprice = 0
     @count = 0
@@ -74,8 +77,9 @@ before_action :authenticate_user!
     @status = params[:deliver_status]
     order.deliver_status = @status.to_i
     order.order_count = @cd_counts.sum
-    order.save
-
+    unless order.save
+      redirect_to root_path
+    else
     @count = 0
       @cd_ids.each do |cdids|
         order_cd = OrderCd.new
@@ -99,20 +103,17 @@ before_action :authenticate_user!
         cart_d.destroy
       end
 
+
     @count = 0
       @cd_ids.each do |stock|
         cd_id = Cd.find(stock)
-        @stock = cd_id.stock
-        @stock - @cd_counts[@count]
-
-        cd_id.update
+        cd_id.stock -= @cd_counts[@count]
+        cd_id.save
         @count += 1
       end
     redirect_to public_orders_path
     end
-  # else
-  #   redirect_to new_public_order_path
-  # end
+  end
 
   def finish
   end
