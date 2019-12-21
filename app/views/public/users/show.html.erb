@@ -19,6 +19,7 @@
 
 	    <div class="col-md-9">
 	      <h1>カートの中</h1>
+
 	     	<div class="row">
 	          	<div class="col-md-12">
 	  		      	<% @carts.each do |cart| %>
@@ -61,3 +62,4 @@
 		</div>
 	</div>
 </div>
+<%= link_to"購入詳細へ", public_orders_confirm_path %>
