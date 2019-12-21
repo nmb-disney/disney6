@@ -34,7 +34,13 @@
 <div class="col-lg-8">
 	<div class="panel panel-default">
 	<div class="panel-heading">
-	<div class="text-center"><h4>配送先選択</h4></div>
+	<div class="text-center">
+		<h4>配送先選択</h4>
+			<% if flash[:noadd] %>
+				<div class="alert alert-danger alert-nopay">
+				<%= flash[:noadd] %></div>
+			<% end %>
+		</div>
 	</div>
 	<div class="row">
 	<div class="col-lg-5 col-lg-offset-1">
@@ -70,7 +76,13 @@
 
 	<div class="col-lg-4 text-center">
 		<div class="panel panel-default">
-		<div class="panel-heading"><h4>支払い方法</h4></div>
+		<div class="panel-heading">
+			<h4>支払い方法</h4>
+			<% if flash[:nopay] %>
+				<div class="alert alert-danger alert-nopay">
+				<%= flash[:nopay] %></div>
+			<% end %>
+			</div>
 		<div class="row">
 			<h4><%= radio_button_tag :pay, "a" %>
 			<%= label :pay, "クレジット" %></h4>
@@ -89,9 +101,7 @@
 
 <div class="row">
 	<div class="col-lg-2 col-lg-offset-10">
-
   <%= submit_tag '注文確認ページへ', class:"btn btn-danger" %>
-
 </div>
 </div>
 <% end %>

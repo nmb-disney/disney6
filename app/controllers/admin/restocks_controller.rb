@@ -15,6 +15,7 @@ class Admin::RestocksController < Admin::ApplicationController
 
   def create
   	@restock = Restock.new(restock_params)
+binding.pry
   	@restock.save!
 
     @restock_restock_count_sum = Restock.find(@restock.id)#何を足したいのかを見つけてくる

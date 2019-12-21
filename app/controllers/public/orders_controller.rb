@@ -19,6 +19,29 @@ class Public::OrdersController < Public::ApplicationController
 
 
   def new
+    if params[:add].blank? or params[:pay].blank?
+        if params[:add].blank? and params[:pay].blank?
+          flash[:noadd] = '配送先を選択して下さい'
+          flash[:nopay] = '支払い方法を選択して下さい'
+          redirect_to public_orders_confirm_path
+        elsif params[:add] == "2" and (params[:add1].blank? or params[:add2].blank? or params[:add3].blank? or params[:add4].blank?) and params[:pay].blank?
+          flash[:nopay] = '支払い方法を選択して下さい'
+          flash[:noadd] = '配送先情報を入力して下さい'
+          redirect_to public_orders_confirm_path
+        elsif params[:pay].blank?
+          flash[:nopay] = '支払い方法を選択して下さい'
+          redirect_to public_orders_confirm_path
+        elsif params[:add].blank?
+          flash[:noadd] = '配送先を選択して下さい'
+          redirect_to public_orders_confirm_path
+        end
+    elsif params[:add] == "2" and (params[:add1].blank? or params[:add2].blank? or params[:add3].blank? or params[:add4].blank?)
+      flash[:noadd] = '配送先情報を入力して下さい'
+      redirect_to public_orders_confirm_path
+    else
+
+
+
     @cds = Cd.find(params[:count1])
     @cdcounts = params[:count]
     @cdids = params[:count1]
@@ -51,6 +74,7 @@ class Public::OrdersController < Public::ApplicationController
       @payment = "銀行振り込み"
     end
   end
+end
 
   def create
     @user = current_user

@@ -1,57 +1,110 @@
-<%= form_tag(public_orders_path, method: :post) do %>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-11">
+
 <h2>購入詳細</h2>
-<table>
-	<tr>
-	<th>CDタイトル<th>アーティスト<th>購入枚数<th>価格(税込)
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="row">
+				<div class="col-lg-4">CDタイトル</div>
+				<div class="col-lg-4">アーティスト</div>
+				<div class="col-lg-2">購入枚数</div>
+				<div class="col-lg-2">価格(税込)</div>
+			</div>
+			</div>
+
+	<div class="panel-body">
+		<div class="row">
 		<% @cds.each do |cart| %>
-			<tr>
-			<td><%= cart.cd_title %>
-			<td><%= cart.artist.artist_name %>
-			<td><%= @cdcounts[@count] %>枚
+			<div class="col-lg-4"><%= cart.cd_title %></div>
+			<div class="col-lg-4"><%= cart.artist.artist_name %></div>
+			<div class="col-lg-2"><%= @cdcounts[@count] %>枚</div>
 					<% @total = cart.price * @tax * @cdcounts[@count].to_i %>
-			<td><%= @total.floor %>円
+			<div class="col-lg-2"><%= @total.floor %>円</div>
 					<% @count += 1 %>
 					<% @totalprice += @total %>
 		<% end %>
+		</div>
+	</div>
+<div class="row">
+	<div class="col-lg-2 col-lg-offset-8">送料</div>
+	<div class="col-lg-2"><%= @deliver %>円</div>
+</div>
+<div class="row">
+	<div class="col-lg-2 col-lg-offset-8">合計金額</div>
+	<div class="col-lg-2"><%= @totalprice.floor + @deliver %>円</div>
+</div>
+</div>
 
-			<%= hidden_field_tag :order_count, @cdcounts %>
-			<%= hidden_field_tag :cds, @cdids %>
-	<tr>
-		<td><td><td>送料<td><%= @deliver %>円
-	<tr>
-		<td><td><td>合計金額<td><%= @totalprice.floor + @deliver %>円
-</table>
+<div class="row">
+<div class="col-lg-5">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="text-center">
+		<h4>配送先　詳細</h4>
+		</div>
+	</div>
+<div class="row">
+<div class="col-lg-offset-1">
+<h3>郵便番号</h3>
+	<h4><%= @add1 %></h4>
 
-<h4>郵便番号</h4>
+<h3>配送先住所</h3>
+	<h4><%= @add2 %></h4>
+
+<h3>宛名</h3>
+	<h4><%= @add3 %>  <%= @add4 %>  様</h4>
+		</div>
+		</div>
+		</div>
+	</div>
+
+
+
+<div class="col-lg-5">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="text-center">
+			<h4>支払い方法</h4>
+		</div>
+		</div>
+	<h4 class="text-center"><%= @payment %></h4>
+</div>
+</div>
+</div>
+
+
+<%= form_tag(public_orders_path, method: :post) do %>
+<!-- 購入されたCD枚数（配列） -->
+	<%= hidden_field_tag :order_count, @cdcounts %>
+<!-- 購入されたCD_id（配列） -->
+	<%= hidden_field_tag :cds, @cdids %>
+<!-- 郵便番号 -->
 	<%= hidden_field_tag :postalcode, @add1 %>
-	<%= @add1 %>
-
-<h4>配送先住所</h4>
+<!-- 住所 -->
 	<%= hidden_field_tag :address, @add2 %>
-	<%= @add2 %>
-
-<h4>宛名</h4>
+<!-- 姓 -->
 	<%= hidden_field_tag :firstname, @add3 %>
-	<%= @add3 %>
+<!-- 名 -->
 	<%= hidden_field_tag :lastname, @add4 %>
-	<%= @add4 %> 様
-
-<h4>支払い方法</h4>
+<!-- 支払い方法 -->
 	<%= hidden_field_tag :payment, @payment %>
-	<%= @payment %>
-
 <!-- 配送料 -->
 	<%= hidden_field_tag :deliver_fee, @deliver %>
-
 <!-- 合計金額 -->
 	<%= hidden_field_tag :total, @totalprice %>
-
 <!-- 配送状況 -->
 	<%= hidden_field_tag :deliver_status, 1 %>
-
 <!-- 税額 -->
 	<%= hidden_field_tag :cdstax, @totalprice * 0.1 %>
 
+<div class="row">
+	<div class="col-lg-2 col-lg-offset-9">
+		<%= submit_tag '注文確定', class:"btn btn-danger" %>
+	</div>
+</div>
 
-<%= submit_tag '注文確定' %>
   <% end %>
+  </div>
+</div>
+</div>
