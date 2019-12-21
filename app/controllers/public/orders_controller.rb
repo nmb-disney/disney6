@@ -3,7 +3,7 @@ class Public::OrdersController < Public::ApplicationController
   def index
     @user = current_user
     @user = @user.orders
-    @orders = Order.page(params[:page]).per(10)
+    @orders = @user.page(params[:page]).per(10)
 
   end
 
