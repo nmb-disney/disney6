@@ -21,7 +21,7 @@ namespace :admin do
   resources :cds, :only => [:index, :new, :create, :edit, :update, :destroy]
   resources :restocks, :only => [:index, :new, :create, :update]
   resources :users, :only => [:index, :show, :destroy, :update, :edit]
-  resources :reviews, :only => [:index, :destroy,]
+  resources :reviews, :only => [:index, :destroy]
   resources :lists, :only => [:new]
   resources :artists, :only => [:create]
   resources :genres, :only => [:create]
@@ -30,4 +30,5 @@ end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
 

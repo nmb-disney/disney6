@@ -8,8 +8,8 @@
 		<div class="col-xs-9">
 		  <h1>ユーザー管理一覧</h1>
 		   <h3 class="pull-right">表示数1~10件</h3>
-			<table class="table table-striped">
-				<tr>
+			<table class="table table-bordered">
+				<tr class="active">
 	              <th>ID</th>
 	              <th>名前</th>
 	              <th>フリガナ</th>
@@ -17,14 +17,14 @@
 	              <th> </th>
 	              <th> </th>
 	            </tr>
-	            <tr>
+	            <tr class="active">
 			   <% @users.each do |user| %>
-	              <td><%= user.id %></td>
-	              <td><%= user.lastname %><%= user.firstname %></td>
-	              <td><%= user.lastname_kana %><%= user.firstname_kana %></td>
-	              <td><%= user.phone %></td>
-	              <td><%= link_to"ユーザー編集", edit_admin_user_path(user.id) %></td>
-	              <td><%= link_to"購入履歴", public_orders_path %></td>
+	              <td class="active"><%= user.id %></td>
+	              <td class="active"><%= user.lastname %><%= user.firstname %></td>
+	              <td class="active"><%= user.lastname_kana %><%= user.firstname_kana %></td>
+	              <td class="active"><%= user.phone %></td>
+	              <td class="active"><%= link_to"ユーザー編集", edit_admin_user_path(user.id) %></td>
+	              <td class="active"><%= link_to"購入履歴", public_orders_path %></td>
 	            </tr>
                <% end %>
             </table>
