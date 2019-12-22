@@ -19,6 +19,12 @@
 			</select>
 
 
+			<%= form_for [:admin, @artist] do |artist| %>
+			　<h3>アーティスト</h3> <%= artist.text_field :artist_name %>
+			 <%= artist.submit '新規追加' %>
+			<% end %>
+
+
 
 			<%= form_for [:admin, @label] do |k| %>
 
@@ -40,7 +46,6 @@
 
 
 			　<h3>ジャンル</h3> <%= k.text_field :genre_name %><%= k.submit '新規追加' %>
-
 
 			<% end %>
 

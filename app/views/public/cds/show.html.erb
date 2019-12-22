@@ -54,23 +54,16 @@
 
     <div class="row">
         <div class="col-md-12">
-            <% @cds.each do |cd| %>
-              <% cd.discs.each do |disc| %>
+          <div class ="col-md-6">
+            <% @cd.discs.each do |cd| %>
                 <tr>
-                  <h3>Disc title</h3>
-                    <td><%= disc.disc_title %></td>
-                    <% disc.musics.each do |music| %>
-                      <h3>Music</h3>
-                      <td><%= music.music_title %></td>
+                   <td><h3>Disc <%= cd.disc_rank %>  title   <%= cd.disc_title %></h3></td>
+                    <% cd.musics.each do |music| %>
+                    <td><h4><%= music.music_rank %>  <%= music.music_title %></h4></td>
                     <% end %>
                  </tr>
-              <% end %>
             <% end %>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
+          </div>
            <h3>レビュー投稿</h3>
               <%= form_for [:public,@review], url: public_reviews_path do |f| %>
                 <%= f.hidden_field :cd_id, value: @cd.id %>
@@ -84,4 +77,3 @@
               <% end %>
         </div>
     </div>
-</div>
