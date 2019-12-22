@@ -25,11 +25,22 @@
    text-align: center;
 }
 
-.serch_form{
-	text-align: center;
+.serch_bar{
+	padding-top: 25px;
 }
 
 .nav-item{
-	padding-top: 15px;
 	margin-right: 80px;
+}
+
+body {
+  background-image: url("bg.png");
+  background-size: cover;
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+footer {
+	color: white;
+	font-weight: bold;
 }

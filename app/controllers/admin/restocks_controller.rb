@@ -3,6 +3,7 @@ class Admin::RestocksController < Admin::ApplicationController
   def index
     @artists = Artist.all
     @restocks = Restock.page(params[:page]).per(10)
+    @cds = Cd.where.not(stock: nil).order("RANDOM()").limit(1)
   end
 
   def new
@@ -15,14 +16,14 @@ class Admin::RestocksController < Admin::ApplicationController
 
   def create
   	@restock = Restock.new(restock_params)
-binding.pry
-  	@restock.save!
+    @restock.save!
+    @new = Cd.find(@restock.cd_id)
 
-    @restock_restock_count_sum = Restock.find(@restock.id)#何を足したいのかを見つけてくる
-    @cd = Cd.where(stock: @restock.id)#Lastで最新のデータを指定する
-    @restock_restock_count_sum.restock_count += @cd.stock#実際の足し算
-    @restock_restock_count_sum.update(stock: @cd_stock_sum.stock)#updateで引数で何をたすかを見つけてくる指定
-
+    @restock2 = @restock.restock_count
+    @stock = @restock.cd.stock
+    @stock += @restock2
+    @new.stock = @stock
+    @new.save
 
   	redirect_to admin_cds_path(@restock.id)
   end

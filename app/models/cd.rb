@@ -1,5 +1,6 @@
 class Cd < ApplicationRecord
 	TESTS = belongs_to :artist
+  default_scope -> { order(created_at: :desc) }
 belongs_to :genre
 belongs_to :label
 attachment :jacket_image
