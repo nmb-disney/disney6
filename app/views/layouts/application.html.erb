@@ -34,28 +34,34 @@
             </div>
           </div>
 
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to"マイページ", public_user_path(current_user.id) %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <span>ログアウト</span>
-                <% end %>
-              </li>
-
-            <% else %>
-              <li class="nav-item">
-                <%= link_to"会員登録", new_user_registration_path %>
-              </li>
-              <li class="nav-item">
-                <%= link_to"ログイン", new_user_session_path %>
-              </li>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to public_user_path(current_user.id), class: "btn-warning btn" do %>
+          <i class="glyphicon glyphicon-user text-danger">マイページ</i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "btn-info btn" do %>
+            <i class="glyphicon glyphicon-log-out text-primary">ログアウト</i>
             <% end %>
-          </ul>
-        </nav>
-      </header>
+
+
+      <% else %>
+        <li class="nav-item">
+            <%= link_to destroy_user_session_path, class: "btn-warning btn", method: :delete do %>
+            <i class="glyphicon glyphicon-edit text-danger">会員登録</i>
+            <% end %>
+        </li>
+          <li class="nav-item">
+            <%= link_to new_user_session_path,  class: "btn-warning btn" do %>
+            <i class="glyphicon glyphicon-log-in text-primary">ログイン</i>
+            <% end %>
+          </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
 
       <body>
         <%= yield %>
@@ -70,7 +76,6 @@
           </div>
         </footer>
 
-  </body>
 </html>
 
 

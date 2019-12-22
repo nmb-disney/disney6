@@ -1,5 +1,10 @@
+
 <div class="container">
 	<div class="row">
+	<% if flash[:buy] %>
+		<div class="alert alert-danger alert-buy text-center">
+		<%= flash[:buy] %></div>
+	<% end %>
 		<div class="col-lg-11">
 			<h1 class="text-left">購入履歴ページ</h1>
 			<h3 class="text-right">表示数1~10件</h3>
