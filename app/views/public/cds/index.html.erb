@@ -1,62 +1,82 @@
-<div class="container-flaud">
-  <h3 class="pull-right">表示数1~12件</h3>
-    <div class="row">
-        <div class="col-md-9" style="padding: 0px 0px 0px 60px;">
-            <h1>店長おすすめ！</h1>
-              <% @cds.each do |cd| %>
-                <div class="col-md-3" style="padding-top: 20px;">
-                    <div class="row">
-                        <%= link_to public_cd_path(cd.id) do %>
-               	            <%= attachment_image_tag cd, :jacket_image, :fill, 100, 100, size: '180x180', fallback: "no_image.jpg" %>
-                        <% end %>
-                    </div>
-                    <div class="row">
-                        <%= cd.artist.artist_name %>
-                        <%= cd.cd_title %>
-                        <%= cd.release_date.strftime("%m月%d日") %>
-                    </div>
-                    <div class="row">
-                        <% cd.price * @tax %>
-                        <%= cd.price.floor %>
-                    </div>
-                    <div class="row">
-                        <%= cd.status %>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5" style="padding-left: 0px;">
-                            <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: cd.id) do |f| %>
-                                <%= f.submit "気になる",class: "btn btn-primary" %>
+<div class="toppage">
+    <div class="container-flaud">
+      <h3 class="pull-right">表示数1~12件</h3>
+        <div class="row">
+            <div class="col-md-9" style="padding: 0px 5px 0px 60px;">
+                <h1>店長おすすめ！</h1>
+                  <% @cds.each do |cd| %>
+                    <div class="col-md-3" style="padding-top: 20px;">
+                        <div class="row">
+                            <%= link_to public_cd_path(cd.id) do %>
+                   	            <%= attachment_image_tag cd, :jacket_image, :fill, 100, 100, size: '180x180', fallback: "no_image.jpg" %>
                             <% end %>
                         </div>
-                        <div class="col-md-7" style="padding-left: 0px;">
-                            <%= form_for [:public, @cart_cd_new], url: public_cart_cds_path(cd_id: cd.id) do |f| %>
-                                <%= f.hidden_field :cart_count, :value => "1" %>
-                                <%= f.submit "カート",class: "btn btn-danger" %>
+                        <div class="row">
+                            <%= cd.artist.artist_name %>
+                            <%= cd.cd_title %>
+                            発売日<%= cd.release_date.strftime("%m月%d日") %>
+                        </div>
+                        <div class="row">
+                            価格：<% cd.price * @tax %>
+                            <%= cd.price.floor %>&emsp;&emsp;&emsp;&emsp;
+                            <% if cd.stock == 0 %>
+                                <span class="label label-danger">在庫なし</span>
+                            <% elsif cd.status == 2%>
+                                <span class="label label-warning"><%= cds.status.to_a %></span>
+                            <% else %>
+                                <span class="label label-success">在庫あり</span>
                             <% end %>
                         </div>
+                        <div class="row">
+                            <div class="col-md-5" style="padding: 10px 0px 10px;">
+                                <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: cd.id) do |f| %>
+                                    <%= f.submit "気になる",class: "btn btn-primary" %>
+                                <% end %>
+                            </div>
+                            <div class="col-md-7" style="padding: 10px 0px 10px;">
+                                <%= form_for [:public, @cart_cd_new], url: public_cart_cds_path(cd_id: cd.id) do |f| %>
+                                    <%= f.hidden_field :cart_count, :value => "1" %>
+                                    <%= f.submit "カート",class: "btn btn-danger" %>
+                                <% end %>
+                            </div>
+                        </div>
                     </div>
-                </div>
-              <% end %>
-        </div>
+                  <% end %>
+            </div>
 
-        <div class="col-md-3" style="padding: 0px 50px 0px 0px;">
-          <p>レビュー</p>
-            <% @reviews.each do |r| %>
-                <div class="row" style="padding-top: 10px;">
-                    <div class="col-md-12">
-                      <%= link_to public_cd_path(r.cd.id) do %>
-                        <%= attachment_image_tag r.cd, :jacket_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'60x60' %>
-                    <% end %>
-                        <%= attachment_image_tag r.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40', class: "img-circle"%>
-                        <%= r.cd.cd_title %>
-                        <%= r.user.firstname_kana %>
-                        <%= r.comment %>
-                     </div>
-                </div>
-            <% end %>
+            <div class="col-md-3" style="padding: 0px 50px 0px 0px; background-color: white;">
+              <p>レビュー</p>
+                <% @reviews.each do |r| %>
+                    <div class="row" style="padding: 10px 30px 60px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <%= attachment_image_tag r.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40', class: "img-circle"%>
+                                <%= r.user.firstname_kana %>&emsp;おすすめ !
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3" style="padding-top: 5px;">
+                                <%= link_to public_cd_path(r.cd.id) do %>
+                                  <%= attachment_image_tag r.cd, :jacket_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'80x80' %>
+                                <% end %>
+                            </div>
+                            <div class="col-md-9" style="padding-top: 5px;">
+                                <%= r.comment %>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="font-size: 20px;">
+                              <%= link_to public_cd_path(r.cd.id) do %>
+                                <%= r.cd.cd_title %>
+                              <% end %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
         </div>
-    </div>
-    <div class="pagiWrapper">
-        <%= paginate @cds %>
+        <div class="pagiWrapper">
+            <%= paginate @cds %>
+        </div>
     </div>
 </div>
