@@ -15,9 +15,11 @@ class Admin::RestocksController < Admin::ApplicationController
   end
 
   def create
-  	@restock = Restock.new(restock_params)
-    @restock.save!
-    @new = Cd.find(@restock.cd_id)
+  	@restock = Restock.new(restock_params)##ここで新しく作ったデータを取得できる
+    @restock.save
+
+
+    @new = Cd.find(@restock.cd_id)##ここでcdのidを取得できる
     @restock2 = @restock.restock_count##ここで新しく作ったデータの中の入荷枚数だけのデータを持ってこれている
     @stock = @restock.cd.stock##ここでcdのstockを持ってきている
     @stock += @restock2##最後に持ってきたものを足す
