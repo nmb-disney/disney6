@@ -4,10 +4,9 @@ class Public::UsersController < Public::ApplicationController
   before_action :current_user, only: [:show, :update , :destroy]
 
   def show
-    @carts = CartCd.all
     @users = User.page(params[:page]).per(10)
     @user = current_user
-
+    @tax = 1.1
   end
 
   def edit

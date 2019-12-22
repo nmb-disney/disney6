@@ -4,6 +4,7 @@ class Public::CdsController < Public::ApplicationController
     @interest_new = Interest.new
     @cart_cd_new = CartCd.new
     @reviews = Review.all
+    @tax = 1.1
   end
 
   def show
@@ -12,6 +13,7 @@ class Public::CdsController < Public::ApplicationController
     @cart_cd_new = CartCd.new
     @cds = Cd.all
     @review = Review.new
+    @tax = 1.1
   end
 
   def search
