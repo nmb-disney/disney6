@@ -17,6 +17,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+header{
+	width:100%;
+}
 .admin-sidebar{
 	margin-top: 50px;
 }
@@ -34,6 +37,7 @@
 }
 
 body {
+  margin-top: 80px;
   background-image: url("bg.png");
   background-size: cover;
     background-repeat: no-repeat;
