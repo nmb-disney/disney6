@@ -13,49 +13,58 @@
   </head>
 
 
-      <header>
-        <nav class="navbar navbar-static-top" style="background-color: #f2f2f2;">
-          <div class="navbar-header navbar-left">
-            <%= link_to image_tag("logo.png", class: "image", height: "80", ), root_path %>
-          </div>
-          <div class="serch_bar">
-            <div class="col-md-5">
-              <div class="col-md-3">
-                <%= form_tag(public_search_path, :method => 'get') do %>
-                  <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
-              </div>
-              <div class="col-md-8">
-                  <%= text_field_tag :search, '', {class: 'form-control'} %>
-              </div>
-              <div class="col-md-1">
-                  <%= submit_tag '検索' %>
-              </div>
-                <% end %>
-            </div>
-          </div>
+<header>
+  <nav class="navbar navbar-static-top" style="background-color: #f2f2f2;">
+    <div class="navbar-header navbar-left">
+      <%= link_to image_tag("logo.png", class: "image", height: "80", ), root_path %>
+    </div>
+    <div class="serch_bar">
+      <div class="col-md-5">
 
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to"マイページ", public_user_path(current_user.id) %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <span>ログアウト</span>
-                <% end %>
-              </li>
+        <div class="col-md-3">
+          <%= form_tag(public_search_path, :method => 'get') do %>
+          <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
+        </div>
 
-            <% else %>
-              <li class="nav-item">
-                <%= link_to"会員登録", new_user_registration_path %>
-              </li>
-              <li class="nav-item">
-                <%= link_to"ログイン", new_user_session_path %>
-              </li>
+        <div class="col-md-8">
+          <%= text_field_tag :search, '', {class: 'form-control'} %>
+        </div>
+
+        <div class="col-md-1">
+          <%= submit_tag '検索' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to public_user_path(current_user.id), class: "btn-warning btn" do %>
+          <i class="glyphicon glyphicon-user text-danger">マイページ</i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "btn-info btn" do %>
+            <i class="glyphicon glyphicon-log-out text-primary">ログアウト</i>
             <% end %>
-          </ul>
-        </nav>
-      </header>
+
+
+      <% else %>
+        <li class="nav-item">
+            <%= link_to destroy_user_session_path, class: "btn-warning btn", method: :delete do %>
+            <i class="glyphicon glyphicon-edit text-danger">会員登録</i>
+            <% end %>
+        </li>
+          <li class="nav-item">
+            <%= link_to new_user_session_path,  class: "btn-warning btn" do %>
+            <i class="glyphicon glyphicon-log-in text-primary">ログイン</i>
+            <% end %>
+          </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
 
       <body>
         <%= yield %>
@@ -70,7 +79,6 @@
           </div>
         </footer>
 
-  </body>
 </html>
 
 

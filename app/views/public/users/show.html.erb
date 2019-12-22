@@ -15,14 +15,14 @@
 		    <div style="padding: 10px 20px;">
 		    	<h3><%= @user.lastname%>  <%= @user.firstname%>  様</h3>
 		    </div>
-		    <div style="padding: 10px 0px;">
-			 	<%= link_to"ユーザー詳細変更", edit_public_user_path(@user.id), class: 'btn-warning btn-lg btn-block' %>
+			 	<div style="padding: 10px 0px;">
+			 		<%= link_to"ユーザー詳細変更", edit_public_user_path(@user.id), class: 'btn-lg btn-default btn-block btn' %>
 			 </div>
 			 <div style="padding: 10px 0px;">
-			 	<%= link_to"気になるリスト", public_interests_path, class: 'btn-success btn-lg btn-block' %>
+			 	<%= link_to"気になるリスト", public_interests_path, class: 'btn-default btn-lg btn-block btn' %>
 			 </div>
 			 <div style="padding: 10px 0px;">
-			 	<%= link_to"購入履歴", public_orders_path, class: 'btn-info btn-lg btn-block' %>
+			 	<%= link_to"購入履歴", public_orders_path, class: 'btn-default btn-lg btn-block btn' %>
 			</div>
       </div>
       </div>
