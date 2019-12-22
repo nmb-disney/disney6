@@ -10,50 +10,85 @@
                 <% @search_a.each do |artist| %>
                   <thead>
                     <tr>
-                        <th><%= artist.artist_id %> </th>
-                      </tr>
-                  </thead>
+                        <td><%= artist.artist_id %>
                 <% end %>
               </table>
+
               <table>
               	<% @search_t.each do |cd| %>
-                	<thead>
+
                   	<tr>
-                    	<th><%= cd.cd_title %></th>
-                  	</tr>
-                	</thead>
+                    	<td><%= cd.cd_title %>
+
+
               	<% end %>
               </table>
 
 
 <% elsif @search_option == "2"%>
-  <h2>アーティスト検索</h2>
-  <h5>検索内容　<%= @search_text %></h5>
-  <h4>検索結果　<%= @search_a.count %>件</h4>
-    <table>
-      <% @search_a.each do |cd| %>
-        <thead>
-          <tr>
-            <th><%= cd.artist_name %><th>
-          </tr>
-        </thead>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>アーティスト検索</h2>
+    <h4>検索結果　<%= @search_a.count %>件</h4>
+  </div>
+
+<h5>検索内容　<%= @search_text %></h5>
+  <table class="table">
+  <thead>
+  <tr>
+    <th>
+    <th>アーティスト名
+    <th>CDタイトル
+    <th>在庫状況
+  </thead>
+  <% @search_a.each do |cd| %>
+
+    <% cd.cds.each do |cds| %>
+        <tbody><tr>
+          <td>
+          <td><%= cds.artist.artist_name %>
+          <td><%= cds.cd_title %>
+        <% if cds.stock == 0 %>
+          <td><span class="label label-danger">在庫なし</span>
+        <% elsif cds.status == 2%>
+            <td><span class="label label-warning"><%= cds.status.to_a %></span>
+        <% else %>
+          <td><span class="label label-success">在庫あり</span>
+        <% end %>
       <% end %>
-    </table>
+      <tr>
+      <% end %>
+      </tbody>
+
+  </table>
+</div>
+
 
 <% else @search_option == "3" %>
   <h2>CDタイトル検索</h2>
   <h5>検索内容　<%= @search_text %></h5>
   <h4>検索結果　<%= @search_t.count %>件</h4>
+
+
 <table>
+  <tr>
+    <th>
+    <th>CDタイトル
+    <th>アーティスト名
+    <th>在庫状況
     <% @search_t.each do |cd| %>
-
-            <tr>
-                <th><%= cd.cd_title %><th><%= cd.artist.artist_name %>
-
-        <tr>
-          <td><td>
+      <tr>
+        <td>
+        <td><%= cd.cd_title %>
+        <td><%= cd.artist.artist_name %>
+        <td><%= cd.stock %>
     <% end %>
   </table>
+
+
+
+
+
 <% end %>
 <div class="pagiWrapper">
 <%= paginate @searchs %>

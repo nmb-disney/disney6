@@ -20,10 +20,10 @@
 		   	<% @orders.each do |o| %>
 		   	<tbody>
 		   		<tr>
-		   			<td><%= o.order_id %></td>
-		   			<td><%= o.order_user_id%></td>
+		   			<td><%= o.user_id %></td>
+		   			<td><%= o.firtname %></td><td><%= o.lastname %></td>
 		   			<td><%= o.deliver_status %></td>
-		   			<td><%= link_to "詳細", show_admin_order_path(user.id) %></td>
+		   			<td><%= link_to "詳細", show_admin_path(order.id) %></td>
 		   		</tr>
 		   	</tbody>
 		   	<% end %>

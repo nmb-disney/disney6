@@ -32,3 +32,15 @@
 .nav-item{
 	margin-right: 80px;
 }
+
+body {
+  background-image: url("bg.png");
+  background-size: cover;
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+footer {
+	color: white;
+	font-weight: bold;
+}

@@ -1,6 +1,6 @@
 class Admin::CdsController < Admin::ApplicationController
   def index
-    @cds = Cd.page(params[:page]).per(10)
+    @cds = Cd.page(params[:page]).per(5)
     @search_option = params[:option]
     @search_text = params[:search]
     case @search_option
@@ -11,7 +11,6 @@ class Admin::CdsController < Admin::ApplicationController
     when "s"
       @search_s = Cd.search(params[:search], @search_option)
     end
-
   end
 
   def new
@@ -47,5 +46,15 @@ private
     def cd_find
       @user = User.find(params[:id])
     end
+
+    def user_admin
+       @users = User.all
+       if  current_user.admin == false
+           redirect_to new_user_session_path
+       else
+           render action: "index"
+       end
+    end
+
 
 end

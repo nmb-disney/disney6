@@ -3,6 +3,7 @@ class Admin::RestocksController < Admin::ApplicationController
   def index
     @artists = Artist.all
     @restocks = Restock.page(params[:page]).per(10)
+    @cds = Cd.where.not(stock: nil).order("RANDOM()").limit(1)
   end
 
   def new
@@ -14,17 +15,18 @@ class Admin::RestocksController < Admin::ApplicationController
   end
 
   def create
-  	@restock = Restock.new(restock_params)
-    @restock.save!
+
+  	@restock = Restock.new(restock_params)##ここで新しく作ったデータを取得できる
+    @restock.save
 
 
-    @new = Cd.find(@restock.cd_id)
+    @new = Cd.find(@restock.cd_id)##ここでcdのidを取得できる
 
-    @restock2 = @restock.restock_count
-    @stock = @restock.cd.stock
-    @stock += @restock2
-    @new.stock = @stock
-    @new.save
+    @restock2 = @restock.restock_count##ここで新しく作ったデータの中の入荷枚数だけのデータを持ってこれている
+    @stock = @restock.cd.stock##ここでcdのstockを持ってきている
+    @stock += @restock2##最後に持ってきたものを足す
+    @new.stock = @stock##ここでcdの中にあるstockカラムだけ更新することができる
+    @new.save#cdをセーブ
 
   	redirect_to admin_cds_path(@restock.id)
   end
