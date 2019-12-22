@@ -13,29 +13,26 @@
   </head>
 
 
-<header>
-  <nav class="navbar navbar-static-top" style="background-color: #f2f2f2;">
-    <div class="navbar-header navbar-left">
-      <%= link_to image_tag("logo.png", class: "image", height: "80", ), root_path %>
-    </div>
-    <div class="serch_bar">
-      <div class="col-md-5">
-
-        <div class="col-md-3">
-          <%= form_tag(public_search_path, :method => 'get') do %>
-          <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
-        </div>
-
-        <div class="col-md-8">
-          <%= text_field_tag :search, '', {class: 'form-control'} %>
-        </div>
-
-        <div class="col-md-1">
-          <%= submit_tag '検索' %>
-        </div>
-        <% end %>
-      </div>
-    </div>
+      <header>
+        <nav class="navbar navbar-fixed-top" style="background-color: #f2f2f2;　width:100%">
+          <div class="navbar-header navbar-left">
+            <%= link_to image_tag("logo.png", class: "image", height: "80", ), root_path %>
+          </div>
+          <div class="serch_bar">
+            <div class="col-md-5">
+              <div class="col-md-3">
+                <%= form_tag(public_search_path, :method => 'get') do %>
+                  <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
+              </div>
+              <div class="col-md-8">
+                  <%= text_field_tag :search, '', {class: 'form-control'} %>
+              </div>
+              <div class="col-md-1">
+                  <%= submit_tag '検索' %>
+              </div>
+                <% end %>
+            </div>
+          </div>
 
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
