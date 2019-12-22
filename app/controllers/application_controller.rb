@@ -25,4 +25,14 @@ end
     devise_parameter_sanitizer.permit(:sign_up, keys: [:lastname, :firstname, :lastname_kana, :firstname_kana, :postalcode, :address, :phone])
   end
 
+  def authenticate_user
+
+   if @current_user == nil
+
+    redirect_to("/login")
+
+end
+
+end
+
 end
