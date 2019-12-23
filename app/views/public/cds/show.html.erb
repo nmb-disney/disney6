@@ -6,7 +6,7 @@
               <div class="col-md-6">
                 <%= attachment_image_tag @cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '400x400' %>
            	  </div>
-              <div class="col-md-4" style="padding:20px; background-color: white;">
+              <div class="col-md-4" style="padding:20px; background-color: #EEEEEE;">
                 <table class = "table table-bordered">
                   <tr>
                     <td>アーティスト</td>
@@ -38,7 +38,7 @@
                   </tr>
                 </table>
               </div>
-              <div class="col-md-2" style="padding:30px; background-color: white;">
+              <div class="col-md-2" style="padding:30px; background-color: #EEEEEE;">
                 <div class="text-bottom">
                   <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: @cd.id) do |f| %>
                     <%= f.submit "気になる",class: "btn btn-primary" %>
@@ -64,18 +64,26 @@
                  </tr>
             <% end %>
           </div>
-           <div class ="col-md-6" style="padding:40px; background-color: white;">
-            <h3>レビュー投稿</h3>
-              <%= form_for [:public,@review], url: public_reviews_path do |f| %>
-                <%= f.hidden_field :cd_id, value: @cd.id %>
-                <%= f.text_field :comment, class: "text-field" %>
-                <%= f.submit '投稿', class: "submit-btn" %>
-              <% end %>
-              <% @cd.reviews.each do |cd| %>
-                <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
-                <%= cd.user.firstname_kana %>
-                <%= cd.comment %>
-              <% end %>
-            </div>
+           <div class ="col-md-6" style="padding:40px">
+             <h1><div class="label" style="background-color: #880000";>   レビュー投稿</div></h1>
+              <div class="col-md-10" style="background-color: #EEEEEE; margin: 0px 30px; border-radius: 10px;">
+                  <%= form_for [:public,@review], url: public_reviews_path do |f| %>
+                    <%= f.hidden_field :cd_id, value: @cd.id %>
+                    <%= f.text_field :comment, class: "text-field" %>
+                    <%= f.submit '投稿', class: "submit-btn" %>
+                  <% end %>
+                  <div class ="row">
+                     <div class="col-md-8">
+                      <% @cd.reviews.each do |cd| %>
+                        <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'90x90' %>
+
+                        <%= cd.user.firstname_kana %>
+
+                        <%= cd.comment %>
+                      <% end %>
+                     </div>
+                  </div>
+              </div>
+           </div>
         </div>
     </div>
