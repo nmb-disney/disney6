@@ -8,6 +8,8 @@ class Admin::ListsController < Admin::ApplicationController
    @labels = Label.all
    @artists = Artist.all
    @genres = Genre.all
+   @cds = Cd.all
+
   end
 
 end
