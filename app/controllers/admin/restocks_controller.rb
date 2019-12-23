@@ -3,7 +3,6 @@ class Admin::RestocksController < Admin::ApplicationController
   def index
     @artists = Artist.all
     @restocks = Restock.page(params[:page]).per(10)
-    @cds = Cd.where.not(stock: nil).order("RANDOM()").limit(1)
   end
 
   def new

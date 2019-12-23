@@ -7,7 +7,7 @@
             <h1>気になるリスト</h1>
           </div>
           <% if @user.interests.count == 0 %>
-           <div class="text-center"><h3>カートには何も入っていません</div>
+           <div class="text-center"><h3>気になるリストは空です</div>
           <% else %>
           <% @user.interests.each do |interest| %>
             <div class="one-box">
@@ -31,8 +31,8 @@
                   <div class="col-lg-3">
                     <h4><%= interest.cd.artist.artist_name %></h4>
                     <h4><%= interest.cd.cd_title %></h4>
-                        <% interest.cd.price * @tax %>
-                    <h4><%= interest.cd.price.floor %>円(税込)</h4>
+                        <% @price = interest.cd.price * @tax %>
+                    <h4><%= @price.floor %>円(税込)</h4>
                   </div>
                   <div class="col-lg-1">
                     <%= link_to "削除", public_interest_path(interest), method: :delete %>

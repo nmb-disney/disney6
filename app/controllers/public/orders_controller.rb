@@ -6,17 +6,12 @@ before_action :authenticate_user!
     @user = @user.orders.order("id DESC")
     @orders = @user.page(params[:page]).per(10)
 
-
   end
 
   def confirm
     @user = current_user
     @user_cart = @user.cart_cds
     @tax = 1.1
-    # if @user_cart.update(cart_params)
-    # else
-    #   render :confirm
-    # end
   end
 
 
