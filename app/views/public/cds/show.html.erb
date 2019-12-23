@@ -65,7 +65,7 @@
             <% end %>
           </div>
            <div class ="col-md-6" style="padding:40px">
-             <h1><div class="label" style="background-color: #880000";>   レビュー投稿</div></h1>
+             <h1><div class="label" style="background-color: #880000";>   レビュー投稿</div></h1> <p>（30文字以内）</p>
               <div class="col-md-10" style="background-color: #EEEEEE; margin: 0px 30px; border-radius: 10px;">
                   <%= form_for [:public,@review], url: public_reviews_path do |f| %>
                     <%= f.hidden_field :cd_id, value: @cd.id %>
@@ -85,5 +85,6 @@
                   </div>
               </div>
            </div>
+
         </div>
     </div>
