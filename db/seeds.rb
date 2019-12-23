@@ -11,6 +11,10 @@
 # 	password: '000000',
 # 	password_confirmation: '000000',
 # 	)
+Admin.create!(
+	email: 'aaaaaa@gmail.com',
+	password: '666666'
+	)
 
 User.create!(
 	lastname: '川本',
@@ -91,7 +95,7 @@ Cd.create!(
 	cd_title: 'A・RA・SHI  THE BEST',
 	release_date: '2019-12-18',
 	price: "2100",
-	status: "20"
+	status: "1"
 	)
 
 Review.create!(
@@ -145,8 +149,4 @@ Restock.create!(
 	restock_count: "1"
 	)
 
-Admin.create!(
-	email: 'aaaaaa@gmail.com',
-	password: '666666'
-	)
 
