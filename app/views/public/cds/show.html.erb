@@ -73,7 +73,7 @@
                 <%= f.submit '投稿', class: "submit-btn" %>
               <% end %>
               <% @cd.reviews.each do |cd| %>
-                <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+                <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40', class: "img-circle" %>
                 <%= cd.user.firstname_kana %>
                 <%= cd.comment %>
               <% end %>

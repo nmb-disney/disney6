@@ -5,7 +5,8 @@ class Public::CdsController < Public::ApplicationController
     @cart_cd_new = CartCd.new
     @reviews = Review.all
     @tax = 1.1
-    @tentyo = Cd.where.not(comment: nil).order("RANDOM()").limit(4)
+    @tentyo = Cd.where.not(comment: "")
+    @tentyo = @tentyo.order("random()").limit(4)
   end
 
   def show

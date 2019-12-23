@@ -33,6 +33,8 @@
             	　　<%= render "admin/cds/restock_fields", f: restock %>
                <% end %>
 
+              <h4>コメント</h4>
+              <%= f.text_area :comment %>
 
                <h5><%= f.submit "Update", class:"btn btn-warning" %></h5>
 
