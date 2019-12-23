@@ -2,12 +2,16 @@ class Public::CartCdsController < Public::ApplicationController
   before_action :authenticate_user!
 
   def create
-  	@cartcd = current_user.cart_cds.new(cart_cd_params)
-    @cartcd.cd_id = params[:cd_id]
-  	if  @cartcd.save!
-  		redirect_to public_user_path(current_user.id)
-  	else
-  		redirect_to root_path
+    @aaa = Cd.find(params[:cd_id])
+    if @aaa.stock == 0
+        redirect_to root_path
+    else
+      cartnew = CartCd.new(cart_cd_params)
+      cartnew.user_id = current_user.id
+      cartnew.cd_id = params[:cd_id]
+      cartnew.cart_count
+      cartnew.save!
+      redirect_to public_user_path(current_user.id)
     end
   end
 
