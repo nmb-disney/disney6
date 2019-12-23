@@ -32,7 +32,7 @@ class Admin::CdsController < Admin::ApplicationController
     @cd_stock_sum.stock += @restock.restock_count#実際の足し算
     @cd_stock_sum.update(stock: @cd_stock_sum.stock)#updateで引数で何をたすかを見つけてくる指定
 
-    redirect_to admin_cds_path
+    redirect_to admin_restocks_path
    end
 
 
