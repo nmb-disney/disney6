@@ -6,8 +6,8 @@
       <div class="col-xs-9">
   		  <h1>admin入荷履歴</h1>
          <h3 class="pull-right">表示数1~10件</h3>
-  	　　　　<table>
-    		    <tr>
+  	　　　<table class="table table-bordered">
+    		    <tr class="active">
     		      <th>アーティスト</th>
                 <th>アルバム名</th>
                 <th>入荷日</th>
@@ -16,10 +16,10 @@
 
               <% @restocks.each do |restock| %>
                 <tr>
-                  <td><%= restock.cd.artist.artist_name %></td>
-                  <td><%= restock.cd.cd_title %></td>
-                  <td><%= restock.restock_date %></td>
-                  <td><%= restock.restock_count %></td>
+                  <td class="active"><%= restock.cd.artist.artist_name %></td>
+                  <td class="active"><%= restock.cd.cd_title %></td>
+                  <td class="active"><%= restock.restock_date %></td>
+                  <td class="active"><%= restock.restock_count %></td>
                 </tr>
               <% end %>
            </table>

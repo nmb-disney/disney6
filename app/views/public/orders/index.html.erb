@@ -1,5 +1,7 @@
+
 <div class="container">
 	<div class="row">
+
 		<div class="col-lg-11">
 			<h1 class="text-left">購入履歴ページ</h1>
 			<h3 class="text-right">表示数1~10件</h3>
@@ -7,6 +9,10 @@
 
 	<div class="row">
 	<div class="col-lg-10 col-sm-offset-1">
+	<% if flash[:buy] %>
+		<h4 class="alert-danger alert-buy text-center">
+		<%= flash[:buy] %></h4>
+		<% end %>
 <% @orders.each do |i| %>
 	<div class="panel panel-default">
 		<div class="panel-heading">

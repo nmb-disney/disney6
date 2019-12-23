@@ -3,7 +3,7 @@
 		<div class="col-lg-11">
 
 	<%= form_tag(new_public_order_path, method: :get) do %>
-	<h3>カートの中身</h3>
+	<h3>購入詳細</h3>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="row">
@@ -22,9 +22,10 @@
 			<div class="col-lg-4"><%= cart.cd.cd_title %></div>
 						<% @cdid = cart.cd_id %>
 						<%= hidden_field :count1, nil, value: @cdid %>
-			<div class="col-lg-2"><%= number_field :count, nil, min: 1, max: 9, size: 1, value: cart.cart_count %>枚</div>
+			<div class="col-lg-2">
+					<%= number_field :count, nil, min: 1, max: cart.cd.stock, size: 1, value: cart.cart_count %>枚</div>
 					<% @total = cart.cd.price * @tax %>
-			<div class="col-lg-2"><%= @total.floor %>円(税込)</div>
+					<div class="col-lg-2"><%= @total.floor %>円(税込)</div>
 		<% end %>
 		</div>
 		</div>
@@ -100,8 +101,9 @@
 	</div>
 
 <div class="row">
-	<div class="col-lg-2 col-lg-offset-10">
-  <%= submit_tag '注文確認ページへ', class:"btn btn-default btn-lg" %>
+	<div class="col-lg-4 col-lg-offset-8">
+	<%= link_to"前のページに戻る", public_user_path(current_user.id), class: 'btn btn-default' %>
+  <%= submit_tag '注文確認ページへ', class:"btn btn-danger btn-lg" %>
 </div>
 </div>
 <% end %>

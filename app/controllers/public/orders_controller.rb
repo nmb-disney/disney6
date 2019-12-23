@@ -3,9 +3,8 @@ before_action :authenticate_user!
 
   def index
     @user = current_user
-    @user = @user.orders
+    @user = @user.orders.order("id DESC")
     @orders = @user.page(params[:page]).per(10)
-
 
   end
 
@@ -13,10 +12,6 @@ before_action :authenticate_user!
     @user = current_user
     @user_cart = @user.cart_cds
     @tax = 1.1
-    # if @user_cart.update(cart_params)
-    # else
-    #   render :confirm
-    # end
   end
 
 
@@ -135,6 +130,8 @@ end
         cd_id.save
         @count += 1
       end
+    flash[:buy] = 'ご購入ありがとうございました。
+    またのご利用を心よりお待ちしております。'
     redirect_to public_orders_path
     end
   end
