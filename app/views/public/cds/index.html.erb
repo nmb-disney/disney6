@@ -21,8 +21,13 @@
             <div class="col-md-12">
             <% if cd.stock == 0 %>
               <span class="label label-danger">　　　　　　　　在庫なし　　　　　　　　</span>
+<<<<<<< HEAD
             <% elsif cd.status == 2 %>
               <span class="label label-warning"><%= cd.status %></span>
+=======
+            <% elsif cd.status == "販売停止中" %>
+              <span class="label label-warning"><%= cds.status.to_a %></span>
+>>>>>>> d4b172d6ac3b8d56e880a41d19d06e6ba62d2620
             <% else %>
               <span class="label label-success">　　　　　　　　在庫あり　　　　　　　　</span>
             <% end %>
@@ -37,14 +42,21 @@
             発売日 <%= cd.release_date.strftime("%m月%d日") %>
           </div>
 
+        <div class="panel panel-default">
+         <div class="panel panel-heading">
           <div class="row">
-            <h3>店長のオススメポイント</h3>
+            <h4>店長のオススメポイント</h4>
           </div>
+        </div>
 
+        <div class="panel body">
           <div class="row">
+            <div class="col-md-12">
             <%= cd.comment %>
           </div>
-
+        </div>
+        </div>
+        </div>
           <div class="row">
             <div class="col-md-5" style="padding:0px;">
               <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: cd.id) do |f| %>
@@ -88,8 +100,13 @@
             <div class="col-md-12">
             <% if cd.stock == 0 %>
               <span class="label label-danger">　　　　　　　　在庫なし　　　　　　　　</span>
+<<<<<<< HEAD
             <% elsif cd.status == "販売停止中" %>
               <span class="label label-warning"><%= cd.status %></span>
+=======
+            <% elsif cd.status == 2 %>
+              <span class="label label-warning"><%= cds.status %></span>
+>>>>>>> d4b172d6ac3b8d56e880a41d19d06e6ba62d2620
             <% else %>
               <span class="label label-success">　　　　　　　　在庫あり　　　　　　　　</span>
             <% end %>
@@ -171,11 +188,15 @@
     </div>
   </div>
 </div>
+</div>
 
         <div class="pagiWrapper">
             <%= paginate @cds %>
         </div>
 
+<<<<<<< HEAD
 
 
 </div>
+=======
+>>>>>>> d4b172d6ac3b8d56e880a41d19d06e6ba62d2620
