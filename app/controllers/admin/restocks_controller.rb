@@ -2,7 +2,7 @@ class Admin::RestocksController < Admin::ApplicationController
 
   def index
     @artists = Artist.all
-    @restocks = Restock.page(params[:page]).per(10)
+    @restocks = Restock.page(params[:page]).per(10).order("created_at DESC")
   end
 
   def new

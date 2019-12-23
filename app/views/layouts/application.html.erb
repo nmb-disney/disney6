@@ -46,7 +46,9 @@
             <i class="glyphicon glyphicon-edit text-primary"  style="font-weight: bold; font-size: 20px;">ログアウト</i>
             <% end %>
           </li>
+      <% elsif admin_signed_in? %>
 
+        <P>成功</P>
 
       <% else %>
         <li class="nav-item">

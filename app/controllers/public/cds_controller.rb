@@ -1,6 +1,6 @@
 class Public::CdsController < Public::ApplicationController
   def index
-    @cds = Cd.page(params[:page]).per(12)
+    @cds = Cd.page(params[:page]).per(12).order("created_at DESC")
     @interest_new = Interest.new
     @cart_cd_new = CartCd.new
     @reviews = Review.all
