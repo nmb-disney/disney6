@@ -8,7 +8,7 @@ class Admin::ArtistsController < Admin::ApplicationController
   def destroy
    @artist_des = Artist.find(params[:id])
    @artist_des.destroy
-   redirect_to new_list_path
+   redirect_to  new_admin_list_path
   end
 
 private
