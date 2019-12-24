@@ -19,13 +19,6 @@
 			</select>
 
 
-			<%= form_for [:admin, @artist] do |artist| %>
-			　<h3>アーティスト</h3> <%= artist.text_field :artist_name %>
-			 <%= artist.submit '新規追加' %>
-			<% end %>
-
-
-
 			<%= form_for [:admin, @label] do |k| %>
 
 			　<h3>レーベル</h3> <%= k.text_field :label_name %><%= k.submit '新規追加' %>
@@ -59,4 +52,11 @@
 		</div>
 	</div>
 </div>
+
+
+<% @artists.each do |artist|%></a>
+				<%= artist.artist_name %>
+				<%= link_to "削除", admin_artist_path(artist), method: :delete %>
+				<% end %>
+
 

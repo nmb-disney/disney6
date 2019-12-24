@@ -23,9 +23,9 @@ namespace :admin do
   resources :users, :only => [:index, :show, :destroy, :update, :edit]
   resources :reviews, :only => [:index, :destroy]
   resources :lists, :only => [:new]
-  resources :artists, :only => [:create]
-  resources :genres, :only => [:create]
-  resources :labels, :only => [:create]
+  resources :artists, :only => [:create, :destroy]
+  resources :genres, :only => [:create, :destroy]
+  resources :labels, :only => [:create, :destroy]
 end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

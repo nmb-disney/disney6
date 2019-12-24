@@ -6,7 +6,7 @@
               <div class="col-md-6">
                 <%= attachment_image_tag @cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '400x400' %>
            	  </div>
-              <div class="col-md-4" style="padding:20px; background-color: white;">
+              <div class="col-md-4" style="padding:20px; background-color: #EEEEEE;">
                 <table class = "table table-bordered">
                   <tr>
                     <td>アーティスト</td>
@@ -38,6 +38,7 @@
                   </tr>
                 </table>
               </div>
+
               <div class="col-md-2" style="padding:30px;">
                 <div class="text-bottom">
                   <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: @cd.id) do |f| %>
@@ -64,6 +65,7 @@
                  </tr>
             <% end %>
           </div>
+
            <div class ="col-md-6" style="padding: 40px; background-color: white;">
 
 
@@ -83,5 +85,6 @@
                 <%= cd.comment %>
               <% end %>
             </div>
+
         </div>
     </div>
