@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-       <div class="col-md-10">
+       <div class="col-md-6"  style="margin:50px 250px; ">
           <h1>会員情報編集ページ</h1>
               <%= form_for @user, url:public_user_path, method: :patch do |f| %>
                 <% if @user.errors.any? %>
