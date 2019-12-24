@@ -2,7 +2,7 @@
     <div class="row">
       <%= flash[:success]%>
         <div class="col-md-12">
-            <h1>Public商品詳細</h1>
+            <h1>商品詳細</h1>
               <div class="col-md-6">
                 <%= attachment_image_tag @cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '400x400' %>
            	  </div>
@@ -38,7 +38,7 @@
                   </tr>
                 </table>
               </div>
-              <div class="col-md-2" style="padding:30px; background-color: white;">
+              <div class="col-md-2" style="padding:30px;">
                 <div class="text-bottom">
                   <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: @cd.id) do |f| %>
                     <%= f.submit "気になる",class: "btn btn-primary" %>
@@ -64,13 +64,19 @@
                  </tr>
             <% end %>
           </div>
-           <div class ="col-md-6" style="padding:40px; background-color: white;">
+           <div class ="col-md-6" style="padding: 40px; background-color: white;">
+
+
+          <% if user_signed_in? %>
             <h3>レビュー投稿</h3>
               <%= form_for [:public,@review], url: public_reviews_path do |f| %>
                 <%= f.hidden_field :cd_id, value: @cd.id %>
                 <%= f.text_field :comment, class: "text-field" %>
                 <%= f.submit '投稿', class: "submit-btn" %>
               <% end %>
+          <% end %>
+
+
               <% @cd.reviews.each do |cd| %>
                 <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40', class: "img-circle" %>
                 <%= cd.user.firstname_kana %>

@@ -3,7 +3,8 @@ class Public::CdsController < Public::ApplicationController
     @cds = Cd.page(params[:page]).per(12)
     @interest_new = Interest.new
     @cart_cd_new = CartCd.new
-    @reviews = Review.all
+    # @reviews = Review.    limit(12)
+    @reviews = @reviews.(params[:page]).per(12)
     @tax = 1.1
     @tentyo = Cd.where.not(comment: "")
     @tentyo = @tentyo.order("random()").limit(4)
