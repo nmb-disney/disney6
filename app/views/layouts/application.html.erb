@@ -29,8 +29,8 @@
               </div>
               <div class="col-md-1">
                   <%= submit_tag '検索' %>
-                  <% end %>
               </div>
+              <% end %>
             </div>
           </div>
 
@@ -47,9 +47,7 @@
             <% end %>
           </li>
       <% elsif admin_signed_in? %>
-
-        <P>成功</P>
-
+        <P></P>
       <% else %>
         <li class="nav-item">
             <%= link_to new_user_registration_path, class: "btn-warning btn" do %>

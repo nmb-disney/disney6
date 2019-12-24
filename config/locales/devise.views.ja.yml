@@ -15,6 +15,20 @@ ja:
         address: "住所"
         phone: "電話番号"
 
+      admin:
+        current_password: "現在のパスワード"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        lastname: "姓"
+        firstname: "名"
+        lastname_kana: "セイ"
+        firstname_kana: "メイ"
+        postalcode: "郵便番号"
+        address: "住所"
+        phone: "電話番号"
+
     models:
       user: "ユーザ"
   devise:
