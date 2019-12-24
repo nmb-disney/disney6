@@ -30,8 +30,8 @@
                   </tr>
                   <tr>
                     <td>価格</td>
-                    <% @cd.price * @tax %>
-             	      <td><%= @cd.price.floor %>円</td>
+                    <% @aaa = @cd.price * @tax %>
+             	      <td><%= @aaa.floor %>円</td>
              	    </tr>
                   <tr>
                     <td><%= @cd.status %></td>
