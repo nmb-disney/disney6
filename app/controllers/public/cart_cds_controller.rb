@@ -3,11 +3,28 @@ class Public::CartCdsController < Public::ApplicationController
 
   def create
     @aaa = Cd.find(params[:cd_id])#cd_idを持ってくる
-    if @aaa.stock == 0#cd_idのstockを持って持ってきてもしstockが０の時にrootに飛ばす
+    @user_cart = current_user.cart_cds
+
+    @user_cart.each do |cart_cd|
+      if cart_cd.cd_id == params[:cd_id].to_i
+        @bbb = "X"
+      else
+      end
+    end
+
+    if @bbb =="X"
+      flash[:notice] = "既にカートに入っています。"
+      redirect_to root_path
+
+    elsif @aaa.stock == 0#cd_idのstockを持って持ってきてもしstockが０の時にrootに飛ばす
+       flash[:notice] = "在庫がありません。入荷までお待ちください。"
        redirect_to root_path
     elsif
       @aaa.status == "販売停止中"
+      flash[:notice] = "申し訳ありません。販売停止中です。"
       redirect_to root_path
+
+
 
     else#ifじゃないとき
        cartnew = CartCd.new(cart_cd_params)#idを持ってくる
