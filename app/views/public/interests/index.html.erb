@@ -22,8 +22,8 @@
                     <h5>価格</h5>
                     <% if interest.cd.stock == 0 %>
                       <h4><span class="label label-danger">在庫なし</span></h4>
-                    <% elsif interest.cd.status == 2%>
-                      <h4><span class="label label-warning"><%= cart.cd.status.to_a %></span></h4>
+                    <% elsif interest.cd.status == "販売停止中" %>
+                      <h4><span class="label label-warning"><%= interest.cd.status %></span></h4>
                     <% else %>
                       <h4><span class="label label-success">在庫あり</span></h4>
                       <% end %>

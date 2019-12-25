@@ -103,7 +103,9 @@
 
           <div class="row text-center" style="margin-top: 10px">
             <%= link_to public_cd_path(cd.id) do %>
-              <%= attachment_image_tag cd, :jacket_image, :fill, 1000, 1000, size: '220x220', fallback: "no_image.jpg" %>
+
+              <%= attachment_image_tag cd, :jacket_image, :fill, 1000, 1000, size: '220x220', fallback: "no_image.jpg",　format: 'png' %>
+
             <% end %>
           </div>
 
