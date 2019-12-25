@@ -5,6 +5,13 @@ class Admin::LabelsController < Admin::ApplicationController
     redirect_to new_admin_list_path
   end
 
+  def destroy
+    @label = Label.find(params[:id])
+    @label.destroy
+    redirect_to  new_admin_list_path
+  end
+
+
   private
 
   def label_params

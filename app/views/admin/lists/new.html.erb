@@ -37,7 +37,6 @@
 
 			<%= form_for [:admin, @genre] do |k| %>
 
-
 			　<h3>ジャンル</h3> <%= k.text_field :genre_name %><%= k.submit '新規追加' %>
 
 			<% end %>
@@ -53,10 +52,20 @@
 	</div>
 </div>
 
-
+<h1>アーティスト</h1>
 <% @artists.each do |artist|%></a>
   <%= artist.artist_name %>
   <%= link_to "削除", admin_artist_path(artist), method: :delete %>
 <% end %>
 
+<h1>レーベル</h1>
+<% @labels.each do |label|%>
+　<%= label.label_name %>
+　<%= link_to "削除", admin_label_path(label), method: :delete %>
+<% end %>
 
+<h1>ジャンル</h1>
+<% @genres.each do |genre|%>
+  <%= genre.genre_name %>
+  <%= link_to "削除", admin_genre_path(genre), method: :delete %>
+<% end %>
