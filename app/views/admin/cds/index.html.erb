@@ -9,6 +9,12 @@
         <h1>admin商品管理一覧</h1>
              <h3 class="pull-right">表示数1~10件</h3>
 
+             <script type="text/javascript">
+               $(function() {
+                $('h3').css('color','lime');
+               });
+             </script>
+
           <%= form_tag(admin_cds_path, :method => 'get') do %>
            <%= select_tag(:option, options_for_select([["アーティスト名", "a"],["曲名","t"],["ステータス","s"]]))%>
              <%= text_field_tag :search %>

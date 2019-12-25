@@ -5,6 +5,12 @@ class Admin::GenresController < Admin::ApplicationController
     redirect_to new_admin_list_path
   end
 
+  def destroy
+    @genre = Genre.find(params[:id])
+    @genre.destroy
+    redirect_to  new_admin_list_path
+  end
+
   private
 
   def genre_params
