@@ -17,7 +17,7 @@ namespace :public do
 end
 
 namespace :admin do
-  resources :orders, :only => [:index, :show,]
+  resources :orders, :only => [:index, :show, :update]
   resources :cds, :only => [:index, :new, :create, :edit, :update, :destroy]
   resources :restocks, :only => [:index, :new, :create, :update]
   resources :users, :only => [:index, :show, :destroy, :update, :edit]
