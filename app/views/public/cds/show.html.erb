@@ -2,7 +2,7 @@
     <div class="row">
       <%= flash[:success]%>
         <div class="col-md-12">
-            <h1>Public商品詳細</h1>
+            <h1>商品詳細</h1>
               <div class="col-md-6">
                 <%= attachment_image_tag @cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '400x400' %>
            	  </div>
@@ -30,30 +30,34 @@
                   </tr>
                   <tr>
                     <td>価格</td>
-                    <% @cd.price * @tax %>
-             	      <td><%= @cd.price.floor %>円</td>
+                    <% @aaa = @cd.price * @tax %>
+             	      <td><%= @aaa.floor %>円</td>
              	    </tr>
                   <tr>
                     <td><%= @cd.status %></td>
                   </tr>
                 </table>
-              </div>
-              <div class="col-md-2" style="padding:30px; background-color: #EEEEEE;">
-                <div class="text-bottom">
-                  <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: @cd.id) do |f| %>
-                    <%= f.submit "気になる",class: "btn btn-primary" %>
-                  <% end %>
-                  <%= form_for [:public, @cart_cd_new], url: public_cart_cds_path(cd_id: @cd.id) do |f| %>
-                    <%= f.hidden_field :cart_count, :value => "1" %>
-                    <%= f.submit "カートに入れる",class: "btn btn-danger" %>
-                  <% end %>
+                <div class="row">
+                  <div class ="col-md-12">
+                    <div class ="col-md-6">
+                        <%= form_for [:public, @interest_new], url: public_interests_path(cd_id: @cd.id) do |f| %>
+                          <%= f.submit "気になる",class: "btn btn-primary" %>
+                        <% end %>
+                    </div>
+                    <div class ="col-md-6">
+                        <%= form_for [:public, @cart_cd_new], url: public_cart_cds_path(cd_id: @cd.id) do |f| %>
+                          <%= f.hidden_field :cart_count, :value => "1" %>
+                          <%= f.submit "カートに入れる",class: "btn btn-danger" %>
+                        <% end %>
+                    </div>
+                  </div>
                 </div>
               </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="margin-top:50px; background-color: white;">
           <div class ="col-md-6">
             <% @cd.discs.each do |cd| %>
                 <tr>
@@ -65,27 +69,29 @@
             <% end %>
           </div>
 
-           <div class ="col-md-6" style="padding:40px">
-             <h1><div class="label" style="background-color: #880000";>   レビュー投稿</div></h1> <p>（30文字以内）</p>
-              <div class="col-md-10" style="background-color: #EEEEEE; margin: 0px 30px; border-radius: 10px;">
-                  <%= form_for [:public,@review], url: public_reviews_path do |f| %>
-                    <%= f.hidden_field :cd_id, value: @cd.id %>
-                    <%= f.text_field :comment, class: "text-field" %>
-                    <%= f.submit '投稿', class: "submit-btn" %>
-                  <% end %>
-                  <div class ="row">
-                     <div class="col-md-8">
-                      <% @cd.reviews.each do |cd| %>
-                        <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'90x90' %>
+           <div class ="col-md-6" style="padding: 20px; background-color: white;">
 
-                        <%= cd.user.firstname_kana %>
 
-                        <%= cd.comment %>
-                      <% end %>
-                     </div>
+
+          <% if user_signed_in? %>
+            <h3>レビュー投稿(30字以内)</h3>
+              <%= form_for [:public,@review], url: public_reviews_path do |f| %>
+                <%= f.hidden_field :cd_id, value: @cd.id %>
+                <%= f.text_field :comment, class: "text-field" %>
+                <%= f.submit '投稿', class: "submit-btn" %>
+              <% end %>
+          <% end %>
+
+              <% @cd.reviews.each do |cd| %>
+                <div class="row">
+                  <div class="col-md-12" style="margin:1px;">
+                    <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40', class: "img-circle" %>
+                    <%= cd.user.firstname_kana %>
+                    <%= cd.comment %>
                   </div>
-              </div>
-           </div>
+                </div>
+              <% end %>
+            </div>
 
         </div>
     </div>

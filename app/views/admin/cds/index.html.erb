@@ -48,6 +48,7 @@
                         <th>タイトル</th>
                         <th>値段</th>
                         <th>ステータス</th>
+                        <th>在庫数</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -59,6 +60,7 @@
                           <td class="active"><%= cd.cd_title %></td>
                           <td class="active"><%= cd.price %></td>
                           <td class="active"><%= cd.status %></td>
+                          <td class="active"><%= cd.stock %></td>
                           <td class="active"><%= link_to "入荷を追加する", new_admin_restock_path(@cds), class:"btn btn-primary" %>
                           <td class="active"><%= link_to "編集", edit_admin_cd_path(cd.id),   class:"btn btn-success" %></td>
                       　</tr>

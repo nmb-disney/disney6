@@ -21,7 +21,11 @@
 	<table class="table">
 		<thead>
 				<tr>
-					<th>タイトル<th>アーティスト<th>枚数
+					<th>タイトル</th>
+					<th>アーティスト</th>
+					<th>枚数</th>
+					<th>ステータス</th>
+					<th> </th>
 		</thead>
 
 		<tbody>
@@ -30,6 +34,9 @@
 					<td><%= o.cd.cd_title %>
 					<td><%= o.cd.artist.artist_name %>
 					<td><%= o.order_cd_count %>
+					<td><%= i.deliver_status %></td>
+					<td><%= link_to"レビューする", public_cd_path(i.id) %>
+
 			<% end %>
 		</tbody>
 	</table>
