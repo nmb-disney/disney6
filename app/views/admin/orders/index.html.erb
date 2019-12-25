@@ -8,10 +8,30 @@
 		<div class="col-xs-9">
 		  <h1>admin受注一覧</h1>
 		   <h3 class="pull-right">表示数1~10件</h3>
+		   <table class="table table-bordered">
+		   	<thead>
+		   		<tr class="active" >
+		   			<th>受注ID</th>
+		   			<th>名前</th>
+		   			<th>ステータス</th>
+		   			<th></th>
+		   		</tr>
+		   	</thead>
+		   	<tbody>
+		   	<% @orders.each do |o| %>
+		   		<tr class="active">
+		   			<td class="active"><%= o.id %></td>
+		   			<td class="active"><%= o.firstname %><%= o.lastname %></td>
+		   			<td class="active"><%= o.deliver_status %></td>
+		   			<td class="active"><%= link_to "詳細", admin_order_path(o.id) %></td>
+		   		</tr>
+		   	<% end %>
+		   	</tbody>
+		   </table>
 		</div>
     </div>
 </div>
 
 <div class="pagiWrapper">
-  <%= paginate @orders %>
+  <%= paginate @order %>
 </div>

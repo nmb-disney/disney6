@@ -1,6 +1,6 @@
 class Admin::CdsController < Admin::ApplicationController
   def index
-    @cds = Cd.page(params[:page]).per(10)
+    @cds = Cd.page(params[:page]).per(5)
     @search_option = params[:option]
     @search_text = params[:search]
     case @search_option
@@ -11,7 +11,6 @@ class Admin::CdsController < Admin::ApplicationController
     when "s"
       @search_s = Cd.search(params[:search], @search_option)
     end
-
   end
 
   def new
@@ -22,41 +21,40 @@ class Admin::CdsController < Admin::ApplicationController
     @label = Label.new
     @artist = Artist.new
     @genre = Genre.new
-
   end
 
   def create
     @cd = Cd.new(cd_params)
     @cd.save
-    redirect_to admin_cds_path
-  end
 
-  def edit
-     @artists =Artist.all
-     @cd = Cd.find(params[:id])
-  end
+    @cd_stock_sum = Cd.find(@cd.id)#何を足したいのかを見つけてくる
+    @restock = Restock.where(cd_id: @cd.id).last#Lastで最新のデータを指定する
+    @cd_stock_sum.stock += @restock.restock_count#実際の足し算
+    @cd_stock_sum.update(stock: @cd_stock_sum.stock)#updateで引数で何をたすかを見つけてくる指定
 
-  def update
-     @cd = Cd.find(params[:id])
-     @cd.update(cd_params)
-     redirect_to admin_cds_path(@cd)
-  end
+    redirect_to admin_restocks_path
+   end
 
-  def destroy
-      @cd = Cd.find(params[:id])
-      @cd.destroy
-      redirect_to admin_cds_path
-  end
 
 private
 
     def cd_params
-     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status, :cd_id,
-      :genre_id, discs_attributes: [:id, :disc_title, :disc_rank, :_destroy, musics_attributes: [:id, :music_title, :music_rank, :_destroy]], restocks_attributes: [:id, :restock_date ,:restock_count , :destroy])
+     params.require(:cd).permit(:id, :cd_title, :jacket_image, :price, :release_date, :label_id, :artist_id, :status, :cd_id, :stock,
+      :genre_id, :comment, discs_attributes: [:id, :disc_title, :disc_rank, :_destroy, musics_attributes: [:id, :music_title, :music_rank, :_destroy]], restocks_attributes: [:id, :restock_date ,:restock_count , :destroy])
     end
 
     def cd_find
       @user = User.find(params[:id])
     end
+
+    def user_admin
+       @users = User.all
+       if  current_user.admin == false
+           redirect_to new_user_session_path
+       else
+           render action: "index"
+       end
+    end
+
 
 end

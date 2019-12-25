@@ -17,15 +17,37 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-container > img {
-    width: 100%;
-    max-width: 100%;
+header{
+	width:100%;
 }
-
 .admin-sidebar{
 	margin-top: 50px;
 }
 
 .pagiWrapper{
-   text-align:center;
+   text-align: center;
+}
+
+.serch_bar{
+	padding-top: 25px;
+}
+
+.nav-item{
+	margin-right: 80px;
+}
+
+body {
+  margin-top: 80px;
+  background-image: url("bg.png");
+  background-size: cover;
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+footer {
+	color: white;
+	font-weight: bold;
+	width:100%;
+	bottom: 0;
+	margin-bottom: 0;
 }

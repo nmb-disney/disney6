@@ -9,7 +9,6 @@ namespace :public do
   get 'users/:id/out' => 'users#out'
   resources :cart_cds, :only => [:create, :edit, :update, :destroy]
   resources :interests, :only => [:create, :index, :destroy]
-  get 'orders/finish' => 'orders#finish'
   get 'orders/confirm' => 'orders#confirm'
   resources :orders, :only => [:new, :create, :show, :index]
   get 'search' => 'cds#search'
@@ -18,17 +17,18 @@ namespace :public do
 end
 
 namespace :admin do
-  resources :orders, :only => [:index, :show,]
+  resources :orders, :only => [:index, :show, :update]
   resources :cds, :only => [:index, :new, :create, :edit, :update, :destroy]
   resources :restocks, :only => [:index, :new, :create, :update]
   resources :users, :only => [:index, :show, :destroy, :update, :edit]
-  resources :reviews, :only => [:index, :destroy,]
+  resources :reviews, :only => [:index, :destroy]
   resources :lists, :only => [:new]
-  resources :artists, :only => [:create]
-  resources :genres, :only => [:create]
-  resources :labels, :only => [:create]
+  resources :artists, :only => [:create, :destroy]
+  resources :genres, :only => [:create, :destroy]
+  resources :labels, :only => [:create, :destroy]
 end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
 

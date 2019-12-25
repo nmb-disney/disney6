@@ -4,6 +4,8 @@ class Public::InterestsController < Public::ApplicationController
   def index
     @interests = Interest.page(params[:page]).per(10)
     @cart_cd_new = CartCd.new
+    @user = current_user
+    @tax = 1.1
   end
 
   def create
@@ -19,7 +21,7 @@ class Public::InterestsController < Public::ApplicationController
     @interest = Interest.find(params[:id])
     if @interest.destroy
       flash[:notice] = "気になるCDを削除しました。"
-      redirect_to public_user_path
+      redirect_to public_interests_path
     else
       render :index
     end

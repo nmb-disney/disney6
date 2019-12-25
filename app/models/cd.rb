@@ -18,7 +18,7 @@ accepts_nested_attributes_for :restocks, allow_destroy: true
 
 
 
-enum status:{ 在庫あり:1, 売り切れ:2 }
+enum status:{販売中:1,販売停止中:2}
 
 
 
@@ -26,11 +26,13 @@ enum status:{ 在庫あり:1, 売り切れ:2 }
 def Cd.search(search, search_option)
   	if search_option == "3"
      	Cd.where(['cd_title LIKE ?', "%#{search}%"])
-     elsif search_option == "t"
+    elsif search_option == "1"
+      Cd.where(['cd_title LIKE ?', "%#{search}%"])
+    elsif search_option == "t"
      	Cd.where(['cd_title LIKE ?', "%#{search}%"])
-     elsif search_option == "s"
+    elsif search_option == "s"
      	Cd.where(['status LIKE ?', "%#{search}%"])
-     else
+    else
      	Cd.all
   	end
 end

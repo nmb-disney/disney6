@@ -1,9 +1,12 @@
 class Public::UsersController < Public::ApplicationController
-  before_action :user_find, only: [:show, :edit, :update, :destroy, :out]
+  before_action :authenticate_user!#これでログインしていない人がURLを指定しなかった場合ログインのページに強制的に飛ばす
+  before_action :user_find, only: [:edit, :update, :destroy, :out]
+  before_action :current_user, only: [:show, :update , :destroy]
 
   def show
-    @carts = CartCd.all
     @users = User.page(params[:page]).per(10)
+    @user = current_user
+    @tax = 1.1
   end
 
   def edit
@@ -40,5 +43,10 @@ class Public::UsersController < Public::ApplicationController
   def user_find
     @user = User.find(params[:id])
   end
+
+  def admin_user
+      redirect_to(_url) unless current_user.admin?
+  end
+
 
 end

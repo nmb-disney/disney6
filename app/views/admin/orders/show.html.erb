@@ -1,2 +1,90 @@
-<h1>admin受注詳細</h1>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <%= render 'admin/users/sidebar' %>
+    </div>
+      <div class="col-xs-9">
+        <h1>admin受注詳細</h1>
+          <table class="table table-bordered" >
+            <thead>
+              <tr class="active" >
+                <th>受注ID</th>
+                <td><%= @order.id %></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="active">
+                <th>日時</th>
+                <td><%= @order.created_at %></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr class="active" >
+                <th>カナ</th>
+                <td><%= @order.user.lastname_kana %><%= @order.user.firstname_kana %></td>
+              </tr>
+              <tr class="active" >
+                <th>氏名</th>
+                <td><%= @order.firstname %><%= @order.lastname %></td>
+              </tr>
+              <tr class="active" >
+                <th>TEL</th>
+                <td><%= @order.user.phone %></td>
+              </tr>
+              <tr class="active" >
+                <th>E-mail</th>
+                <td><%= @order.user.email %></td>
+              </tr>
+              <tr class="active" >
+                <th>配送先住所</th>
+                <td>〒 <%= @order.postalcode %></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td class="active" ><%= @order.address %></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered" >
+            <thead>
+              <tr class="active" >
+                <th>商品ID</th>
+                <th>アーティスト</th>
+                <th>CDタイトル</th>
+                <th>個数</th>
+              </tr>
+            </thead>
+            <% @order.order_cds.each do |o| %>
+            <tbody>
+              <tr class="active">
+                <td><%= o.cd_id %></td>
+                <td><%= o.cd.artist.artist_name %></td>
+                <td><%= o.cd.cd_title %></td>
+                <td><%= o.order_cd_count %></td>
+            <% end %>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered" >
+            <thead>
+              <tr class="active" >
+                <th>送料</th>
+                <th>合計</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="active">
+                <td><%= @order.deliver_fee %>円（税込）</td>
+                <td><%= @order.total %>円（税込）</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr class="active" >
+                <td><%= link_to "back", admin_orders_path %></td>
+                <td><%= link_to "出荷完了", admin_order_path(params[:id]), method: :put %></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>

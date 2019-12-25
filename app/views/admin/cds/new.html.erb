@@ -1,6 +1,9 @@
 <div class="container">
    <div class="row">
-        <div class="col-md-10">
+        <div class="col-xs-3">
+		  <%= render 'admin/users/sidebar' %>
+        </div>
+        <div class="col-md-9">
 					<h1>新規入荷作成</h1>
 
 					<%= form_for(@cd, url:admin_cds_path) do |f| %>
@@ -51,11 +54,17 @@
 						　　<%= render "restock_fields", f: restock %>
 						<% end %>
 
+						<h4>コメント</h4>
+              <%= f.text_area :comment %>
+
+
+
 
 						<%= f.submit '新規入荷作成' %>
 
 					<% end %>
-			 		<%= link_to"リスト追加ページへ", new_admin_list_path %>
+
+			 	 <h6 class="pull-right"><%= link_to"リスト追加ページへ", new_admin_list_path %></h6>
 		</div>
 	</div>
 </div>

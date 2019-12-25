@@ -1,9 +1,12 @@
 class Public::CdsController < Public::ApplicationController
   def index
-    @cds = Cd.page(params[:page]).per(10)
+    @cds = Cd.page(params[:page]).per(12).order("created_at DESC")
     @interest_new = Interest.new
     @cart_cd_new = CartCd.new
-    @reviews = Review.all
+    @reviews = Review.limit(12)
+    @tax = 1.1
+    @tentyo = Cd.where.not(comment: "")
+    @tentyo = @tentyo.order("random()").limit(4)
   end
 
   def show
@@ -12,7 +15,7 @@ class Public::CdsController < Public::ApplicationController
     @cart_cd_new = CartCd.new
     @cds = Cd.all
     @review = Review.new
-    @user = User.find(params[:id])
+    @tax = 1.1
   end
 
   def search
@@ -21,13 +24,11 @@ class Public::CdsController < Public::ApplicationController
     @search_text = params[:search]
     if @search_option == "2"
       @search_a = Artist.search(params[:search], @search_option)
-    elsif @sesarch_option == "3"
+    elsif @search_option == "3"
       @search_t = Cd.search(params[:search], @search_option)
-
     else
     	@search_a = Artist.search(params[:search], @search_option)
     	@search_t = Cd.search(params[:search], @search_option)
-
     end
 
   end

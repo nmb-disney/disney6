@@ -1,62 +1,168 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-lg-12">
           <h1>Public商品検索結果</h1>
-          <% if @search_option == "1" %>
-            <h2>あいまい検索</h2>
-            <h5>検索内容　<%= @search_text %></h5>
-            <h4>検索結果　<%= @search_a.count + @search_t.count %>件</h4>
-              <table>
-                <% @search_a.each do |artist| %>
-                  <thead>
-                    <tr>
-                      <th></th>
-                        <th><%= artist.artist_name %> </th>
-                      </tr>
-                  </thead>
-                <% end %>
-              </table>
-              <table>
-              	<% @search_t.each do |cd| %>
-                	<thead>
-                  	<tr>
-                    	<th></th>
-                    	<th><%= cd.cd_title %></th>
-                  	</tr>
-                	</thead>
-              	<% end %>
-              </table>
+
+<% if @search_option == "1" %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>あいまい検索(アーティスト)</h2>
+    <h4>検索結果　<%= @search_a.count %>件</h4>
+  </div>
+
+<h5>検索内容　<%= @search_text %></h5>
+  <table class="table">
+  <thead>
+  <tr>
+    <th>
+    <th><h4>アーティスト名</h4>
+    <th><h4>CDタイトル</h4>
+    <th><h4>在庫状況</h4>
+  </thead>
+  <% @search_a.each do |cd| %>
+
+    <% cd.cds.each do |cds| %>
+        <tbody><tr>
+          <td><%= link_to public_cd_path(cds.id) do %>
+            <%= attachment_image_tag cds, :jacket_image, :fill, 100, 100, size: '60x60', fallback: "no_image.jpg" %>
+            <% end %>
+          <td><h4><%= cds.artist.artist_name %></h4>
+          <td><%= link_to public_cd_path(cds.id) do %>
+              <%= cds.cd_title %>
+              <% end %></h4>
+        <% if cds.stock == 0 %>
+          <td><h4><span class="label label-danger">在庫なし</span></h4>
+        <% elsif cds.status == 2%>
+          <td><h4><span class="label label-warning"><%= cds.status.to_a %></span></h4>
+        <% else %>
+          <td><h4><span class="label label-success">在庫あり</span></h4>
+        <% end %>
+      <% end %>
+      <% end %>
+      </tbody>
+      <tr><td><td><td><td>
+  </table>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>あいまい検索(CDタイトル)</h2>
+    <h5>検索内容　<%= @search_text %></h5>
+  </div>
+
+  <h4>検索結果　<%= @search_t.count %>件</h4>
+  <table class="table">
+  <thead>
+  <tr>
+    <th>
+    <th><h4>CDタイトル</h4>
+    <th><h4>アーティスト名</h4>
+    <th><h4>在庫状況</h4>
+  </thead>
+    <% @search_t.each do |cd| %>
+      <tbody><tr>
+        <td><%= link_to public_cd_path(cd.id) do %>
+            <%= attachment_image_tag cd, :jacket_image, :fill, 100, 100, size: '60x60', fallback: "no_image.jpg" %>
+            <% end %>
+        <td><%= link_to public_cd_path(cd.id) do %>
+              <%= cd.cd_title %>
+              <% end %></h4>
+        <td><h4><%= cd.artist.artist_name %></h4>
+      <% if cd.stock == 0 %>
+        <td><h4><span class="label label-danger">在庫なし</span></h4>
+      <% elsif cd.status == 2%>
+        <td><h4><span class="label label-warning"><%= cd.status.to_a %></span></h4>
+      <% else %>
+        <td><h4><span class="label label-success">在庫あり</span></h4>
+      <% end %>
+    <% end %>
+      </tbody>
+      <tr><td><td><td><td>
+  </table>
+</div>
 
 
 <% elsif @search_option == "2"%>
-  <h2>アーティスト検索</h2>
-  <h5>検索内容　<%= @search_text %></h5>
-  <h4>検索結果　<%= @search_a.count %>件</h4>
-    <table>
-      <% @search_a.each do |artist| %>
-        <thead>
-          <tr>
-            <th></th>
-            <th><%= artist.artist_name %> </th>
-          </tr>
-        </thead>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>アーティスト検索</h2>
+    <h4>検索結果　<%= @search_a.count %>件</h4>
+  </div>
+
+<h5>検索内容　<%= @search_text %></h5>
+  <table class="table">
+  <thead>
+  <tr>
+    <th>
+    <th><h4>アーティスト名</h4>
+    <th><h4>CDタイトル</h4>
+    <th><h4>在庫状況</h4>
+  </thead>
+  <% @search_a.each do |cd| %>
+
+    <% cd.cds.each do |cds| %>
+        <tbody><tr>
+          <td><%= link_to public_cd_path(cds.id) do %>
+            <%= attachment_image_tag cds, :jacket_image, :fill, 100, 100, size: '60x60', fallback: "no_image.jpg" %>
+            <% end %>
+          <td><h4><%= cds.artist.artist_name %></h4>
+          <td><%= link_to public_cd_path(cds.id) do %>
+              <%= cds.cd_title %>
+              <% end %></h4>
+        <% if cds.stock == 0 %>
+          <td><h4><span class="label label-danger">在庫なし</span></h4>
+        <% elsif cds.status == 2%>
+            <td><h4><span class="label label-warning"><%= cds.status.to_a %></span></h4>
+        <% else %>
+          <td><h4><span class="label label-success">在庫あり</span></h4>
+        <% end %>
       <% end %>
-    </table>
+      <% end %>
+      </tbody>
+      <tr><td><td><td><td>
+  </table>
+</div>
+
 
 <% else @search_option == "3" %>
-  <h2>CDタイトル検索</h2>
-  <h5>検索内容　<%= @search_text %></h5>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>CDタイトル検索</h2>
+    <h5>検索内容　<%= @search_text %></h5>
+  </div>
+
   <h4>検索結果　<%= @search_t.count %>件</h4>
-    <table>
+  <table class="table">
+  <thead>
+  <tr>
+    <th>
+    <th><h4>CDタイトル</h4>
+    <th><h4>アーティスト名</h4>
+    <th><h4>在庫状況</h4>
+  </thead>
     <% @search_t.each do |cd| %>
-        <thead>
-            <tr>
-                <th></th>
-                <th><%= cd.cd_title %></th>
-            </tr>
-        </thead>
+      <tbody><tr>
+        <td><%= link_to public_cd_path(cd.id) do %>
+            <%= attachment_image_tag cd, :jacket_image, :fill, 100, 100, size: '60x60', fallback: "no_image.jpg" %>
+            <% end %>
+        <td><h4><%= link_to public_cd_path(cd.id) do %>
+              <%= cd.cd_title %>
+              <% end %></h4>
+        <td><h4><%= cd.artist.artist_name %></h4>
+      <% if cd.stock == 0 %>
+        <td><h4><span class="label label-danger">在庫なし</span></h4>
+      <% elsif cd.status == 2%>
+        <td><h4><span class="label label-warning"><%= cd.status.to_a %></span></h4>
+      <% else %>
+        <td><h4><span class="label label-success">在庫あり</span></h4>
+      <% end %>
     <% end %>
+      </tbody>
+      <tr><td><td><td><td>
   </table>
+</div>
+
+
 <% end %>
 <div class="pagiWrapper">
 <%= paginate @searchs %>

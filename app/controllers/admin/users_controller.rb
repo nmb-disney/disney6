@@ -1,8 +1,9 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :user_find, only: [:show, :edit, :update]
+  before_action :user_find, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.page(params[:page]).per(10)
+
   end
 
   def show
@@ -17,6 +18,12 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def destroy
+    if @user.destroy
+      flash[:notice] = "退会させました。"
+      redirect_to root_path
+    else
+      render :out
+    end
   end
 
   def out

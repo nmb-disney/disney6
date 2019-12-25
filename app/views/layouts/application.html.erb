@@ -14,55 +14,55 @@
 
 
       <header>
-        <nav class="navbar navbar-light" style="background-color: #f2f2f2;">
-           <div class="container">
-            <div class="row">
-              <div class="navbar-header">
-                <%= link_to image_tag("logo.png", class: "image", height: "80", ), root_path %>
-              </div>
-
-                <ul class="nav navbar-nav navbar-right">
-                  <% if user_signed_in? %>
-
-                    <li class="nav-item">
-                      <%= form_tag(public_search_path, :method => 'get') do %>
-                        <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
-                        <%= text_field_tag :search %>
-                        <%= submit_tag '検索' %>
-                      <% end %>
-                   </li>
-
-                    <li class="nav-item">
-                      <%= link_to"マイページ", public_user_path(current_user.id) %>
-                    </li>
-
-                    <li class="nav-item">
-                      <%= link_to destroy_user_session_path, method: :delete do %>
-                      <span>ログアウト</span>
-                      <% end %>
-                    </li>
-
-                  <% else %>
-
-                  <li class="nav-item">
-                  <%= form_tag(public_search_path, :method => 'get') do %>
-                    <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
-                    <%= text_field_tag :search %>
-                    <%= submit_tag '検索' %>
-                  <% end %>
-                  </li>
-                    <li class="nav-item">
-                      <%= link_to"会員登録", new_user_registration_path %>
-                    </li>
-                    <li class="nav-item">
-                      <%= link_to"ログイン", new_user_session_path %>
-                    </li>
-                   <% end %>
-                </ul>
-              </div>
+        <nav class="navbar navbar-fixed-top" style="background-color: #f2f2f2;　width:100%">
+          <div class="navbar-header navbar-left">
+            <%= link_to image_tag("logo.png", class: "image", height: "80", ), root_path %>
           </div>
-        </nav>
-      </header>
+          <div class="serch_bar">
+            <div class="col-md-6">
+              <div class="col-md-2">
+                <%= form_tag(public_search_path, :method => 'get') do %>
+                  <%= select_tag(:option, options_for_select([["指定なし", "1"],["アーティスト","2"],["CDタイトル","3"]]))%>
+              </div>
+              <div class="col-md-8">
+                  <%= text_field_tag :search, '', {class: 'form-control'} %>
+              </div>
+              <div class="col-md-1">
+                  <%= submit_tag '検索' %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to public_user_path(current_user.id), class: "btn-warning btn" do %>
+          <i class="glyphicon glyphicon-user text-danger" style="font-weight: bold; font-size: 20px;">マイページ</i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+            <%= link_to destroy_user_session_path, class: "btn-info btn", method: :delete do %>
+            <i class="glyphicon glyphicon-edit text-primary"  style="font-weight: bold; font-size: 20px;">ログアウト</i>
+            <% end %>
+          </li>
+      <% elsif admin_signed_in? %>
+        <P></P>
+      <% else %>
+        <li class="nav-item">
+            <%= link_to new_user_registration_path, class: "btn-warning btn" do %>
+            <i class="glyphicon glyphicon-edit text-danger"  style="font-weight: bold; font-size: 20px;">会員登録</i>
+            <% end %>
+        </li>
+          <li class="nav-item">
+            <%= link_to new_user_session_path,  class: "btn-info btn" do %>
+            <i class="glyphicon glyphicon-log-in text-primary"  style="font-weight: bold; font-size: 20px;">ログイン</i>
+            <% end %>
+          </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
 
       <body>
         <%= yield %>
@@ -71,13 +71,12 @@
         <footer class="footer">
           <div class="container">
             <div class="row">
-              <div class="top-message col-xs-3 col-xs-offset-9">CopyRight Infratop.Inc
+              <div class="top-message col-xs-3 col-xs-offset-11">CopyRight Infratop.Inc
               </div>
             </div>
           </div>
         </footer>
 
-  </body>
 </html>
 
 
