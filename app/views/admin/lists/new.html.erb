@@ -55,8 +55,8 @@
 
 
 <% @artists.each do |artist|%></a>
-				<%= artist.artist_name %>
-				<%= link_to "削除", admin_artist_path(artist), method: :delete %>
-				<% end %>
+  <%= artist.artist_name %>
+  <%= link_to "削除", admin_artist_path(artist), method: :delete %>
+<% end %>
 
 
