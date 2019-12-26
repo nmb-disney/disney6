@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(version: 2019_12_22_075300) do
     t.integer "label_id"
     t.integer "genre_id"
     t.string "cd_title", null: false
-    t.string "jacket_image_id", null: false
     t.datetime "release_date", null: false
     t.integer "price", null: false
     t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.string "jacket_image_id"
     t.integer "stock", default: 0
     t.string "comment"
     t.index ["cd_title"], name: "index_cds_on_cd_title"
@@ -96,11 +96,6 @@ ActiveRecord::Schema.define(version: 2019_12_22_075300) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["label_name"], name: "index_labels_on_label_name"
-  end
-
-  create_table "lists", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "musics", force: :cascade do |t|
