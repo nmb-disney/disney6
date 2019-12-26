@@ -1,12 +1,12 @@
 class Admin::RestocksController < Admin::ApplicationController
 
-  def index
+ def index
     @artists = Artist.all
     @restocks = Restock.page(params[:page]).per(10).order("created_at DESC")
   end
 
   def new
-  	@restock = Restock.new
+    @restock = Restock.new
     @artist = Artist.new
     @cd = Cd.new
     @artists = Artist.all
@@ -14,7 +14,7 @@ class Admin::RestocksController < Admin::ApplicationController
   end
 
   def create
-  	@restock = Restock.new(restock_params)##ここで新しく作ったデータを取得できる
+    @restock = Restock.new(restock_params)##ここで新しく作ったデータを取得できる
     @restock.save
 
 
@@ -25,7 +25,7 @@ class Admin::RestocksController < Admin::ApplicationController
     @new.stock = @stock##ここでcdの中にあるstockカラムだけ更新することができる
     @new.save#cdをセーブ
 
-  	redirect_to admin_cds_path(@restock.id)
+    redirect_to admin_cds_path(@restock.id)
   end
 
   def update
