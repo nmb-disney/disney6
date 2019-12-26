@@ -35,7 +35,7 @@
 					<td><%= o.cd.artist.artist_name %>
 					<td><%= o.order_cd_count %>
 					<td><%= i.deliver_status %></td>
-					<td><%= link_to"レビューする", public_cd_path(i.id) %>
+					<td><%= link_to"レビューする", public_cd_path(o.cd_id) %>
 
 			<% end %>
 		</tbody>
