@@ -18,28 +18,39 @@
 		<div class="panel-heading">
 			購入日時 : <%= i.created_at.strftime("%Y-%m-%d %H:%M") %>
 		</div>
-	<table class="table">
-		<thead>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-lg-9">
+					送付先住所 : <%= i.address %>
+				</div>
+				<div class="col-lg-3">
+					合計 : <%= i.total %>円（税込）
+				</div>
+			</div>
+		</div>
+		<table class="table">
+			<thead>
 				<tr>
 					<th>タイトル</th>
 					<th>アーティスト</th>
 					<th>枚数</th>
 					<th>ステータス</th>
 					<th> </th>
-		</thead>
+				</tr>
+			</thead>
 
-		<tbody>
-			<% i.order_cds.each do |o| %>
+			<tbody>
+			  <% i.order_cds.each do |o| %>
 				<tr>
-					<td><%= o.cd.cd_title %>
-					<td><%= o.cd.artist.artist_name %>
-					<td><%= o.order_cd_count %>
+					<td><%= o.cd.cd_title %></td>
+					<td><%= o.cd.artist.artist_name %></td>
+					<td><%= o.order_cd_count %></td>
 					<td><%= i.deliver_status %></td>
-					<td><%= link_to"レビューする", public_cd_path(o.cd_id) %>
-
-			<% end %>
-		</tbody>
-	</table>
+					<td><%= link_to"レビューする", public_cd_path(o.cd_id) %></td>
+				</tr>
+			  <% end %>
+			</tbody>
+		</table>
 
 	</div>
 <% end %>
