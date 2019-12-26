@@ -2,7 +2,7 @@
 <div class="container">
    <div class="row">
         <div class="col-md-10">
-			
+
 			<h1>adminリストに追加</h1>
 			<span class="label label-danger pull-right" style="font-weight: bold; font-size: 15px;" ><%= link_to"更新完了", new_admin_cd_path %></span>
 
@@ -36,23 +36,23 @@
 				<% end %>
 			</select>
             <hr>
-             <h1>レーベル</h1>
-<% @labels.each do |label|%>
-　<td><%= label.label_name %>
-　<%= link_to "削除", admin_label_path(label), method: :delete %></td>
-<% end %>
-<hr>
-  <h1>ジャンル</h1>
-    <% @genres.each do |genre|%>
-      <td><%= genre.genre_name %>
-      <%= link_to "削除", admin_genre_path(genre), method: :delete %></td>
-    <% end %>
-<hr>
-<h1>アーティスト</h1>
-<% @artists.each do |artist|%></a>
-  <td><%= artist.artist_name %>
-  <%= link_to "削除", admin_artist_path(artist), method: :delete %></td>
-<% end %>
+             <h3>レーベル</h3>
+			<% @labels.each do |label|%>
+			　<td><%= label.label_name %>
+			　<%= link_to "削除", admin_label_path(label), method: :delete %></td>
+			<% end %>
+			<hr>
+			  <h3>ジャンル</h3>
+			    <% @genres.each do |genre|%>
+			      <td><%= genre.genre_name %>
+			      <%= link_to "削除", admin_genre_path(genre), method: :delete %></td>
+			    <% end %>
+			<hr>
+			<h3>アーティスト</h3>
+			<% @artists.each do |artist|%></a>
+			  <td><%= artist.artist_name %>
+			  <%= link_to "削除", admin_artist_path(artist), method: :delete %></td>
+			<% end %>
 		</div>
 	</div>
 </div>
