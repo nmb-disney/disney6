@@ -65,7 +65,8 @@
 
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-8" style="margin:50px 200px;">
+            <h1>購入履歴</h1>
             <% if flash[:buy] %>
                 <h4 class="alert-danger alert-buy text-center">
                 <%= flash[:buy] %></h4>
@@ -73,27 +74,38 @@
                 <% @user_order.each do |i| %>
                     <div class="panel panel-default" style="margin-bottom: 10px;">
                         <div class="panel-heading">
-                        購入日時 : <%= i.created_at.strftime("%Y-%m-%d %H:%M") %>
+                            購入日時 : <%= i.created_at.strftime("%Y-%m-%d %H:%M") %>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    送付先住所 : <%= i.address %>
+                                </div>
+                                <div class="col-lg-4">
+                                    合計 : <%= i.total %>円（税込）
+                                </div>
+                            </div>
                         </div>
                         <table class="table">
                             <thead>
-                            <tr>
-                            <th>タイトル</th>
-                            <th>アーティスト</th>
-                            <th>枚数</th>
-                            <th>ステータス</th>
+                                <tr>
+                                <th>タイトル</th>
+                                <th>アーティスト</th>
+                                <th>枚数</th>
+                                <th>ステータス</th>
                             </thead>
 
                             <tbody>
                             <% i.order_cds.each do |o| %>
                             <tr>
-                            <td><%= o.cd.cd_title %>
-                            <td><%= o.cd.artist.artist_name %>
-                            <td><%= o.order_cd_count %>
-                            <td><%= i.deliver_status %>
+                                <td><%= o.cd.cd_title %></td>
+                                <td><%= o.cd.artist.artist_name %></td>
+                                <td><%= o.order_cd_count %></td>
+                                <td><%= i.deliver_status %></td>
+                            </tr>
+                            <% end %>
                             </tbody>
                         </table>
-                            <% end %>
                     </div>
                 <% end %>
         </div>

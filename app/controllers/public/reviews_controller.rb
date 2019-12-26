@@ -3,8 +3,12 @@ class Public::ReviewsController < Public::ApplicationController
   def create
   	@review = Review.new(review_params)
     @review.user_id = current_user.id
-    @review.save!
-    redirect_to public_cd_path(@review.cd)
+    if
+      @review.save!
+      redirect_to public_cd_path(@review.cd)
+    else
+      redirect_to root_path
+    end
   end
 
   def show
