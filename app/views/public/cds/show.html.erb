@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <h1>商品詳細</h1>
               <div class="col-md-6">
-                <%= attachment_image_tag @cd, :jacket_image, :fill, 100, 100, format: 'jpeg', size: '400x400' %>
+                <%= attachment_image_tag @cd, :jacket_image, :fill, 1000, 1000, format: 'jpeg', size: '400x400' %>
            	  </div>
               <div class="col-md-4" style="padding:20px; background-color: #EEEEEE;">
                 <table class = "table table-bordered">
@@ -85,7 +85,7 @@
               <% @cd.reviews.each do |cd| %>
                 <div class="row">
                   <div class="col-md-12" style="margin:1px;">
-                    <%= attachment_image_tag cd.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40', class: "img-circle" %>
+                    <%= attachment_image_tag cd.user, :profile_image, :fill, 1000, 1000, format: 'jpeg', fallback: "no_image.jpg", size:'40x40', class: "img-circle" %>
                     <%= cd.user.firstname_kana %>
                     <%= cd.comment %>
                   </div>

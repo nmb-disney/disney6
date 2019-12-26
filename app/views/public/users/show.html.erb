@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="panel-body text-center">
-	  	<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, size: '200x200', fallback: "no_image.jpg", class: "img-circle" %>
+	  	<%= attachment_image_tag @user, :profile_image, :fill, 1000, 1000, size: '200x200', fallback: "no_image.jpg", class: "img-circle" %>
 		    <div style="padding: 10px 20px;">
 		    	<h3><%= @user.lastname%>  <%= @user.firstname%>  様</h3>
 		    </div>
