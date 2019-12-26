@@ -5,6 +5,18 @@
 		  <%= render 'admin/users/sidebar' %>
         </div>
         <div class="col-md-9">
+
+        	　　　　<% if @cd.errors.any? %>
+					  <div id="error_explanation" class="alert alert-danger">
+					    <ul>
+					      <% @cd.errors.full_messages.each do |message| %>
+					        <li><%= message %></li>
+					      <% end %>
+					    </ul>
+					  </div>
+				   <% end %>
+
+
 					<h1>新規入荷作成</h1>
 
 					<%= form_for(@cd, url:admin_cds_path) do |f| %>
@@ -13,7 +25,6 @@
 					    <li>ファイル複数選択
 					    	<%= f.attachment_field :jacket_image %></li>
 					</ul>
-
 						<h3>アーティスト</h3>
 						<%= f.collection_select :artist_id, Artist.all, :id ,:artist_name %>
 
@@ -34,6 +45,7 @@
 						<%= f.collection_select :genre_id, Genre.all, :id ,:genre_name %>
 
 
+
 						<%= f.fields_for :discs do |disc| %>
 						　　<%= render "disc_fields", f: disc %>
 						<% end %>
@@ -42,13 +54,8 @@
 							<%= link_to_add_association "discを追加", f, :discs %>
 						</div>
 
-
 						<h4>ステータス</h4>
-
-
-                    <%= f.select :status, Cd.statuses.keys.to_a, {} %>
-
-
+                        <%= f.select :status, Cd.statuses.keys.to_a, {} %>
 
 
 					　　　<%= f.fields_for :restocks do |restock| %>
@@ -56,16 +63,14 @@
 						<% end %>
 
 						<h4>コメント</h4>
-                    <%= f.text_area :comment %>
-
-
+                        <%= f.text_area :comment %>
 
 
 						<%= f.submit '新規入荷作成' %>
 
 					<% end %>
 
-			 	 <h6 class="pull-right"><%= link_to"リスト追加ページへ", new_admin_list_path %></h6>
+			 	 <h6 class="pull-right" style="padding:30px; background-color: #EEEEEE;"><%= link_to"リスト追加ページへ", new_admin_list_path %></h6>
 		</div>
 	</div>
 </div>
