@@ -5,6 +5,7 @@ before_action :authenticate_user!
     @user = current_user
     @user = @user.orders.order("id DESC")
     @orders = @user.page(params[:page]).per(10)
+    @tax = 1.1
 
   end
 
