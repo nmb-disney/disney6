@@ -2,70 +2,57 @@
 <div class="container">
    <div class="row">
         <div class="col-md-10">
-
+			
 			<h1>adminリストに追加</h1>
-
-			<%= form_for [:admin, @artist] do |artist| %>
-			　<h3>アーティスト</h3> <%= artist.text_field :artist_name %>
-			 <%= artist.submit '新規追加' %>
-			<% end %>
-
-
-			<h3>アーティスト</h3>
-			<select name="" multiple>
-				<% @artists.each do |artist|%></a>
-				<option value=""><%= artist.artist_name %></option>
-				<% end %>
-			</select>
+			<span class="label label-danger pull-right" style="font-weight: bold; font-size: 15px;" ><%= link_to"更新完了", new_admin_cd_path %></span>
 
 
 			<%= form_for [:admin, @label] do |k| %>
-
 			　<h3>レーベル</h3> <%= k.text_field :label_name %><%= k.submit '新規追加' %>
-
 			<% end %>
-
-
-			<h3>レーベル</h3>
-			<select name="" multiple>
+			<select name="">
 				<% @labels.each do |label|%>
 				<option value=""><%= label.label_name %></option>
 				<% end %>
 			</select>
-
-
+<hr>
 
 			<%= form_for [:admin, @genre] do |k| %>
-
 			　<h3>ジャンル</h3> <%= k.text_field :genre_name %><%= k.submit '新規追加' %>
-
 			<% end %>
-
-			<h3>ジャンル</h3>
-			<select name="" multiple>
+			<select name="">
 				<% @genres.each do |genre|%>
 				<option value=""><%= genre.genre_name %></option>
 				<% end %>
 			</select>
-			<%= link_to"戻る", new_admin_cd_path %>
+    <hr>
+			<%= form_for [:admin, @artist] do |artist| %>
+			　<h3>アーティスト</h3> <%= artist.text_field :artist_name %>
+			 <%= artist.submit '新規追加' %>
+			<% end %>
+			<select name="">
+				<% @artists.each do |artist|%></a>
+				<option value=""><%= artist.artist_name %></option>
+				<% end %>
+			</select>
+            <hr>
+             <h1>レーベル</h1>
+<% @labels.each do |label|%>
+　<td><%= label.label_name %>
+　<%= link_to "削除", admin_label_path(label), method: :delete %></td>
+<% end %>
+<hr>
+  <h1>ジャンル</h1>
+    <% @genres.each do |genre|%>
+      <td><%= genre.genre_name %>
+      <%= link_to "削除", admin_genre_path(genre), method: :delete %></td>
+    <% end %>
+<hr>
+<h1>アーティスト</h1>
+<% @artists.each do |artist|%></a>
+  <td><%= artist.artist_name %>
+  <%= link_to "削除", admin_artist_path(artist), method: :delete %></td>
+<% end %>
 		</div>
 	</div>
 </div>
-
-<h1>アーティスト</h1>
-<% @artists.each do |artist|%></a>
-  <%= artist.artist_name %>
-  <%= link_to "削除", admin_artist_path(artist), method: :delete %>
-<% end %>
-
-<h1>レーベル</h1>
-<% @labels.each do |label|%>
-　<%= label.label_name %>
-　<%= link_to "削除", admin_label_path(label), method: :delete %>
-<% end %>
-
-<h1>ジャンル</h1>
-<% @genres.each do |genre|%>
-  <%= genre.genre_name %>
-  <%= link_to "削除", admin_genre_path(genre), method: :delete %>
-<% end %>
