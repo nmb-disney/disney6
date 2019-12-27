@@ -17,8 +17,15 @@ accepts_nested_attributes_for :discs, allow_destroy: true
 accepts_nested_attributes_for :restocks, allow_destroy: true
 
 
-
 enum status:{販売中:1,販売停止中:2}
+
+validates :jacket_image, presence: true
+validates :cd_title, presence: true
+validates :price, presence: true
+validates :release_date, presence: true
+
+
+
 
 
 

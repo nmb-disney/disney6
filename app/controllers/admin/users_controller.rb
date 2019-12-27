@@ -11,10 +11,16 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def edit
+    @user_order = @user.orders
   end
 
   def update
-
+  if
+      @user.update(user_params)
+      redirect_to admin_users_path(@user.id), flash:{success: "You have updated user successfully."}
+   else
+      render  action: :edit
+   end
   end
 
   def destroy
@@ -36,8 +42,8 @@ class Admin::UsersController < Admin::ApplicationController
 private
 
     def user_params
-     params.require(:user).permit(:id)
-    end
+    params.require(:user).permit(:lastname, :firstname, :lastname_kana, :firstname_kana, :postalcode, :address, :phone, :email, :profile_image)
+  end
 
 
 end

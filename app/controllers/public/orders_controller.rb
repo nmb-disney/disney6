@@ -5,6 +5,7 @@ before_action :authenticate_user!
     @user = current_user
     @user = @user.orders.order("id DESC")
     @orders = @user.page(params[:page]).per(10)
+    @tax = 1.1
 
   end
 
@@ -96,6 +97,26 @@ end
     @status = params[:deliver_status]
     order.deliver_status = @status.to_i
     order.order_count = @cd_counts.sum
+
+    @count = 0
+    @cd_ids.each do |f|
+      cd = Cd.find(f)
+      if cd.stock < @cd_counts[@count]
+        @user.cart_cds.each do |i|
+          if i.cd == cd
+            i.destroy
+            @bbb = "F"
+          end
+        end
+      end
+      @count += 1
+    end
+
+    if @bbb == "F"
+      flash[:notice] = '商品の在庫が足りませんでした'
+      redirect_to root_path
+    end
+
     unless order.save
       redirect_to root_path
     else
@@ -130,6 +151,7 @@ end
         cd_id.save
         @count += 1
       end
+
     flash[:buy] = 'ご購入ありがとうございました。
     またのご利用を心よりお待ちしております。'
     redirect_to public_orders_path
