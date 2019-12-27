@@ -28,4 +28,4 @@ private
     def order_status_deliver_params
       params.require(:deliver_status).permit(1,2)
     end
-end
+

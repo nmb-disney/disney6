@@ -36,23 +36,6 @@ class Admin::CdsController < Admin::ApplicationController
    end
 
 
-  def edit
-     @artists =Artist.all
-     @cd = Cd.find(params[:id])
-  end
-
-  def update
-     @cd = Cd.find(params[:id])
-     @cd.update(cd_params)
-     redirect_to admin_cds_path(@cd)
-  end
-
-  def destroy
-      @cd = Cd.find(params[:id])
-      @cd.destroy
-      redirect_to admin_cds_path
-  end
-
 private
 
     def cd_params
