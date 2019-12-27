@@ -49,7 +49,6 @@
              <h1>商品一覧</h1>
               <table class="table table-bordered">
                       <tr class="active">
-                        <th>入荷日時</th>
                         <th>アーティスト名</th>
                         <th>タイトル</th>
                         <th>値段</th>
@@ -59,9 +58,7 @@
                         <th></th>
                       </tr>
                     <% @cds.each do |cd| %>
-                      <% cd.restocks.each do |restock| %>
                         <tr>
-    　　　　　　　　　　　　　<td class="active"><%= restock.restock_date %></td>
                           <td class="active"><%= cd.artist.artist_name %></td>
                           <td class="active"><%= cd.cd_title %></td>
                           <td class="active"><%= cd.price %></td>
@@ -70,7 +67,6 @@
                           <td class="active"><%= link_to "入荷を追加する", new_admin_restock_path(@cds), class:"btn btn-primary" %>
                           <td class="active"><%= link_to "編集", edit_admin_cd_path(cd.id),   class:"btn btn-success" %></td>
                       　</tr>
-                   <% end %>
                    <% end %>
 
               </table>
